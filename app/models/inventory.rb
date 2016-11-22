@@ -1,6 +1,8 @@
 class Inventory < ApplicationRecord
   # Direct associations
 
+  belongs_to :bean
+
   # Indirect associations
 
   # Validations

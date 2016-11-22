@@ -1,6 +1,9 @@
 class Bean < ApplicationRecord
   # Direct associations
 
+  has_many   :inventories,
+             :dependent => :destroy
+
   # Indirect associations
 
   # Validations
