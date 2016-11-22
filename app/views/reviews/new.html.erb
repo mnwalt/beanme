@@ -33,7 +33,7 @@
           Bean
         </label>
 
-        <input type="text" id="bean_id" name="bean_id" placeholder="Bean" class="form-control" value="<%= @review.bean_id %>">
+        <%= select_tag(:bean_id, options_from_collection_for_select(Bean.all, :id, :name, @review.bean_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for overall_rating -->
