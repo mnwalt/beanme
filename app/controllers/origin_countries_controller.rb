@@ -6,6 +6,7 @@ class OriginCountriesController < ApplicationController
   end
 
   def show
+    @bean = Bean.new
     @origin_country = OriginCountry.find(params[:id])
 
     render("origin_countries/show.html.erb")

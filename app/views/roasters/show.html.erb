@@ -66,6 +66,161 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_bean" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for roaster_id -->
+      <input type="hidden" name="roaster_id" value="<%= @roaster.id %>">
+
+      <!-- Label and input for website_url -->
+      <div class="form-group">
+        <label for="website_url" class="control-label">
+          Website url
+        </label>
+
+        <input type="text" id="website_url" name="website_url" placeholder="Website url" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for image_url -->
+      <div class="form-group">
+        <label for="image_url" class="control-label">
+          Image url
+        </label>
+
+        <input type="text" id="image_url" name="image_url" placeholder="Image url" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for flavor_note_1 -->
+      <div class="form-group">
+        <label for="flavor_note_1" class="control-label">
+          Flavor note 1
+        </label>
+
+        <input type="text" id="flavor_note_1" name="flavor_note_1" placeholder="Flavor note 1" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for flavor_note_2 -->
+      <div class="form-group">
+        <label for="flavor_note_2" class="control-label">
+          Flavor note 2
+        </label>
+
+        <input type="text" id="flavor_note_2" name="flavor_note_2" placeholder="Flavor note 2" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for flavor_note_3 -->
+      <div class="form-group">
+        <label for="flavor_note_3" class="control-label">
+          Flavor note 3
+        </label>
+
+        <input type="text" id="flavor_note_3" name="flavor_note_3" placeholder="Flavor note 3" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for price_per_bag -->
+      <div class="form-group">
+        <label for="price_per_bag" class="control-label">
+          Price per bag
+        </label>
+
+        <input type="text" id="price_per_bag" name="price_per_bag" placeholder="Price per bag" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for std_bag_size_in_ounces -->
+      <div class="form-group">
+        <label for="std_bag_size_in_ounces" class="control-label">
+          Std bag size in ounces
+        </label>
+
+        <input type="text" id="std_bag_size_in_ounces" name="std_bag_size_in_ounces" placeholder="Std bag size in ounces" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for elevation_low -->
+      <div class="form-group">
+        <label for="elevation_low" class="control-label">
+          Elevation low
+        </label>
+
+        <input type="text" id="elevation_low" name="elevation_low" placeholder="Elevation low" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for elevation_high -->
+      <div class="form-group">
+        <label for="elevation_high" class="control-label">
+          Elevation high
+        </label>
+
+        <input type="text" id="elevation_high" name="elevation_high" placeholder="Elevation high" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for process -->
+      <div class="form-group">
+        <label for="process" class="control-label">
+          Process
+        </label>
+
+        <input type="text" id="process" name="process" placeholder="Process" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for varietal -->
+      <div class="form-group">
+        <label for="varietal" class="control-label">
+          Varietal
+        </label>
+
+        <input type="text" id="varietal" name="varietal" placeholder="Varietal" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for origin_country_id -->
+      <div class="form-group">
+        <label for="origin_country_id" class="control-label">
+          Origin country
+        </label>
+
+        <%= select_tag(:origin_country_id, options_from_collection_for_select(OriginCountry.all, :id, :description), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for caffine -->
+      <div class="checkbox">
+        <label for="caffine">
+          <input type="checkbox" id="caffine" name="caffine" value="1" <%= "checked" if @bean.caffine %>>
+          Caffine
+        </label>
+      </div>
+
+      <!-- Label and input for blend -->
+      <div class="checkbox">
+        <label for="blend">
+          <input type="checkbox" id="blend" name="blend" value="1" <%= "checked" if @bean.blend %>>
+          Blend
+        </label>
+      </div>
+
+      <!-- Label and input for espresso -->
+      <div class="checkbox">
+        <label for="espresso">
+          <input type="checkbox" id="espresso" name="espresso" value="1" <%= "checked" if @bean.espresso %>>
+          Espresso
+        </label>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Bean
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>

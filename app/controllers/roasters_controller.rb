@@ -6,6 +6,7 @@ class RoastersController < ApplicationController
   end
 
   def show
+    @bean = Bean.new
     @roaster = Roaster.find(params[:id])
 
     render("roasters/show.html.erb")

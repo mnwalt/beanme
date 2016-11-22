@@ -99,6 +99,41 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_inventory" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+      <!-- Label and input for bean_id -->
+      <input type="hidden" name="bean_id" value="<%= @bean.id %>">
+
+      <!-- Label and input for quantity_ounces -->
+      <div class="form-group">
+        <label for="quantity_ounces" class="control-label">
+          Quantity ounces
+        </label>
+
+        <input type="text" id="quantity_ounces" name="quantity_ounces" placeholder="Quantity ounces" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for roast_date -->
+      <div class="form-group">
+        <label for="roast_date" class="control-label">
+          Roast date
+        </label>
+
+        <input type="text" id="roast_date" name="roast_date" placeholder="Roast date" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Inventory
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>
@@ -130,6 +165,50 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_review" method="post" enctype="multipart/form-data">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+      <!-- Label and input for bean_id -->
+      <input type="hidden" name="bean_id" value="<%= @bean.id %>">
+
+      <!-- Label and input for overall_rating -->
+      <div class="form-group">
+        <label for="overall_rating" class="control-label">
+          Overall rating
+        </label>
+
+        <input type="text" id="overall_rating" name="overall_rating" placeholder="Overall rating" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for comments -->
+      <div class="form-group">
+        <label for="comments" class="control-label">
+          Comments
+        </label>
+
+        <textarea id="comments" name="comments" placeholder="Comments" class="form-control" rows="3"></textarea>
+      </div>
+
+      <!-- Label and input for image -->
+      <div class="form-group">
+        <label for="image" class="control-label">
+          Image
+        </label>
+
+        <input type="file" id="image" name="image" class="form-control">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Review
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>

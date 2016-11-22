@@ -6,6 +6,8 @@ class BeansController < ApplicationController
   end
 
   def show
+    @review = Review.new
+    @inventory = Inventory.new
     @bean = Bean.find(params[:id])
 
     render("beans/show.html.erb")
