@@ -6,6 +6,10 @@ class Roaster < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :reviews,
+             :through => :beans,
+             :source => :reviews
+
   # Validations
 
   validates :city, :presence => true

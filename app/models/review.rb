@@ -9,6 +9,10 @@ class Review < ApplicationRecord
 
   # Indirect associations
 
+  has_one    :roaster,
+             :through => :bean,
+             :source => :roaster
+
   has_one    :country,
              :through => :bean,
              :source => :country
