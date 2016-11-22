@@ -5,6 +5,8 @@ class Roaster < ApplicationRecord
 
   # Validations
 
+  validates :name, :uniqueness => { :scope => [:city] }
+
   validates :name, :presence => true
 
 end
