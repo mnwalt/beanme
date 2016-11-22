@@ -9,6 +9,10 @@ class Review < ApplicationRecord
 
   # Indirect associations
 
+  has_one    :country,
+             :through => :bean,
+             :source => :country
+
   # Validations
 
   validates :bean_id, :presence => true

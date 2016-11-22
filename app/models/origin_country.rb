@@ -6,6 +6,10 @@ class OriginCountry < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :reviews,
+             :through => :beans,
+             :source => :reviews
+
   # Validations
 
   validates :name, :uniqueness => true
