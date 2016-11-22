@@ -1,5 +1,7 @@
 ActiveAdmin.register Inventory do
 
+ permit_params :user_id, :bean_id, :quantity_ounces, :roast_date
+
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
