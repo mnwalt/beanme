@@ -5,6 +5,8 @@ class Inventory < ApplicationRecord
 
   # Validations
 
+  validates :bean_id, :presence => true
+
   validates :user_id, :presence => true
 
 end
