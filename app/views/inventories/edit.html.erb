@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @inventory.errors.any? %>
+  <% @inventory.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Inventory #<%= @inventory.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_inventory/<%= @inventory.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @inventory.user_id %>">
+      </div>
+
+      <!-- Label and input for bean_id -->
+      <div class="form-group">
+        <label for="bean_id" class="control-label">
+          Bean
+        </label>
+
+        <input type="text" id="bean_id" name="bean_id" placeholder="Bean" class="form-control" value="<%= @inventory.bean_id %>">
+      </div>
+
+      <!-- Label and input for quantity_ounces -->
+      <div class="form-group">
+        <label for="quantity_ounces" class="control-label">
+          Quantity ounces
+        </label>
+
+        <input type="text" id="quantity_ounces" name="quantity_ounces" placeholder="Quantity ounces" class="form-control" value="<%= @inventory.quantity_ounces %>">
+      </div>
+
+      <!-- Label and input for roast_date -->
+      <div class="form-group">
+        <label for="roast_date" class="control-label">
+          Roast date
+        </label>
+
+        <input type="text" id="roast_date" name="roast_date" placeholder="Roast date" class="form-control" value="<%= @inventory.roast_date %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Inventory
+      </button>
+      or
+      <a href="/inventories/<%= @inventory.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

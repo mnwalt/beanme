@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Inventory resource:
+  # CREATE
+  get "/inventories/new", :controller => "inventories", :action => "new"
+  post "/create_inventory", :controller => "inventories", :action => "create"
+
+  # READ
+  get "/inventories", :controller => "inventories", :action => "index"
+  get "/inventories/:id", :controller => "inventories", :action => "show"
+
+  # UPDATE
+  get "/inventories/:id/edit", :controller => "inventories", :action => "edit"
+  post "/update_inventory/:id", :controller => "inventories", :action => "update"
+
+  # DELETE
+  get "/delete_inventory/:id", :controller => "inventories", :action => "destroy"
+  #------------------------------
+
   # Routes for the Roaster resource:
   # CREATE
   get "/roasters/new", :controller => "roasters", :action => "new"
