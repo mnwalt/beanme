@@ -18,7 +18,7 @@
 
       <% @inventories.each do |inventory| %>
       <tr>
-        <td><%= inventory.user_id %></td>
+        <td><%= inventory.user.email %></td>
         <td><%= inventory.bean_id %></td>
         <td><%= inventory.quantity_ounces %></td>
         <td><%= inventory.roast_date %></td>
