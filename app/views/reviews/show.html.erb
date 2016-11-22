@@ -35,3 +35,65 @@
     </div>
   </div>
 </div>
+
+<!-- A Review has many country -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Country
+      </li>
+
+      <% @review.country.each do |origin_country| %>
+        <li class="list-group-item">
+          <a href="/origin_countries/<%= origin_country.id %>">
+            <%= origin_country.description %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/origin_countries/<%= origin_country.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/origin_countries/<%= origin_country.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_origin_country/<%= origin_country.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Review has many roaster -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Roaster
+      </li>
+
+      <% @review.roaster.each do |roaster| %>
+        <li class="list-group-item">
+          <a href="/roasters/<%= roaster.id %>">
+            <%= roaster.description %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/roasters/<%= roaster.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/roasters/<%= roaster.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_roaster/<%= roaster.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
