@@ -9,7 +9,13 @@
       <dd><%= @bean.name %></dd>
 
       <dt>Roaster</dt>
-      <dd><%= @bean.roaster_id %></dd>
+      <dd>
+        <% if @bean.roaster.present? %>
+          <a href="/roasters/<%= @bean.roaster_id %>">
+            <%= @bean.roaster.description %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Website url</dt>
       <dd><%= @bean.website_url %></dd>
@@ -45,7 +51,13 @@
       <dd><%= @bean.varietal %></dd>
 
       <dt>Origin country</dt>
-      <dd><%= @bean.origin_country_id %></dd>
+      <dd>
+        <% if @bean.country.present? %>
+          <a href="/origin_countries/<%= @bean.origin_country_id %>">
+            <%= @bean.country.description %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Caffine</dt>
       <dd><%= @bean.caffine %></dd>

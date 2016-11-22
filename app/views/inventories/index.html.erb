@@ -18,8 +18,20 @@
 
       <% @inventories.each do |inventory| %>
       <tr>
-        <td><%= inventory.user.email %></td>
-        <td><%= inventory.bean.name %></td>
+        <td>
+          <% if inventory.user.present? %>
+            <a href="/users/<%= inventory.user.id %>">
+              <%= inventory.user.email %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if inventory.bean.present? %>
+            <a href="/beans/<%= inventory.bean.id %>">
+              <%= inventory.bean.name %>
+            </a>
+          <% end %>
+        </td>
         <td><%= inventory.quantity_ounces %></td>
         <td><%= inventory.roast_date %></td>
         <td>

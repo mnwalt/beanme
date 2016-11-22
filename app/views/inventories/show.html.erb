@@ -6,10 +6,22 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>User</dt>
-      <dd><%= @inventory.user_id %></dd>
+      <dd>
+        <% if @inventory.user.present? %>
+          <a href="/users/<%= @inventory.user_id %>">
+            <%= @inventory.user.email %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Bean</dt>
-      <dd><%= @inventory.bean_id %></dd>
+      <dd>
+        <% if @inventory.bean.present? %>
+          <a href="/beans/<%= @inventory.bean_id %>">
+            <%= @inventory.bean.name %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Quantity ounces</dt>
       <dd><%= @inventory.quantity_ounces %></dd>

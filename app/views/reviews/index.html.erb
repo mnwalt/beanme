@@ -19,8 +19,20 @@
 
       <% @reviews.each do |review| %>
       <tr>
-        <td><%= review.user.email %></td>
-        <td><%= review.bean.name %></td>
+        <td>
+          <% if review.user.present? %>
+            <a href="/users/<%= review.user.id %>">
+              <%= review.user.email %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if review.bean.present? %>
+            <a href="/beans/<%= review.bean.id %>">
+              <%= review.bean.name %>
+            </a>
+          <% end %>
+        </td>
         <td><%= review.overall_rating %></td>
         <td><%= review.comments %></td>
         <td><img src='<%= review.image %>' class='img-responsive'></td>

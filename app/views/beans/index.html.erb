@@ -32,7 +32,13 @@
       <% @beans.each do |bean| %>
       <tr>
         <td><%= bean.name %></td>
-        <td><%= bean.roaster.description %></td>
+        <td>
+          <% if bean.roaster.present? %>
+            <a href="/roasters/<%= bean.roaster.id %>">
+              <%= bean.roaster.description %>
+            </a>
+          <% end %>
+        </td>
         <td><%= bean.website_url %></td>
         <td><%= bean.image_url %></td>
         <td><%= bean.flavor_note_1 %></td>
@@ -44,7 +50,13 @@
         <td><%= bean.elevation_high %></td>
         <td><%= bean.process %></td>
         <td><%= bean.varietal %></td>
-        <td><%= bean.country.description %></td>
+        <td>
+          <% if bean.country.present? %>
+            <a href="/origin_countries/<%= bean.country.id %>">
+              <%= bean.country.description %>
+            </a>
+          <% end %>
+        </td>
         <td><%= bean.caffine %></td>
         <td><%= bean.blend %></td>
         <td><%= bean.espresso %></td>
