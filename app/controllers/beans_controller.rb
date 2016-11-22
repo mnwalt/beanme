@@ -1,6 +1,6 @@
 class BeansController < ApplicationController
   def index
-    @beans = Bean.all
+    @beans = Bean.page(params[:page]).per(10)
 
     render("beans/index.html.erb")
   end
