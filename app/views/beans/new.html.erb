@@ -141,7 +141,7 @@
           Origin country
         </label>
 
-        <input type="text" id="origin_country_id" name="origin_country_id" placeholder="Origin country" class="form-control" value="<%= @bean.origin_country_id %>">
+        <%= select_tag(:origin_country_id, options_from_collection_for_select(OriginCountry.all, :id, :description, @bean.origin_country_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for caffine -->
