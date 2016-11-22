@@ -5,4 +5,6 @@ class Bean < ApplicationRecord
 
   # Validations
 
+  validates :roaster_id, :presence => true
+
 end
