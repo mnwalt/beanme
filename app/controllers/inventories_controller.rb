@@ -10,7 +10,7 @@ class InventoriesController < ApplicationController
   end
 
   def index
-    @inventories = Inventory.all
+    @inventories = current_user.inventories.page(params[:page]).per(10)
 
     render("inventories/index.html.erb")
   end
