@@ -10,7 +10,8 @@ class InventoriesController < ApplicationController
   end
 
   def index
-    @inventories = current_user.inventories.page(params[:page]).per(10)
+    @q = current_user.inventories.ransack(params[:q])
+      @inventories = @q.result(:distinct => true).includes(:bean, :user).page(params[:page]).per(10)
 
     render("inventories/index.html.erb")
   end

@@ -1,6 +1,7 @@
 class RoastersController < ApplicationController
   def index
-    @roasters = Roaster.page(params[:page]).per(10)
+    @q = Roaster.ransack(params[:q])
+    @roasters = @q.result(:distinct => true).includes(:beans, :reviews).page(params[:page]).per(10)
     @location_hash = Gmaps4rails.build_markers(@roasters.where.not(:location_latitude => nil)) do |roaster, marker|
       marker.lat roaster.location_latitude
       marker.lng roaster.location_longitude

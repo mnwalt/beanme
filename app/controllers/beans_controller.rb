@@ -1,6 +1,7 @@
 class BeansController < ApplicationController
   def index
-    @beans = Bean.page(params[:page]).per(10)
+    @q = Bean.ransack(params[:q])
+    @beans = @q.result(:distinct => true).includes(:inventories, :reviews, :country, :roaster).page(params[:page]).per(10)
 
     render("beans/index.html.erb")
   end
