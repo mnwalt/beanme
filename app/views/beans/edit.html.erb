@@ -33,7 +33,7 @@
           Roaster
         </label>
 
-        <input type="text" id="roaster_id" name="roaster_id" placeholder="Roaster" class="form-control" value="<%= @bean.roaster_id %>">
+        <%= select_tag(:roaster_id, options_from_collection_for_select(Roaster.all, :id, :description, @bean.roaster_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for website_url -->
