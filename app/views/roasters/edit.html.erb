@@ -1,0 +1,82 @@
+<!-- Validation failure messages -->
+<% if @roaster.errors.any? %>
+  <% @roaster.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Roaster #<%= @roaster.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_roaster/<%= @roaster.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @roaster.description %></textarea>
+      </div>
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @roaster.name %>">
+      </div>
+
+      <!-- Label and input for website_url -->
+      <div class="form-group">
+        <label for="website_url" class="control-label">
+          Website url
+        </label>
+
+        <input type="text" id="website_url" name="website_url" placeholder="Website url" class="form-control" value="<%= @roaster.website_url %>">
+      </div>
+
+      <!-- Label and input for location -->
+      <div class="form-group">
+        <label for="location" class="control-label">
+          Location
+        </label>
+
+        <input type="text" id="location" name="location" placeholder="Location" class="form-control" value="<%= @roaster.location %>">
+      </div>
+
+      <!-- Label and input for cover_photo_url -->
+      <div class="form-group">
+        <label for="cover_photo_url" class="control-label">
+          Cover photo url
+        </label>
+
+        <input type="text" id="cover_photo_url" name="cover_photo_url" placeholder="Cover photo url" class="form-control" value="<%= @roaster.cover_photo_url %>">
+      </div>
+
+      <!-- Label and input for city -->
+      <div class="form-group">
+        <label for="city" class="control-label">
+          City
+        </label>
+
+        <input type="text" id="city" name="city" placeholder="City" class="form-control" value="<%= @roaster.city %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Roaster
+      </button>
+      or
+      <a href="/roasters/<%= @roaster.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

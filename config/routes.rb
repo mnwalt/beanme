@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Roaster resource:
+  # CREATE
+  get "/roasters/new", :controller => "roasters", :action => "new"
+  post "/create_roaster", :controller => "roasters", :action => "create"
+
+  # READ
+  get "/roasters", :controller => "roasters", :action => "index"
+  get "/roasters/:id", :controller => "roasters", :action => "show"
+
+  # UPDATE
+  get "/roasters/:id/edit", :controller => "roasters", :action => "edit"
+  post "/update_roaster/:id", :controller => "roasters", :action => "update"
+
+  # DELETE
+  get "/delete_roaster/:id", :controller => "roasters", :action => "destroy"
+  #------------------------------
+
   devise_for :users
   # Routes for the User resource:
   # READ
