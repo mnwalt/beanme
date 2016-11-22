@@ -1,0 +1,60 @@
+<div class="page-header">
+  <h1>
+    Beans
+    <a href="/beans/new" class="btn btn-lg btn-success">New Bean</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Name</th>
+        <th>Roaster</th>
+        <th>Website url</th>
+        <th>Image url</th>
+        <th>Flavor note 1</th>
+        <th>Flavor note 2</th>
+        <th>Flavor note 3</th>
+        <th>Price per bag</th>
+        <th>Std bag size in ounces</th>
+        <th>Elevation low</th>
+        <th>Elevation high</th>
+        <th>Process</th>
+        <th>Varietal</th>
+        <th>Origin country</th>
+        <th>Caffine</th>
+        <th>Blend</th>
+        <th>Espresso</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @beans.each do |bean| %>
+      <tr>
+        <td><%= bean.name %></td>
+        <td><%= bean.roaster_id %></td>
+        <td><%= bean.website_url %></td>
+        <td><%= bean.image_url %></td>
+        <td><%= bean.flavor_note_1 %></td>
+        <td><%= bean.flavor_note_2 %></td>
+        <td><%= bean.flavor_note_3 %></td>
+        <td><%= bean.price_per_bag %></td>
+        <td><%= bean.std_bag_size_in_ounces %></td>
+        <td><%= bean.elevation_low %></td>
+        <td><%= bean.elevation_high %></td>
+        <td><%= bean.process %></td>
+        <td><%= bean.varietal %></td>
+        <td><%= bean.origin_country_id %></td>
+        <td><%= bean.caffine %></td>
+        <td><%= bean.blend %></td>
+        <td><%= bean.espresso %></td>
+        <td>
+          <a href="/beans/<%= bean.id %>" class="btn btn-primary">Show</a>
+          <a href="/beans/<%= bean.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_bean/<%= bean.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
