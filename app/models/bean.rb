@@ -5,6 +5,8 @@ class Bean < ApplicationRecord
 
   # Validations
 
+  validates :name, :uniqueness => { :scope => [:roaster_id] }
+
   validates :name, :presence => true
 
   validates :origin_country_id, :presence => true
