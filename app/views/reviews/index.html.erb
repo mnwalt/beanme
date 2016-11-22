@@ -23,7 +23,7 @@
         <td><%= review.bean.name %></td>
         <td><%= review.overall_rating %></td>
         <td><%= review.comments %></td>
-        <td><%= review.image %></td>
+        <td><img src='<%= review.image %>' class='img-responsive'></td>
         <td>
           <a href="/reviews/<%= review.id %>" class="btn btn-primary">Show</a>
           <a href="/reviews/<%= review.id %>/edit" class="btn btn-warning">Edit</a>
