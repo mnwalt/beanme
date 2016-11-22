@@ -1,6 +1,11 @@
 class RoastersController < ApplicationController
   def index
     @roasters = Roaster.all
+    @location_hash = Gmaps4rails.build_markers(@roasters.where.not(:location_latitude => nil)) do |roaster, marker|
+      marker.lat roaster.location_latitude
+      marker.lng roaster.location_longitude
+      marker.infowindow "<h5><a href='/roasters/#{roaster.id}'>#{roaster.created_at}</a></h5><small>#{roaster.location_formatted_address}</small>"
+    end
 
     render("roasters/index.html.erb")
   end
