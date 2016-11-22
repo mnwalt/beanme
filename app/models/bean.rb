@@ -1,6 +1,11 @@
 class Bean < ApplicationRecord
   # Direct associations
 
+  belongs_to :country,
+             :class_name => "OriginCountry",
+             :foreign_key => "origin_country_id",
+             :counter_cache => true
+
   has_many   :reviews,
              :dependent => :destroy
 
