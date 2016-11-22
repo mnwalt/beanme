@@ -19,7 +19,7 @@
 
       <% @reviews.each do |review| %>
       <tr>
-        <td><%= review.user_id %></td>
+        <td><%= review.user.email %></td>
         <td><%= review.bean_id %></td>
         <td><%= review.overall_rating %></td>
         <td><%= review.comments %></td>
