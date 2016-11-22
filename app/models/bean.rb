@@ -1,6 +1,9 @@
 class Bean < ApplicationRecord
   # Direct associations
 
+  belongs_to :roaster,
+             :counter_cache => true
+
   belongs_to :country,
              :class_name => "OriginCountry",
              :foreign_key => "origin_country_id",
