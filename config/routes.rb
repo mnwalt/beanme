@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Origin_country resource:
+  # CREATE
+  get "/origin_countries/new", :controller => "origin_countries", :action => "new"
+  post "/create_origin_country", :controller => "origin_countries", :action => "create"
+
+  # READ
+  get "/origin_countries", :controller => "origin_countries", :action => "index"
+  get "/origin_countries/:id", :controller => "origin_countries", :action => "show"
+
+  # UPDATE
+  get "/origin_countries/:id/edit", :controller => "origin_countries", :action => "edit"
+  post "/update_origin_country/:id", :controller => "origin_countries", :action => "update"
+
+  # DELETE
+  get "/delete_origin_country/:id", :controller => "origin_countries", :action => "destroy"
+  #------------------------------
+
   # Routes for the Bean resource:
   # CREATE
   get "/beans/new", :controller => "beans", :action => "new"

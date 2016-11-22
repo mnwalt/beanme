@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h3>Origin Country #<%= @origin_country.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Description</dt>
+      <dd><%= @origin_country.description %></dd>
+
+      <dt>Cover photo url</dt>
+      <dd><%= @origin_country.cover_photo_url %></dd>
+
+      <dt>Name</dt>
+      <dd><%= @origin_country.name %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/origin_countries" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/origin_countries/<%= @origin_country.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_origin_country/<%= @origin_country.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

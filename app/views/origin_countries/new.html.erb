@@ -1,0 +1,55 @@
+<!-- Validation failure messages -->
+<% if @origin_country.errors.any? %>
+  <% @origin_country.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Origin Country</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_origin_country" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @origin_country.description %></textarea>
+      </div>
+
+      <!-- Label and input for cover_photo_url -->
+      <div class="form-group">
+        <label for="cover_photo_url" class="control-label">
+          Cover photo url
+        </label>
+
+        <input type="text" id="cover_photo_url" name="cover_photo_url" placeholder="Cover photo url" class="form-control" value="<%= @origin_country.cover_photo_url %>">
+      </div>
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @origin_country.name %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Origin Country
+      </button>
+      or
+      <a href="/origin_countries">Cancel</a>
+    </form>
+  </div>
+</div>
