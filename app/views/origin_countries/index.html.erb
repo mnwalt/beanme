@@ -9,17 +9,13 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>Description</th>
-        <th>Cover photo url</th>
-        <th>Name</th>
-        <th>Actions</th>
       </tr>
 
       <% @origin_countries.each do |origin_country| %>
       <tr>
-        <td><%= origin_country.description %></td>
-        <td><%= origin_country.cover_photo_url %></td>
         <td><%= origin_country.name %></td>
+        <td><img src="<%= origin_country.cover_photo_url %>"</td>
+        <td><%= origin_country.description %></td>
         <td>
           <a href="/origin_countries/<%= origin_country.id %>" class="btn btn-primary">Show</a>
           <a href="/origin_countries/<%= origin_country.id %>/edit" class="btn btn-warning">Edit</a>
