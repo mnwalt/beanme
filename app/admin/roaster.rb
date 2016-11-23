@@ -1,6 +1,6 @@
 ActiveAdmin.register Roaster do
 
- permit_params :description, :name, :website_url, :location, :cover_photo_url, :city
+ permit_params :description, :name, :website_url, :location, :cover_photo_url, :city, :delivers, :delivery_method, :delivery_notes, :delivery_geography
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

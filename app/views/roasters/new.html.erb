@@ -72,6 +72,41 @@
         <input type="text" id="city" name="city" placeholder="City" class="form-control" value="<%= @roaster.city %>">
       </div>
 
+      <!-- Label and input for delivers -->
+      <div class="checkbox">
+        <label for="delivers">
+          <input type="checkbox" id="delivers" name="delivers" value="1" <%= "checked" if @roaster.delivers %>>
+          Delivers
+        </label>
+      </div>
+
+      <!-- Label and input for delivery_method -->
+      <div class="form-group">
+        <label for="delivery_method" class="control-label">
+          Delivery method
+        </label>
+
+        <input type="text" id="delivery_method" name="delivery_method" placeholder="Delivery method" class="form-control" value="<%= @roaster.delivery_method %>">
+      </div>
+
+      <!-- Label and input for delivery_notes -->
+      <div class="form-group">
+        <label for="delivery_notes" class="control-label">
+          Delivery notes
+        </label>
+
+        <textarea id="delivery_notes" name="delivery_notes" placeholder="Delivery notes" class="form-control" rows="3"><%= @roaster.delivery_notes %></textarea>
+      </div>
+
+      <!-- Label and input for delivery_geography -->
+      <div class="form-group">
+        <label for="delivery_geography" class="control-label">
+          Delivery geography
+        </label>
+
+        <input type="text" id="delivery_geography" name="delivery_geography" placeholder="Delivery geography" class="form-control" value="<%= @roaster.delivery_geography %>">
+      </div>
+
       <button class="btn btn-success">
         Create Roaster
       </button>

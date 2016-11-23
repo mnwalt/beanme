@@ -5,12 +5,42 @@
   </h1>
 </div><div class="row mb-1">
   <div class="col-md-12">
-    <%= search_form_for @q, :class => "", :id => "roasters_filters" do |f| %>
+    <%= search_form_for @q, :class => "collapse", :id => "roasters_filters" do |f| %>
       <p class="lead">Narrow results:</p>
 
         <div class="form-group">
     <%= f.label :description_cont, "Description contains" %>
     <%= f.text_field :description_cont, :class => "form-control", :placeholder => "Description contains" %>
+  </div>
+
+<div class="form-group">
+    <%= f.label :delivery_geography_cont, "Delivery geography contains" %>
+    <%= f.text_field :delivery_geography_cont, :class => "form-control", :placeholder => "Delivery geography contains" %>
+  </div>
+
+<div class="form-group">
+    <%= f.label :delivery_notes_cont, "Delivery notes contains" %>
+    <%= f.text_field :delivery_notes_cont, :class => "form-control", :placeholder => "Delivery notes contains" %>
+  </div>
+
+<div class="form-group">
+    <%= f.label :delivery_method_cont, "Delivery method contains" %>
+    <%= f.text_field :delivery_method_cont, :class => "form-control", :placeholder => "Delivery method contains" %>
+  </div>
+
+<div class="form-group">
+    <%= f.label :delivers_eq, "Delivers" %>
+    <div>
+      <label class="radio-inline">
+        <%= f.radio_button :delivers_eq, "1", checked: ((params[:q] && params[:q][:delivers_eq]) == "1" ? "checked" : "") %> Yes
+      </label>
+      <label class="radio-inline">
+        <%= f.radio_button :delivers_eq, "0", checked: ((params[:q] && params[:q][:delivers_eq]) == "0" ? "checked" : "")%> No
+      </label>
+      <label class="radio-inline">
+        <%= f.radio_button :delivers_eq, ""%> Either
+      </label>
+    </div>
   </div>
 
 <div class="form-group">
@@ -107,6 +137,10 @@
         <th>Location</th>
         <th>Cover photo url</th>
         <th>City</th>
+        <th>Delivers</th>
+        <th>Delivery method</th>
+        <th>Delivery notes</th>
+        <th>Delivery geography</th>
         <th>Actions</th>
       </tr>
 
@@ -118,6 +152,10 @@
         <td><%= roaster.location %></td>
         <td><%= roaster.cover_photo_url %></td>
         <td><%= roaster.city %></td>
+        <td><%= roaster.delivers %></td>
+        <td><%= roaster.delivery_method %></td>
+        <td><%= roaster.delivery_notes %></td>
+        <td><%= roaster.delivery_geography %></td>
         <td>
           <a href="/roasters/<%= roaster.id %>" class="btn btn-primary">Show</a>
           <a href="/roasters/<%= roaster.id %>/edit" class="btn btn-warning">Edit</a>

@@ -33,6 +33,8 @@ class Roaster < ApplicationRecord
 
   validates :city, :presence => true
 
+  validates :delivers, :presence => true
+
   validates :name, :uniqueness => { :scope => [:city] }
 
   validates :name, :presence => true

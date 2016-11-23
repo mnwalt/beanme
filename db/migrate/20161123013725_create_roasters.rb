@@ -7,6 +7,10 @@ class CreateRoasters < ActiveRecord::Migration
       t.string :location
       t.string :cover_photo_url
       t.string :city
+      t.boolean :delivers
+      t.string :delivery_method
+      t.text :delivery_notes
+      t.string :delivery_geography
 
       t.timestamps
 
