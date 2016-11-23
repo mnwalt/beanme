@@ -33,6 +33,10 @@ class RoastersController < ApplicationController
     @roaster.location = params[:location]
     @roaster.cover_photo_url = params[:cover_photo_url]
     @roaster.city = params[:city]
+    @roaster.delivers = params[:delivers]
+    @roaster.delivery_method = params[:delivery_method]
+    @roaster.delivery_notes = params[:delivery_notes]
+    @roaster.delivery_geography = params[:delivery_geography]
 
     save_status = @roaster.save
 
@@ -65,6 +69,10 @@ class RoastersController < ApplicationController
     @roaster.location = params[:location]
     @roaster.cover_photo_url = params[:cover_photo_url]
     @roaster.city = params[:city]
+    @roaster.delivers = params[:delivers]
+    @roaster.delivery_method = params[:delivery_method]
+    @roaster.delivery_notes = params[:delivery_notes]
+    @roaster.delivery_geography = params[:delivery_geography]
 
     save_status = @roaster.save
 
