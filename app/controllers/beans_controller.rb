@@ -47,6 +47,7 @@ class BeansController < ApplicationController
     @bean.blend = params[:blend]
     @bean.espresso = params[:espresso]
     @bean.producer = params[:producer]
+    @bean.description = params[:description]
 
     save_status = @bean.save
 
@@ -92,6 +93,7 @@ class BeansController < ApplicationController
     @bean.blend = params[:blend]
     @bean.espresso = params[:espresso]
     @bean.producer = params[:producer]
+    @bean.description = params[:description]
 
     save_status = @bean.save
 

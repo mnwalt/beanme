@@ -186,6 +186,15 @@
         <input type="text" id="producer" name="producer" placeholder="Producer" class="form-control" value="<%= @bean.producer %>">
       </div>
 
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @bean.description %></textarea>
+      </div>
+
       <button class="btn btn-warning">
         Update Bean
       </button>
