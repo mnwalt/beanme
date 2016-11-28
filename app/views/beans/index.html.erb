@@ -6,204 +6,204 @@
 </div><div class="row mb-1">
   <div class="col-md-12">
     <%= search_form_for @q, :class => "collapse", :id => "beans_filters" do |f| %>
-      <p class="lead">Narrow results:</p>
+    <p class="lead">Narrow results:</p>
 
-        <div class="form-group">
-    <%= f.label :name_cont, "Name contains" %>
-    <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Name contains" %>
-  </div>
-
-<div class="form-group">
-    <%= f.label :description_cont, "Description contains" %>
-    <%= f.text_field :description_cont, :class => "form-control", :placeholder => "Description contains" %>
-  </div>
-
-<div class="form-group">
-    <%= f.label :producer_cont, "Producer contains" %>
-    <%= f.text_field :producer_cont, :class => "form-control", :placeholder => "Producer contains" %>
-  </div>
-
-<div class="form-group">
-    <%= f.label :espresso_eq, "Espresso" %>
-    <div>
-      <label class="radio-inline">
-        <%= f.radio_button :espresso_eq, "1", checked: ((params[:q] && params[:q][:espresso_eq]) == "1" ? "checked" : "") %> Yes
-      </label>
-      <label class="radio-inline">
-        <%= f.radio_button :espresso_eq, "0", checked: ((params[:q] && params[:q][:espresso_eq]) == "0" ? "checked" : "")%> No
-      </label>
-      <label class="radio-inline">
-        <%= f.radio_button :espresso_eq, ""%> Either
-      </label>
+    <div class="form-group">
+      <%= f.label :name_cont, "Name contains" %>
+      <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Name contains" %>
     </div>
-  </div>
 
-<div class="form-group">
-    <%= f.label :blend_eq, "Blend" %>
-    <div>
-      <label class="radio-inline">
-        <%= f.radio_button :blend_eq, "1", checked: ((params[:q] && params[:q][:blend_eq]) == "1" ? "checked" : "") %> Yes
-      </label>
-      <label class="radio-inline">
-        <%= f.radio_button :blend_eq, "0", checked: ((params[:q] && params[:q][:blend_eq]) == "0" ? "checked" : "")%> No
-      </label>
-      <label class="radio-inline">
-        <%= f.radio_button :blend_eq, ""%> Either
-      </label>
+    <div class="form-group">
+      <%= f.label :description_cont, "Description contains" %>
+      <%= f.text_field :description_cont, :class => "form-control", :placeholder => "Description contains" %>
     </div>
-  </div>
 
-<div class="form-group">
-    <%= f.label :caffine_eq, "Caffine" %>
-    <div>
-      <label class="radio-inline">
-        <%= f.radio_button :caffine_eq, "1", checked: ((params[:q] && params[:q][:caffine_eq]) == "1" ? "checked" : "") %> Yes
-      </label>
-      <label class="radio-inline">
-        <%= f.radio_button :caffine_eq, "0", checked: ((params[:q] && params[:q][:caffine_eq]) == "0" ? "checked" : "")%> No
-      </label>
-      <label class="radio-inline">
-        <%= f.radio_button :caffine_eq, ""%> Either
-      </label>
+    <div class="form-group">
+      <%= f.label :producer_cont, "Producer contains" %>
+      <%= f.text_field :producer_cont, :class => "form-control", :placeholder => "Producer contains" %>
     </div>
-  </div>
 
-<div class="form-group">
-    <%= f.label :varietal_cont, "Varietal contains" %>
-    <%= f.text_field :varietal_cont, :class => "form-control", :placeholder => "Varietal contains" %>
-  </div>
-
-<div class="form-group">
-    <%= f.label :process_cont, "Process contains" %>
-    <%= f.text_field :process_cont, :class => "form-control", :placeholder => "Process contains" %>
-  </div>
-
-<div class="form-group">
-  <%= f.label :elevation_masl_high, "Elevation masl high" %>
-  <div class="row">
-    <div class='col-md-6 mb-1'>
-      <%= f.text_field :elevation_masl_high_gteq, :class => "form-control", :placeholder => "Elevation masl high greater than or equal to" %>
-    </div>
-    <div class='col-md-6'>
-      <%= f.text_field :elevation_masl_high_lteq, :class => "form-control", :placeholder => "Elevation masl high less than or equal to" %>
-    </div>
-  </div>
-</div>
-
-<div class="form-group">
-  <%= f.label :elevation_masl_low, "Elevation masl low" %>
-  <div class="row">
-    <div class='col-md-6 mb-1'>
-      <%= f.text_field :elevation_masl_low_gteq, :class => "form-control", :placeholder => "Elevation masl low greater than or equal to" %>
-    </div>
-    <div class='col-md-6'>
-      <%= f.text_field :elevation_masl_low_lteq, :class => "form-control", :placeholder => "Elevation masl low less than or equal to" %>
-    </div>
-  </div>
-</div>
-
-<div class="form-group">
-  <%= f.label :bag_size_grams, "Bag size grams" %>
-  <div class="row">
-    <div class='col-md-6 mb-1'>
-      <%= f.text_field :bag_size_grams_gteq, :class => "form-control", :placeholder => "Bag size grams greater than or equal to" %>
-    </div>
-    <div class='col-md-6'>
-      <%= f.text_field :bag_size_grams_lteq, :class => "form-control", :placeholder => "Bag size grams less than or equal to" %>
-    </div>
-  </div>
-</div>
-
-<div class="form-group">
-  <%= f.label :price_per_bag, "Price per bag" %>
-  <div class="row">
-    <div class='col-md-6 mb-1'>
-      <%= f.text_field :price_per_bag_gteq, :class => "form-control", :placeholder => "Price per bag greater than or equal to" %>
-    </div>
-    <div class='col-md-6'>
-      <%= f.text_field :price_per_bag_lteq, :class => "form-control", :placeholder => "Price per bag less than or equal to" %>
-    </div>
-  </div>
-</div>
-
-<div class="form-group">
-    <%= f.label :flavor_note_3_cont, "Flavor note 3 contains" %>
-    <%= f.text_field :flavor_note_3_cont, :class => "form-control", :placeholder => "Flavor note 3 contains" %>
-  </div>
-
-<div class="form-group">
-    <%= f.label :flavor_note_2_cont, "Flavor note 2 contains" %>
-    <%= f.text_field :flavor_note_2_cont, :class => "form-control", :placeholder => "Flavor note 2 contains" %>
-  </div>
-
-<div class="form-group">
-    <%= f.label :flavor_note_1_cont, "Flavor note 1 contains" %>
-    <%= f.text_field :flavor_note_1_cont, :class => "form-control", :placeholder => "Flavor note 1 contains" %>
-  </div>
-
-<div class="form-group">
-    <%= f.label :image_url_cont, "Image url contains" %>
-    <%= f.text_field :image_url_cont, :class => "form-control", :placeholder => "Image url contains" %>
-  </div>
-
-<div class="form-group">
-    <%= f.label :website_url_cont, "Website url contains" %>
-    <%= f.text_field :website_url_cont, :class => "form-control", :placeholder => "Website url contains" %>
-  </div>
-
-<div class="form-group">
-          <%= f.label :created_at, "Created at" %>
-          <div class="row">
-            <div class='col-md-6 mb-1'>
-              <div class='input-group date' id='created_atgteqPicker'>
-                  <%= f.text_field :created_at_gteq, :class => "form-control", :placeholder => "Created at greater than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-
-            <div class='col-md-6'>
-              <div class='input-group date' id='created_atlteqPicker'>
-                  <%= f.text_field :created_at_lteq, :class => "form-control", :placeholder => "Created at less than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-          </div>
+    <div class="form-group">
+      <%= f.label :espresso_eq, "Espresso" %>
+      <div>
+        <label class="radio-inline">
+          <%= f.radio_button :espresso_eq, "1", checked: ((params[:q] && params[:q][:espresso_eq]) == "1" ? "checked" : "") %> Yes
+        </label>
+        <label class="radio-inline">
+          <%= f.radio_button :espresso_eq, "0", checked: ((params[:q] && params[:q][:espresso_eq]) == "0" ? "checked" : "")%> No
+        </label>
+        <label class="radio-inline">
+          <%= f.radio_button :espresso_eq, ""%> Either
+        </label>
       </div>
-      <script type="text/javascript">
-          $(function () {
-              $('#created_atgteqPicker').datetimepicker({
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#created_atlteqPicker').datetimepicker({
-                  useCurrent: false,
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#created_atgteqPicker').on("dp.change", function (e) {
-                  $('#created_atlteqPicker').data("DateTimePicker").minDate(e.date);
-              });
-              $('#created_atlteqPicker').on("dp.change", function (e) {
-                  $('#created_atgteqPicker').data("DateTimePicker").maxDate(e.date);
-              });
-          });
-      </script>
+    </div>
 
-        <div class="form-group">
+    <div class="form-group">
+      <%= f.label :blend_eq, "Blend" %>
+      <div>
+        <label class="radio-inline">
+          <%= f.radio_button :blend_eq, "1", checked: ((params[:q] && params[:q][:blend_eq]) == "1" ? "checked" : "") %> Yes
+        </label>
+        <label class="radio-inline">
+          <%= f.radio_button :blend_eq, "0", checked: ((params[:q] && params[:q][:blend_eq]) == "0" ? "checked" : "")%> No
+        </label>
+        <label class="radio-inline">
+          <%= f.radio_button :blend_eq, ""%> Either
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :caffine_eq, "Caffine" %>
+      <div>
+        <label class="radio-inline">
+          <%= f.radio_button :caffine_eq, "1", checked: ((params[:q] && params[:q][:caffine_eq]) == "1" ? "checked" : "") %> Yes
+        </label>
+        <label class="radio-inline">
+          <%= f.radio_button :caffine_eq, "0", checked: ((params[:q] && params[:q][:caffine_eq]) == "0" ? "checked" : "")%> No
+        </label>
+        <label class="radio-inline">
+          <%= f.radio_button :caffine_eq, ""%> Either
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :varietal_cont, "Varietal contains" %>
+      <%= f.text_field :varietal_cont, :class => "form-control", :placeholder => "Varietal contains" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :process_cont, "Process contains" %>
+      <%= f.text_field :process_cont, :class => "form-control", :placeholder => "Process contains" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :elevation_masl_high, "Elevation masl high" %>
+      <div class="row">
+        <div class='col-md-6 mb-1'>
+          <%= f.text_field :elevation_masl_high_gteq, :class => "form-control", :placeholder => "Elevation masl high greater than or equal to" %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.text_field :elevation_masl_high_lteq, :class => "form-control", :placeholder => "Elevation masl high less than or equal to" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :elevation_masl_low, "Elevation masl low" %>
+      <div class="row">
+        <div class='col-md-6 mb-1'>
+          <%= f.text_field :elevation_masl_low_gteq, :class => "form-control", :placeholder => "Elevation masl low greater than or equal to" %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.text_field :elevation_masl_low_lteq, :class => "form-control", :placeholder => "Elevation masl low less than or equal to" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :bag_size_grams, "Bag size grams" %>
+      <div class="row">
+        <div class='col-md-6 mb-1'>
+          <%= f.text_field :bag_size_grams_gteq, :class => "form-control", :placeholder => "Bag size grams greater than or equal to" %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.text_field :bag_size_grams_lteq, :class => "form-control", :placeholder => "Bag size grams less than or equal to" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :price_per_bag, "Price per bag" %>
+      <div class="row">
+        <div class='col-md-6 mb-1'>
+          <%= f.text_field :price_per_bag_gteq, :class => "form-control", :placeholder => "Price per bag greater than or equal to" %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.text_field :price_per_bag_lteq, :class => "form-control", :placeholder => "Price per bag less than or equal to" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :flavor_note_3_cont, "Flavor note 3 contains" %>
+      <%= f.text_field :flavor_note_3_cont, :class => "form-control", :placeholder => "Flavor note 3 contains" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :flavor_note_2_cont, "Flavor note 2 contains" %>
+      <%= f.text_field :flavor_note_2_cont, :class => "form-control", :placeholder => "Flavor note 2 contains" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :flavor_note_1_cont, "Flavor note 1 contains" %>
+      <%= f.text_field :flavor_note_1_cont, :class => "form-control", :placeholder => "Flavor note 1 contains" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :image_url_cont, "Image url contains" %>
+      <%= f.text_field :image_url_cont, :class => "form-control", :placeholder => "Image url contains" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :website_url_cont, "Website url contains" %>
+      <%= f.text_field :website_url_cont, :class => "form-control", :placeholder => "Website url contains" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :created_at, "Created at" %>
+      <div class="row">
+        <div class='col-md-6 mb-1'>
+          <div class='input-group date' id='created_atgteqPicker'>
+            <%= f.text_field :created_at_gteq, :class => "form-control", :placeholder => "Created at greater than or equal to" %>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+
+        <div class='col-md-6'>
+          <div class='input-group date' id='created_atlteqPicker'>
+            <%= f.text_field :created_at_lteq, :class => "form-control", :placeholder => "Created at less than or equal to" %>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+    $(function () {
+      $('#created_atgteqPicker').datetimepicker({
+        format: 'YYYY-MM-DD hh:mm:SS'
+      });
+      $('#created_atlteqPicker').datetimepicker({
+        useCurrent: false,
+        format: 'YYYY-MM-DD hh:mm:SS'
+      });
+      $('#created_atgteqPicker').on("dp.change", function (e) {
+        $('#created_atlteqPicker').data("DateTimePicker").minDate(e.date);
+      });
+      $('#created_atlteqPicker').on("dp.change", function (e) {
+        $('#created_atgteqPicker').data("DateTimePicker").maxDate(e.date);
+      });
+    });
+    </script>
+
+    <div class="form-group">
       <%= f.label :country_description_cont, "OriginCountry description contains" %>
       <%= f.text_field :country_description_cont, :class => "form-control", :placeholder => "OriginCountry description contains" %>
     </div>
 
-<div class="form-group">
+    <div class="form-group">
       <%= f.label :roaster_description_cont, "Roaster description contains" %>
       <%= f.text_field :roaster_description_cont, :class => "form-control", :placeholder => "Roaster description contains" %>
     </div>
 
-      <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
+    <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
 
-      <a href="/beans" class="btn btn-default btn-block mb-1">Clear filters</a>
+    <a href="/beans" class="btn btn-default btn-block mb-1">Clear filters</a>
     <% end %>
     <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#beans_filters">
       Show Filters
@@ -211,6 +211,30 @@
   </div>
 </div>
 
+
+<div class="container">
+  <% @beans.each do |bean| %>
+  <div class="col-md-3">
+    <div class="panel panel-default" style="height: 400px;">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <a href="/roasters/<% bean.roaster_id %>"><%= bean.roaster.name %></a>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <a href="/beans/<%= bean.id %>">
+          <img src="<%= bean.image_url %>" class="img-responsive center-block" style="max-height: 200px;">
+        </a>
+        <p>
+        </p>
+        <h4>
+          <a href="/beans/<%= bean.id %>"><%= bean.name %></a>
+        </h4>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
 
 <div class="row m-b-2">
   <div class="col-md-12">
@@ -220,86 +244,85 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-12">
-    <table class="table table-striped table-hover">
-      <tr>
-        <th>Name</th>
-        <th>Roaster</th>
-        <th>Website url</th>
-        <th>Image url</th>
-        <th>Flavor note 1</th>
-        <th>Flavor note 2</th>
-        <th>Flavor note 3</th>
-        <th>Price per bag</th>
-        <th>Bag size grams</th>
-        <th>Elevation masl low</th>
-        <th>Elevation masl high</th>
-        <th>Process</th>
-        <th>Varietal</th>
-        <th>Origin country</th>
-        <th>Caffine</th>
-        <th>Region</th>
-        <th>Blend</th>
-        <th>Espresso</th>
-        <th>Producer</th>
-        <th>Description</th>
-        <th>Actions</th>
-      </tr>
+<div class="col-md-12">
+  <table class="table table-striped table-hover">
+    <tr>
+      <th>Name</th>
+      <th>Roaster</th>
+      <th>Website url</th>
+      <th>Image url</th>
+      <th>Flavor note 1</th>
+      <th>Flavor note 2</th>
+      <th>Flavor note 3</th>
+      <th>Price per bag</th>
+      <th>Bag size grams</th>
+      <th>Elevation masl low</th>
+      <th>Elevation masl high</th>
+      <th>Process</th>
+      <th>Varietal</th>
+      <th>Origin country</th>
+      <th>Caffine</th>
+      <th>Region</th>
+      <th>Blend</th>
+      <th>Espresso</th>
+      <th>Producer</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
 
-      <% @beans.each do |bean| %>
-      <tr>
-        <td><%= bean.name %></td>
-        <td>
-          <% if bean.roaster.present? %>
-            <a href="/roasters/<%= bean.roaster.id %>">
-              <%= bean.roaster.description %>
-            </a>
-          <% end %>
-        </td>
-        <td><%= bean.website_url %></td>
-        <td><%= bean.image_url %></td>
-        <td><%= bean.flavor_note_1 %></td>
-        <td><%= bean.flavor_note_2 %></td>
-        <td><%= bean.flavor_note_3 %></td>
-        <td><%= bean.price_per_bag %></td>
-        <td><%= bean.bag_size_grams %></td>
-        <td><%= bean.elevation_masl_low %></td>
-        <td><%= bean.elevation_masl_high %></td>
-        <td><%= bean.process %></td>
-        <td><%= bean.varietal %></td>
-        <td>
-          <% if bean.country.present? %>
-            <a href="/origin_countries/<%= bean.country.id %>">
-              <%= bean.country.description %>
-            </a>
-          <% end %>
-        </td>
-        <td><%= bean.caffine %></td>
-        <td><%= bean.region %></td>
-        <td><%= bean.blend %></td>
-        <td><%= bean.espresso %></td>
-        <td><%= bean.producer %></td>
-        <td><%= bean.description %></td>
-        <td>
-          <a href="/beans/<%= bean.id %>" class="btn btn-primary">Show</a>
-          <a href="/beans/<%= bean.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_bean/<%= bean.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-    <%= paginate @beans, theme: 'twitter-bootstrap-4' %>
-  </div>
+    <% @beans.each do |bean| %>
+    <tr>
+      <td><%= bean.name %></td>
+      <td>
+        <% if bean.roaster.present? %>
+        <a href="/roasters/<%= bean.roaster.id %>">
+          <%= bean.roaster.description %>
+        </a>
+        <% end %>
+      </td>
+      <td><%= bean.website_url %></td>
+      <td><%= bean.image_url %></td>
+      <td><%= bean.flavor_note_1 %></td>
+      <td><%= bean.flavor_note_2 %></td>
+      <td><%= bean.flavor_note_3 %></td>
+      <td><%= bean.price_per_bag %></td>
+      <td><%= bean.bag_size_grams %></td>
+      <td><%= bean.elevation_masl_low %></td>
+      <td><%= bean.elevation_masl_high %></td>
+      <td><%= bean.process %></td>
+      <td><%= bean.varietal %></td>
+      <td>
+        <% if bean.country.present? %>
+        <a href="/origin_countries/<%= bean.country.id %>">
+          <%= bean.country.description %>
+        </a>
+        <% end %>
+      </td>
+      <td><%= bean.caffine %></td>
+      <td><%= bean.region %></td>
+      <td><%= bean.blend %></td>
+      <td><%= bean.espresso %></td>
+      <td><%= bean.producer %></td>
+      <td><%= bean.description %></td>
+      <td>
+        <a href="/beans/<%= bean.id %>" class="btn btn-primary">Show</a>
+        <a href="/beans/<%= bean.id %>/edit" class="btn btn-warning">Edit</a>
+        <a href="/delete_bean/<%= bean.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  <%= paginate @beans, theme: 'twitter-bootstrap-4' %>
+</div>
 </div>
 
 <script src="//maps.google.com/maps/api/js?v=3.24&key=AIzaSyCOTPWiuvyyo6sKoIBzKA4-1ol-vTOIOlM"></script>
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
 <script>
-  handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'location_map'}}, function(){
-    markers = handler.addMarkers(<%= raw @location_hash.to_json %>);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-  });
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'location_map'}}, function(){
+  markers = handler.addMarkers(<%= raw @location_hash.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
 </script>
