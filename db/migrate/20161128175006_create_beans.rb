@@ -9,15 +9,17 @@ class CreateBeans < ActiveRecord::Migration
       t.string :flavor_note_2
       t.string :flavor_note_3
       t.float :price_per_bag
-      t.integer :std_bag_size_in_ounces
-      t.integer :elevation_low
-      t.integer :elevation_high
+      t.float :bag_size_grams
+      t.integer :elevation_masl_low
+      t.integer :elevation_masl_high
       t.string :process
       t.string :varietal
       t.integer :origin_country_id
       t.boolean :caffine
+      t.string :region
       t.boolean :blend
       t.boolean :espresso
+      t.string :producer
 
       t.timestamps
 

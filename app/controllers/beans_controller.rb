@@ -2,6 +2,11 @@ class BeansController < ApplicationController
   def index
     @q = Bean.ransack(params[:q])
     @beans = @q.result(:distinct => true).includes(:inventories, :reviews, :country, :roaster).page(params[:page]).per(10)
+    @location_hash = Gmaps4rails.build_markers(@beans.where.not(:region_latitude => nil)) do |bean, marker|
+      marker.lat bean.region_latitude
+      marker.lng bean.region_longitude
+      marker.infowindow "<h5><a href='/beans/#{bean.id}'>#{bean.created_at}</a></h5><small>#{bean.region_formatted_address}</small>"
+    end
 
     render("beans/index.html.erb")
   end
@@ -31,15 +36,17 @@ class BeansController < ApplicationController
     @bean.flavor_note_2 = params[:flavor_note_2]
     @bean.flavor_note_3 = params[:flavor_note_3]
     @bean.price_per_bag = params[:price_per_bag]
-    @bean.std_bag_size_in_ounces = params[:std_bag_size_in_ounces]
-    @bean.elevation_low = params[:elevation_low]
-    @bean.elevation_high = params[:elevation_high]
+    @bean.bag_size_grams = params[:bag_size_grams]
+    @bean.elevation_masl_low = params[:elevation_masl_low]
+    @bean.elevation_masl_high = params[:elevation_masl_high]
     @bean.process = params[:process]
     @bean.varietal = params[:varietal]
     @bean.origin_country_id = params[:origin_country_id]
     @bean.caffine = params[:caffine]
+    @bean.region = params[:region]
     @bean.blend = params[:blend]
     @bean.espresso = params[:espresso]
+    @bean.producer = params[:producer]
 
     save_status = @bean.save
 
@@ -74,15 +81,17 @@ class BeansController < ApplicationController
     @bean.flavor_note_2 = params[:flavor_note_2]
     @bean.flavor_note_3 = params[:flavor_note_3]
     @bean.price_per_bag = params[:price_per_bag]
-    @bean.std_bag_size_in_ounces = params[:std_bag_size_in_ounces]
-    @bean.elevation_low = params[:elevation_low]
-    @bean.elevation_high = params[:elevation_high]
+    @bean.bag_size_grams = params[:bag_size_grams]
+    @bean.elevation_masl_low = params[:elevation_masl_low]
+    @bean.elevation_masl_high = params[:elevation_masl_high]
     @bean.process = params[:process]
     @bean.varietal = params[:varietal]
     @bean.origin_country_id = params[:origin_country_id]
     @bean.caffine = params[:caffine]
+    @bean.region = params[:region]
     @bean.blend = params[:blend]
     @bean.espresso = params[:espresso]
+    @bean.producer = params[:producer]
 
     save_status = @bean.save
 
