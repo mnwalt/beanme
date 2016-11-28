@@ -135,31 +135,31 @@
         <input type="text" id="price_per_bag" name="price_per_bag" placeholder="Price per bag" class="form-control" value="">
       </div>
 
-      <!-- Label and input for std_bag_size_in_ounces -->
+      <!-- Label and input for bag_size_grams -->
       <div class="form-group">
-        <label for="std_bag_size_in_ounces" class="control-label">
-          Std bag size in ounces
+        <label for="bag_size_grams" class="control-label">
+          Bag size grams
         </label>
 
-        <input type="text" id="std_bag_size_in_ounces" name="std_bag_size_in_ounces" placeholder="Std bag size in ounces" class="form-control" value="">
+        <input type="text" id="bag_size_grams" name="bag_size_grams" placeholder="Bag size grams" class="form-control" value="">
       </div>
 
-      <!-- Label and input for elevation_low -->
+      <!-- Label and input for elevation_masl_low -->
       <div class="form-group">
-        <label for="elevation_low" class="control-label">
-          Elevation low
+        <label for="elevation_masl_low" class="control-label">
+          Elevation masl low
         </label>
 
-        <input type="text" id="elevation_low" name="elevation_low" placeholder="Elevation low" class="form-control" value="">
+        <input type="text" id="elevation_masl_low" name="elevation_masl_low" placeholder="Elevation masl low" class="form-control" value="">
       </div>
 
-      <!-- Label and input for elevation_high -->
+      <!-- Label and input for elevation_masl_high -->
       <div class="form-group">
-        <label for="elevation_high" class="control-label">
-          Elevation high
+        <label for="elevation_masl_high" class="control-label">
+          Elevation masl high
         </label>
 
-        <input type="text" id="elevation_high" name="elevation_high" placeholder="Elevation high" class="form-control" value="">
+        <input type="text" id="elevation_masl_high" name="elevation_masl_high" placeholder="Elevation masl high" class="form-control" value="">
       </div>
 
       <!-- Label and input for process -->
@@ -197,6 +197,15 @@
         </label>
       </div>
 
+      <!-- Label and input for region -->
+      <div class="form-group">
+        <label for="region" class="control-label">
+          Region
+        </label>
+
+        <input type="text" id="region" name="region" placeholder="Region" class="form-control" value="">
+      </div>
+
       <!-- Label and input for blend -->
       <div class="checkbox">
         <label for="blend">
@@ -211,6 +220,15 @@
           <input type="checkbox" id="espresso" name="espresso" value="1" <%= "checked" if @bean.espresso %>>
           Espresso
         </label>
+      </div>
+
+      <!-- Label and input for producer -->
+      <div class="form-group">
+        <label for="producer" class="control-label">
+          Producer
+        </label>
+
+        <input type="text" id="producer" name="producer" placeholder="Producer" class="form-control" value="">
       </div>
 
       <button class="btn btn-block btn-success">

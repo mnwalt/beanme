@@ -1,4 +1,23 @@
 class Bean < ApplicationRecord
+  before_save :geocode_region
+
+  def geocode_region
+    if self.region.present?
+      url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{URI.encode(self.region)}"
+
+      raw_data = open(url).read
+
+      parsed_data = JSON.parse(raw_data)
+
+      if parsed_data["results"].present?
+        self.region_latitude = parsed_data["results"][0]["geometry"]["location"]["lat"]
+
+        self.region_longitude = parsed_data["results"][0]["geometry"]["location"]["lng"]
+
+        self.region_formatted_address = parsed_data["results"][0]["formatted_address"]
+      end
+    end
+  end
   # Direct associations
 
   belongs_to :roaster,
