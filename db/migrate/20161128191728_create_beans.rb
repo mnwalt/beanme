@@ -20,6 +20,7 @@ class CreateBeans < ActiveRecord::Migration
       t.boolean :blend
       t.boolean :espresso
       t.string :producer
+      t.text :description
 
       t.timestamps
 
