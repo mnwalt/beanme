@@ -5,8 +5,9 @@
   <title>Beanme</title>
 
 
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/stylesheets/additional.css">
 
   <style>
   /* Only necessary if you are using navbar-fixed-top */
@@ -41,7 +42,7 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/beans">Market</a></li>
+          <li><a href="/beans">Marketplace</a></li>
           <li><a href="/inventories">Laboratory</a></li>
           <li><a href="/roasters">Roasters</a></li>
           <li><a href="/origin_countries">Countries</a></li>
@@ -50,14 +51,18 @@
         <ul class="nav navbar-nav navbar-right">
           <% if current_user.present? %>
           <li>
-            <a href="/users/edit">
-              <%= current_user.email %>
+            <a href="/">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
             </a>
           </li>
-
+          <li>
+            <a href="/users/edit">
+              <%= current_user.username %>
+            </a>
+          </li>
           <li>
             <a href="/users/sign_out" data-method="delete" rel="nofollow">
-              Sign Out
+              sign out
             </a>
           </li>
           <% else %>

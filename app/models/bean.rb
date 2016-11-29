@@ -34,6 +34,8 @@ class Bean < ApplicationRecord
   has_many   :inventories,
              :dependent => :destroy
 
+  has_many   :labs, :through => :inventories, :source => :user
+
   # Indirect associations
 
   # Validations

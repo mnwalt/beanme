@@ -1,48 +1,47 @@
 <div class="page-header">
-  <h3>Bean #<%= @bean.id %></h3>
+  <h2><%= @bean.name %> </h2>
+  <small><a href="/roasters/<% @bean.roaster_id %>"><%= @bean.roaster.name %> </small></a>
 </div>
+
+<img src="<%= @bean.image_url %>" class="img-responsive left-block" style="max-height: 400px;">
+
+<h3> Specs </h3>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Name</dt>
-      <dd><%= @bean.name %></dd>
 
-      <dt>Roaster</dt>
+      <dt> Country of Origin </dt>
       <dd>
-        <% if @bean.roaster.present? %>
-          <a href="/roasters/<%= @bean.roaster_id %>">
-            <%= @bean.roaster.description %>
+        <% if @bean.country.present? %>
+          <a href="/origin_countries/<%= @bean.origin_country_id %>">
+            <%= @bean.country.name %>
           </a>
         <% end %>
       </dd>
 
-      <dt>Website url</dt>
-      <dd><%= @bean.website_url %></dd>
+      <dt>Region</dt>
+      <dd><%= @bean.region %></dd>
 
-      <dt>Image url</dt>
-      <dd><%= @bean.image_url %></dd>
+      <dt>Producer</dt>
+      <dd><%= @bean.producer %></dd>
 
-      <dt>Flavor note 1</dt>
-      <dd><%= @bean.flavor_note_1 %></dd>
+      <dt>Flavor notes</dt>
+      <dd><%= @bean.flavor_note_1 %>, <%= @bean.flavor_note_2 %>, <%= @bean.flavor_note_3 %></dd>
 
-      <dt>Flavor note 2</dt>
-      <dd><%= @bean.flavor_note_2 %></dd>
+      <dt>Price</dt>
+      <dd>$<%= @bean.price_per_bag %> per bag</dd>
 
-      <dt>Flavor note 3</dt>
-      <dd><%= @bean.flavor_note_3 %></dd>
+      <dt>Weight</dt>
+      <dd><%= @bean.bag_size_grams.to_i %> grams / <%= (@bean.bag_size_grams * 0.035274).round(1) %> ounces</dd>
 
-      <dt>Price per bag</dt>
-      <dd><%= @bean.price_per_bag %></dd>
+<% if  @bean.elevation_masl_low != nil %>
+      <dt>Elevation</dt>
+      <dd><%= @bean.elevation_masl_low %> masl</dd>
 
-      <dt>Bag size grams</dt>
-      <dd><%= @bean.bag_size_grams %></dd>
-
-      <dt>Elevation masl low</dt>
-      <dd><%= @bean.elevation_masl_low %></dd>
-
-      <dt>Elevation masl high</dt>
-      <dd><%= @bean.elevation_masl_high %></dd>
+      <dt>Elevation</dt>
+      <dd><%= @bean.elevation_masl_high %> masl</dd>
+<% end %>
 
       <dt>Process</dt>
       <dd><%= @bean.process %></dd>
@@ -50,40 +49,45 @@
       <dt>Varietal</dt>
       <dd><%= @bean.varietal %></dd>
 
-      <dt>Origin country</dt>
+      <dt>Caffeine</dt>
       <dd>
-        <% if @bean.country.present? %>
-          <a href="/origin_countries/<%= @bean.origin_country_id %>">
-            <%= @bean.country.description %>
-          </a>
-        <% end %>
-      </dd>
+      <% if @bean.caffine == true %>
+      Yes
+    </dd>
+      <% else %>
+      No
+    </dd>
+      <% end %>
 
-      <dt>Caffine</dt>
-      <dd><%= @bean.caffine %></dd>
+      <dt>Blend</dt>
+      <dd>
+      <% if @bean.blend == true %>
+      Yes
+    </dd>
+      <% else %>
+      No
+    </dd>
+      <% end %>
 
-      <dt>Region</dt>
+      <dt>Espresso</dt>
+      <dd>
+      <% if @bean.espresso == true %>
+      Yes
+    </dd>
+      <% else %>
+      No
+    </dd>
+      <% end %>
+
       <dd>
         <div>
           <div id="location_map" style="height: 480px;"></div>
         </div>
       </dd>
 
-      <dt>Blend</dt>
-      <dd><%= @bean.blend %></dd>
-
-      <dt>Espresso</dt>
-      <dd><%= @bean.espresso %></dd>
-
-      <dt>Producer</dt>
-      <dd><%= @bean.producer %></dd>
-
-      <dt>Description</dt>
-      <dd><%= @bean.description %></dd>
-
     </dl>
 
-    <div class="btn-group btn-group-justified">
+    <!-- <div class="btn-group btn-group-justified">
       <a href="/beans" class="btn btn-primary">
         Back
       </a>
@@ -93,23 +97,23 @@
       <a href="/delete_bean/<%= @bean.id %>" class="btn btn-danger" rel="nofollow">
         Delete
       </a>
-    </div>
+    </div> -->
   </div>
 </div>
 
 <!-- A Bean has many inventories -->
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Inventories
+        Laboratory
       </li>
 
       <% @bean.inventories.each do |inventory| %>
         <li class="list-group-item">
           <a href="/inventories/<%= inventory.id %>">
-            <%= inventory.user_id %>
+            <%= inventory.created_at %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/inventories/<%= inventory.id %>" class="btn btn-primary">
@@ -161,22 +165,21 @@
       </li>
     </ul>
   </div>
-</div>
 
 <!-- A Bean has many reviews -->
 
-<div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Reviews
+        All Reviews
       </li>
 
       <% @bean.reviews.each do |review| %>
         <li class="list-group-item">
           <a href="/reviews/<%= review.id %>">
-            <%= review.user_id %>
+            <%= review.user.username %>
           </a>
+
           <div class="btn-group btn-group-xs pull-right">
             <a href="/reviews/<%= review.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
@@ -236,7 +239,6 @@
       </li>
     </ul>
   </div>
-</div>
 
 
 <script src="//maps.google.com/maps/api/js?v=3.24&key=AIzaSyCOTPWiuvyyo6sKoIBzKA4-1ol-vTOIOlM"></script>
