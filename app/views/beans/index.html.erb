@@ -217,7 +217,7 @@
   <div class="table">
     <% @beans.each do |bean| %>
     <div class="col-md-3">
-      <div class="panel panel-default" style="height: 525px;">
+      <div class="panel panel-default" style="height: 515px;">
         <div class="panel-heading" style="text-align: center;">
           <h4 class="panel-title">
             <a href="/roasters/<% bean.roaster_id %>"><%= bean.roaster.name %></a>
@@ -228,10 +228,25 @@
             <img src="<%= bean.image_url %>" class="img-responsive center-block" style="max-height: 150px;">
           </a>
           <hr>
+          <% if bean.name.length < 24 %>
+          <h4>
+            <a href="/beans/<%= bean.id %>"><%= bean.name %></a>
+            <br> </br>
+          </h4>
+          <% else %>
           <h4>
             <a href="/beans/<%= bean.id %>"><%= bean.name %></a>
           </h4>
-          <h5> <%= bean.flavor_note_1 %>, <%= bean.flavor_note_2 %>, <%= bean.flavor_note_3 %> </h5>
+          <% end %>
+          <% @notes = bean.flavor_note_1.downcase + ", " + bean.flavor_note_2.downcase + ", " + bean.flavor_note_3.downcase %>
+          <% if @notes.length < 36 %>
+          <h5> <%= @notes %>
+            <br> </br>
+          </h5>
+          <% else %>
+          <h5> <%= @notes %>
+          </h5>
+          <% end %>
           <div class="row">
             <% if bean.reviews.count == 0 %>
             <a href="/beans/<%= bean.id %>" class="btn btn-link">
@@ -350,7 +365,7 @@
             <% end %>
             <% end %>
             <% end %>
-            </div>
+          </div>
           <h5> $<%= bean.price_per_bag %> <small> per bag </small></h5>
           <h6> <%= bean.bag_size_grams.to_i %>g / <%= (bean.bag_size_grams * 0.035274).round(1) %>oz </h6>
           <h6> <small> ($<%= (bean.price_per_bag / (bean.bag_size_grams * 0.035274)).round(2)%> per oz) </small> </h6>
