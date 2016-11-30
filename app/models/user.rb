@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many   :inventories,
              :dependent => :destroy
 
+  has_many   :favs, :through => :inventories, :source => :bean
+
   # Indirect associations
 
   # Validations

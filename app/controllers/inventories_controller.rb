@@ -45,7 +45,7 @@ class InventoriesController < ApplicationController
       when "/inventories/new", "/create_inventory"
         redirect_to("/inventories")
       else
-        redirect_back(:fallback_location => "/", :notice => "Inventory created successfully.")
+        redirect_back(:fallback_location => "/", :notice => "Favorite created")
       end
     else
       render("inventories/new.html.erb")
@@ -90,7 +90,7 @@ class InventoriesController < ApplicationController
     if URI(request.referer).path == "/inventories/#{@inventory.id}"
       redirect_to("/", :notice => "Inventory deleted.")
     else
-      redirect_back(:fallback_location => "/", :notice => "Inventory deleted.")
+      redirect_back(:fallback_location => "/", :notice => "Favorite deleted")
     end
   end
 end

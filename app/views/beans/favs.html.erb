@@ -1,7 +1,7 @@
 <div class="container">
 <div class="page-header">
   <h1>
-    Marketplace
+    Favorites
     <!-- <a href="/beans/new" class="btn btn-lg btn-success">New Bean</a> -->
   </h1>
 </div>
@@ -215,7 +215,7 @@
 </div>
 
   <div class="table">
-    <% @beans.each do |bean| %>
+    <% current_user.favs.each do |bean| %>
     <div class="col-md-3">
       <div class="panel panel-default" style="height: 515px;">
         <div class="panel-heading" style="text-align: center;">

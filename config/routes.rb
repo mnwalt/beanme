@@ -94,5 +94,7 @@ Rails.application.routes.draw do
   get "/delete_bean/:id", :controller => "beans", :action => "destroy"
   #------------------------------
 
+  get "/favorites/", :controller => "beans", :action => "favs"
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
