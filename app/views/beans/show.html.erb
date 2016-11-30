@@ -2,7 +2,7 @@
   <div class="page-header">
     <a href="/beans/<%= @bean.id %>" class="btn btn-success" style="float: right";>Add to Cart</a>
     <h2><%= @bean.name %> </h2>
-    <small><a href="/roasters/<% @bean.roaster_id %>"><%= @bean.roaster.name %> </small></a>
+    <small><a href="/roasters/<%= @bean.roaster_id %>"><%= @bean.roaster.name %> </small></a>
   </div>
   <img src="<%= @bean.image_url %>" class="img-responsive left-block" style="max-height: 400px;">
 
@@ -12,9 +12,10 @@
     <div class="col-md-12 mb-2">
       <dl class="dl-horizontal">
 
-        <dt> Avg BeanMe Rating <dt>
-          <dd>
-            <% @avg = Review.where(:bean_id => @bean ).pluck(:overall_rating).inject(0){|sum,x| sum + x } / Review.where(:bean_id => @bean ).pluck(:overall_rating).count %>
+<dt> Avg BeanMe Rating <dt>
+<% if Review.where(:bean_id => @bean).count != 0 %>
+                  <dd>
+            <% @avg = Review.where(:bean_id => @bean).pluck(:overall_rating).inject(0){|sum,x| sum + x } / Review.where(:bean_id => @bean ).pluck(:overall_rating).count %>
             <% @n = Review.where(:bean_id => @bean ).pluck(:overall_rating).count %>
             <% if @avg < 0.75 %>
             <a>
@@ -123,10 +124,19 @@
             <% end %>
             <% end %>
             <% end %>
-          </dd>
-
-          <dt> <%= current_user.username %>'s Avg Rating <dt>
+            <% else %>
             <dd>
+            <a>
+              <span title="not yet rated">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+                </span>
+              </a>
+            </dd>
+              <% end %>
+
+  <dt> <%= current_user.username %>'s Avg Rating <dt>
+<% if Review.where(:bean_id => @bean, :user_id => current_user).count != 0 %>
+                  <dd>
               <% @avg = Review.where(:bean_id => @bean, :user_id => current_user).pluck(:overall_rating).inject(0){|sum,x| sum + x } / Review.where(:bean_id => @bean, :user_id => current_user).pluck(:overall_rating).count %>
               <% @n = Review.where(:bean_id => @bean, :user_id => current_user).pluck(:overall_rating).count %>
               <% if @avg < 0.75 %>
@@ -236,7 +246,15 @@
               <% end %>
               <% end %>
               <% end %>
+              <% else %>
+              <dd>
+                <a>
+                <span title="not yet rated">
+                  <i class="fa fa-star-o" aria-hidden="true"></i>
+                  </span>
+                </a>
             </dd>
+            <% end %>
 
             <dt> Country of Origin </dt>
             <dd>

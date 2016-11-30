@@ -104,7 +104,7 @@
       <div class="panel panel-default" style="height: 515px;">
         <div class="panel-heading" style="text-align: center;">
           <h4 class="panel-title">
-            <a href="/roasters/<% bean.roaster_id %>"><%= bean.roaster.name %></a>
+            <a href="/roasters/<%= bean.roaster_id %>"><%= bean.roaster.name %></a>
           </h4>
         </div>
         <div class="panel-body">
@@ -138,7 +138,7 @@
               </span>
             </a>
             <% else %>
-            <% @avg = Review.where(:bean_id => bean ).pluck(:overall_rating).inject(0){|sum,x| sum + x } / Review.where(:bean_id => bean ).pluck(:overall_rating).count %>
+            <% @avg = Review.where(:bean_id => bean).pluck(:overall_rating).inject(0){|sum,x| sum + x } / Review.where(:bean_id => bean ).pluck(:overall_rating).count %>
             <% @n = Review.where(:bean_id => bean ).pluck(:overall_rating).count %>
             <% if @avg < 0.75 %>
             <a href="/beans/<%= bean.id %>" class="btn btn-link">
@@ -292,9 +292,8 @@
           </div>
         </div>
       </div>
+        <%= paginate @beans, theme: 'twitter-bootstrap-4' %>
     </div>
     <% end %>
   </div>
-  <%= paginate @beans, theme: 'twitter-bootstrap-4' %>
-</div>
 </div>

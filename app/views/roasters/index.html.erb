@@ -1,180 +1,287 @@
-<div class="page-header">
-  <h1>
-    Roasters
-    <a href="/roasters/new" class="btn btn-lg btn-success">New Roaster</a>
-  </h1>
-</div><div class="row mb-1">
-  <div class="col-md-12">
-    <%= search_form_for @q, :class => "collapse", :id => "roasters_filters" do |f| %>
+<div class="containter">
+  <div class="page-header">
+    <h1>
+      Roasters
+    </h1>
+  </div><div class="row mb-1">
+    <div class="col-md-12">
+      <%= search_form_for @q, :class => "collapse", :id => "roasters_filters" do |f| %>
       <p class="lead">Narrow results:</p>
 
-        <div class="form-group">
-    <%= f.label :description_cont, "Description contains" %>
-    <%= f.text_field :description_cont, :class => "form-control", :placeholder => "Description contains" %>
-  </div>
+      <div class="form-group">
+        <%= f.label :description_cont, "Description contains" %>
+        <%= f.text_field :description_cont, :class => "form-control", :placeholder => "Description contains" %>
+      </div>
 
-<div class="form-group">
-    <%= f.label :delivery_geography_cont, "Delivery geography contains" %>
-    <%= f.text_field :delivery_geography_cont, :class => "form-control", :placeholder => "Delivery geography contains" %>
-  </div>
+      <div class="form-group">
+        <%= f.label :delivery_geography_cont, "Delivery geography contains" %>
+        <%= f.text_field :delivery_geography_cont, :class => "form-control", :placeholder => "Delivery geography contains" %>
+      </div>
 
-<div class="form-group">
-    <%= f.label :delivery_notes_cont, "Delivery notes contains" %>
-    <%= f.text_field :delivery_notes_cont, :class => "form-control", :placeholder => "Delivery notes contains" %>
-  </div>
+      <div class="form-group">
+        <%= f.label :delivery_notes_cont, "Delivery notes contains" %>
+        <%= f.text_field :delivery_notes_cont, :class => "form-control", :placeholder => "Delivery notes contains" %>
+      </div>
 
-<div class="form-group">
-    <%= f.label :delivery_method_cont, "Delivery method contains" %>
-    <%= f.text_field :delivery_method_cont, :class => "form-control", :placeholder => "Delivery method contains" %>
-  </div>
+      <div class="form-group">
+        <%= f.label :delivery_method_cont, "Delivery method contains" %>
+        <%= f.text_field :delivery_method_cont, :class => "form-control", :placeholder => "Delivery method contains" %>
+      </div>
 
-<div class="form-group">
-    <%= f.label :delivers_eq, "Delivers" %>
-    <div>
-      <label class="radio-inline">
-        <%= f.radio_button :delivers_eq, "1", checked: ((params[:q] && params[:q][:delivers_eq]) == "1" ? "checked" : "") %> Yes
-      </label>
-      <label class="radio-inline">
-        <%= f.radio_button :delivers_eq, "0", checked: ((params[:q] && params[:q][:delivers_eq]) == "0" ? "checked" : "")%> No
-      </label>
-      <label class="radio-inline">
-        <%= f.radio_button :delivers_eq, ""%> Either
-      </label>
-    </div>
-  </div>
+      <div class="form-group">
+        <%= f.label :delivers_eq, "Delivers" %>
+        <div>
+          <label class="radio-inline">
+            <%= f.radio_button :delivers_eq, "1", checked: ((params[:q] && params[:q][:delivers_eq]) == "1" ? "checked" : "") %> Yes
+          </label>
+          <label class="radio-inline">
+            <%= f.radio_button :delivers_eq, "0", checked: ((params[:q] && params[:q][:delivers_eq]) == "0" ? "checked" : "")%> No
+          </label>
+          <label class="radio-inline">
+            <%= f.radio_button :delivers_eq, ""%> Either
+          </label>
+        </div>
+      </div>
 
-<div class="form-group">
-    <%= f.label :city_cont, "City contains" %>
-    <%= f.text_field :city_cont, :class => "form-control", :placeholder => "City contains" %>
-  </div>
+      <div class="form-group">
+        <%= f.label :city_cont, "City contains" %>
+        <%= f.text_field :city_cont, :class => "form-control", :placeholder => "City contains" %>
+      </div>
 
-<div class="form-group">
-    <%= f.label :cover_photo_url_cont, "Cover photo url contains" %>
-    <%= f.text_field :cover_photo_url_cont, :class => "form-control", :placeholder => "Cover photo url contains" %>
-  </div>
+      <div class="form-group">
+        <%= f.label :cover_photo_url_cont, "Cover photo url contains" %>
+        <%= f.text_field :cover_photo_url_cont, :class => "form-control", :placeholder => "Cover photo url contains" %>
+      </div>
 
-<div class="form-group">
-    <%= f.label :website_url_cont, "Website url contains" %>
-    <%= f.text_field :website_url_cont, :class => "form-control", :placeholder => "Website url contains" %>
-  </div>
+      <div class="form-group">
+        <%= f.label :website_url_cont, "Website url contains" %>
+        <%= f.text_field :website_url_cont, :class => "form-control", :placeholder => "Website url contains" %>
+      </div>
 
-<div class="form-group">
-    <%= f.label :name_cont, "Name contains" %>
-    <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Name contains" %>
-  </div>
+      <div class="form-group">
+        <%= f.label :name_cont, "Name contains" %>
+        <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Name contains" %>
+      </div>
 
-<div class="form-group">
-          <%= f.label :created_at, "Created at" %>
-          <div class="row">
-            <div class='col-md-6 mb-1'>
-              <div class='input-group date' id='created_atgteqPicker'>
-                  <%= f.text_field :created_at_gteq, :class => "form-control", :placeholder => "Created at greater than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-
-            <div class='col-md-6'>
-              <div class='input-group date' id='created_atlteqPicker'>
-                  <%= f.text_field :created_at_lteq, :class => "form-control", :placeholder => "Created at less than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
+      <div class="form-group">
+        <%= f.label :created_at, "Created at" %>
+        <div class="row">
+          <div class='col-md-6 mb-1'>
+            <div class='input-group date' id='created_atgteqPicker'>
+              <%= f.text_field :created_at_gteq, :class => "form-control", :placeholder => "Created at greater than or equal to" %>
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
             </div>
           </div>
+
+          <div class='col-md-6'>
+            <div class='input-group date' id='created_atlteqPicker'>
+              <%= f.text_field :created_at_lteq, :class => "form-control", :placeholder => "Created at less than or equal to" %>
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
       <script type="text/javascript">
-          $(function () {
-              $('#created_atgteqPicker').datetimepicker({
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#created_atlteqPicker').datetimepicker({
-                  useCurrent: false,
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#created_atgteqPicker').on("dp.change", function (e) {
-                  $('#created_atlteqPicker').data("DateTimePicker").minDate(e.date);
-              });
-              $('#created_atlteqPicker').on("dp.change", function (e) {
-                  $('#created_atgteqPicker').data("DateTimePicker").maxDate(e.date);
-              });
-          });
+      $(function () {
+        $('#created_atgteqPicker').datetimepicker({
+          format: 'YYYY-MM-DD hh:mm:SS'
+        });
+        $('#created_atlteqPicker').datetimepicker({
+          useCurrent: false,
+          format: 'YYYY-MM-DD hh:mm:SS'
+        });
+        $('#created_atgteqPicker').on("dp.change", function (e) {
+          $('#created_atlteqPicker').data("DateTimePicker").minDate(e.date);
+        });
+        $('#created_atlteqPicker').on("dp.change", function (e) {
+          $('#created_atgteqPicker').data("DateTimePicker").maxDate(e.date);
+        });
+      });
       </script>
 
-        <div class="form-group">
-      <%= f.label :beans_name_cont, "Bean name contains" %>
-      <%= f.text_field :beans_name_cont, :class => "form-control", :placeholder => "Bean name contains" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :beans_name_cont, "Bean name contains" %>
+        <%= f.text_field :beans_name_cont, :class => "form-control", :placeholder => "Bean name contains" %>
+      </div>
 
       <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
 
       <a href="/roasters" class="btn btn-default btn-block mb-1">Clear filters</a>
-    <% end %>
-    <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#roasters_filters">
-      Show Filters
-    </a>
-  </div>
-</div>
-
-
-<div class="row m-b-2">
-  <div class="col-md-12">
-    <div>
-      <div id="location_map" style="height: 480px;"></div>
+      <% end %>
+      <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#roasters_filters">
+        Show Filters
+      </a>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-12">
-    <table class="table table-striped table-hover">
-      <tr>
-        <th>Description</th>
-        <th>Name</th>
-        <th>Website url</th>
-        <th>Location</th>
-        <th>Cover photo url</th>
-        <th>City</th>
-        <th>Delivers</th>
-        <th>Delivery method</th>
-        <th>Delivery notes</th>
-        <th>Delivery geography</th>
-        <th>Actions</th>
-      </tr>
-
-      <% @roasters.each do |roaster| %>
-      <tr>
-        <td><%= roaster.description %></td>
-        <td><%= roaster.name %></td>
-        <td><%= roaster.website_url %></td>
-        <td><%= roaster.location %></td>
-        <td><%= roaster.cover_photo_url %></td>
-        <td><%= roaster.city %></td>
-        <td><%= roaster.delivers %></td>
-        <td><%= roaster.delivery_method %></td>
-        <td><%= roaster.delivery_notes %></td>
-        <td><%= roaster.delivery_geography %></td>
-        <td>
-          <a href="/roasters/<%= roaster.id %>" class="btn btn-primary">Show</a>
-          <a href="/roasters/<%= roaster.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_roaster/<%= roaster.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
+  <div class="table">
+    <% @roasters.each do |roaster| %>
+    <div class="col-md-3">
+      <div class="panel panel-default" style="height: 300px;">
+        <div class="panel-heading" style="text-align: center;">
+          <h4 class="panel-title">
+            <a> <%= roaster.city %></a>
+          </h4>
+        </div>
+        <div class="panel-body">
+          <a href="/roasters/<%= roaster.id %>">
+            <img src="<%= roaster.cover_photo_url %>" class="img-responsive center-block" style="max-height: 100px;">
+          </a>
+          <br>
+          <h4>
+            <a href="/roasters/<%= roaster.id %>"><%= roaster.name %></a>
+          </h4>
+          <% if roaster.reviews.count == 0 %>
+          <a>
+            <span title="roaster beans not yet rated">
+              <i class="fa fa-star-o" aria-hidden="true"></i>
+            </span>
+          </a>
+          <% else %>
+          <% @avg = roaster.reviews.pluck(:overall_rating).inject(0){|sum,x| sum + x } / roaster.reviews.pluck(:overall_rating).count %>
+          <% @n = roaster.reviews.pluck(:overall_rating).count %>
+          <% if @avg < 0.75 %>
+          <a>
+            <span title="based on individual bean ratings">
+              <i class="fa fa-star-half" aria-hidden="true"></i>
+            </span>
+            <small> (<%= @n %>) </small>
+          </a>
+          <% else %>
+          <% if @avg < 1.25 %>
+          <a>
+            <span title="based on individual bean ratings">
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </span>
+            <small> (<%= @n %>) </small>
+          </a>
+          <% else %>
+          <% if @avg < 1.75 %>
+          <a>
+            <span title="based on individual bean ratings">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half" aria-hidden="true"></i>
+            </span>
+            <small> (<%= @n %>) </small>
+          </a>
+          <% else %>
+          <% if @avg < 2.25 %>
+          <a>
+            <span title="based on individual bean ratings">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </span>
+            <small> (<%= @n %>) </small>
+          </a>
+          <% else %>
+          <% if @avg < 2.75 %>
+          <a>
+            <span title="based on individual bean ratings">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half" aria-hidden="true"></i>
+            </span>
+            <small> (<%= @n %>) </small>
+          </a>
+          <% else %>
+          <% if @avg < 3.25 %>
+          <a>
+            <span title="based on individual bean ratings">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </span>
+            <small> (<%= @n %>) </small>
+          </a>
+          <% else %>
+          <% if @avg < 3.75 %>
+          <a>
+            <span title="based on individual bean ratings">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half" aria-hidden="true"></i>
+            </span>
+            <small> (<%= @n %>) </small>
+          </a>
+          <% else %>
+          <% if @avg < 4.25 %>
+          <a>
+            <span title="based on individual bean ratings">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </span>
+            <small> (<%= @n %>) </small>
+          </a>
+          <% else %>
+          <% if @avg < 4.75 %>
+          <a>
+            <span title="based on individual bean ratings">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half" aria-hidden="true"></i>
+            </span>
+            <small> (<%= @n %>) </small>
+          </a>
+          <% else %>
+          <a>
+            <span title="based on individual bean ratings">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </span>
+            <small> (<%= @n %>) </small>
+          </a>
+          <% end %>
+          <% end %>
+          <% end %>
+          <% end %>
+          <% end %>
+          <% end %>
+          <% end %>
+          <% end %>
+          <% end %>
+          <% end %>
+          <br>
+          <% if %>
+          <% roaster.delivery_geography.downcase == "international" %>
+          <span title="delivers international">
+            <i class="fa fa-globe" aria-hidden="true"></i>
+          </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
     <%= paginate @roasters, theme: 'twitter-bootstrap-4' %>
   </div>
-</div>
 
-<script src="//maps.google.com/maps/api/js?v=3.24&key=AIzaSyCOTPWiuvyyo6sKoIBzKA4-1ol-vTOIOlM"></script>
-<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
-<script>
+  <div class="row m-b-2">
+    <div class="col-md-12">
+      <div>
+        <div id="location_map" style="height: 480px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="//maps.google.com/maps/api/js?v=3.24&key=AIzaSyCOTPWiuvyyo6sKoIBzKA4-1ol-vTOIOlM"></script>
+  <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+  <script>
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: 'location_map'}}, function(){
     markers = handler.addMarkers(<%= raw @location_hash.to_json %>);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
   });
-</script>
+  </script>
+</div>
