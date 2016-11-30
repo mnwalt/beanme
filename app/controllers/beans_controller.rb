@@ -6,7 +6,9 @@ class BeansController < ApplicationController
       marker.lat bean.region_latitude
       marker.lng bean.region_longitude
       marker.infowindow "<h5><a href='/beans/#{bean.id}'>#{bean.created_at}</a></h5><small>#{bean.region_formatted_address}</small>"
-    end
+
+      @reviews = Review.all
+      end
 
     render("beans/index.html.erb")
   end

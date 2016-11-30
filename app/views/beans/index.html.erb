@@ -213,12 +213,11 @@
   </div>
 </div>
 
-
 <div class="container">
   <div class="table">
     <% @beans.each do |bean| %>
     <div class="col-md-3">
-      <div class="panel panel-default" style="height: 500px;">
+      <div class="panel panel-default" style="height: 525px;">
         <div class="panel-heading" style="text-align: center;">
           <h4 class="panel-title">
             <a href="/roasters/<% bean.roaster_id %>"><%= bean.roaster.name %></a>
@@ -233,80 +232,172 @@
             <a href="/beans/<%= bean.id %>"><%= bean.name %></a>
           </h4>
           <h5> <%= bean.flavor_note_1 %>, <%= bean.flavor_note_2 %>, <%= bean.flavor_note_3 %> </h5>
-          <% if bean.reviews.count == 0 %>
-          <p> not yet rated </p>
-          <% else %>
-          <!-- <script type="text/javascript">
-          $.fn.stars = function() {
-          return $(this).each(function() {
-          // Get the value
-          var val = parseFloat($(this).html());
-          // Make sure that the value is in 0 - 5 range, multiply to get width
-          val = Math.round(val * 4) / 4; /* To round to nearest quarter */
-          var size = Math.max(0, (Math.min(5, val))) * 16;
-          // Create stars holder
-          var $span = $('<span />').width(size);
-          // Replace the numerical value with stars
-          $(this).html($span);
-        });
-      }
-    </script>
-
-    <script type="text/javascript">
-    $(function() {
-    $('span.stars').stars();
-  });
-</script>
-<span class="stars">4.8618164</span> -->
-<p> <%= bean.reviews.count %> </p>
-<% end %>
-<h5> $<%= bean.price_per_bag %> <small> per bag </small></h5>
-<h6> <%= bean.bag_size_grams.to_i %>g / <%= (bean.bag_size_grams * 0.035274).round(1) %>oz </h6>
-<h6> <small> ($<%= (bean.price_per_bag / (bean.bag_size_grams * 0.035274)).round(2)%> per oz) </small> </h6>
-<div class="row">
-<% if bean.labs.include?(current_user) == true %>
-<a href="/delete_inventory/<%= bean.inventories.where(user_id: current_user.id).pluck(:id).to_sentence %>" class="btn btn-link">
-  <span title="remove favorite">
-    <i class="fa fa-heart" aria-hidden="true"></i>
-  </span>
-</a>
-<% else %>
-  <form action="/create_inventory" method="post">
-    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-    <input type="hidden" name="bean_id" value="<%= bean.id %>">
-    <input type="hidden" name="user_id" value="<%= current_user.id %>">
-    <span title="make a favorite">
-      <button class="btn btn-link">
-      <i class="fa fa-heart-o" aria-hidden="true"></i>
-    </span>
-  </button>
-  </form>
+          <div class="row">
+            <% if bean.reviews.count == 0 %>
+            <a href="/beans/<%= bean.id %>" class="btn btn-link">
+              <span title="not yet rated">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              </span>
+            </a>
+            <% else %>
+            <% @avg = Review.where(:bean_id => bean ).pluck(:overall_rating).inject(0){|sum,x| sum + x } / Review.where(:bean_id => bean ).pluck(:overall_rating).count %>
+            <% @n = Review.where(:bean_id => bean ).pluck(:overall_rating).count %>
+            <% if @avg < 0.75 %>
+            <a href="/beans/<%= bean.id %>" class="btn btn-link">
+              <span title="rate bean">
+                <i class="fa fa-star-half" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <% if @avg < 1.25 %>
+            <a href="/beans/<%= bean.id %>" class="btn btn-link">
+              <span title="rate bean">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <% if @avg < 1.75 %>
+            <a href="/beans/<%= bean.id %>" class="btn btn-link">
+              <span title="rate bean">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-half" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <% if @avg < 2.25 %>
+            <a href="/beans/<%= bean.id %>" class="btn btn-link">
+              <span title="rate bean">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <% if @avg < 2.75 %>
+            <a href="/beans/<%= bean.id %>" class="btn btn-link">
+              <span title="rate bean">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-half" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <% if @avg < 3.25 %>
+            <a href="/beans/<%= bean.id %>" class="btn btn-link">
+              <span title="rate bean">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <% if @avg < 3.75 %>
+            <a href="/beans/<%= bean.id %>" class="btn btn-link">
+              <span title="rate bean">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-half" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <% if @avg < 4.25 %>
+            <a href="/beans/<%= bean.id %>" class="btn btn-link">
+              <span title="rate bean">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <% if @avg < 4.75 %>
+            <a href="/beans/<%= bean.id %>" class="btn btn-link">
+              <span title="rate bean">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-half" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <a href="/beans/<%= bean.id %>" class="btn btn-link">
+              <span title="rate bean">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            </div>
+          <h5> $<%= bean.price_per_bag %> <small> per bag </small></h5>
+          <h6> <%= bean.bag_size_grams.to_i %>g / <%= (bean.bag_size_grams * 0.035274).round(1) %>oz </h6>
+          <h6> <small> ($<%= (bean.price_per_bag / (bean.bag_size_grams * 0.035274)).round(2)%> per oz) </small> </h6>
+          <div class="row">
+            <% if bean.labs.include?(current_user) == true %>
+            <a href="/delete_inventory/<%= bean.inventories.where(user_id: current_user.id).pluck(:id).to_sentence %>" class="btn btn-link">
+              <span title="remove favorite">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+              </span>
+            </a>
+            <% else %>
+            <form action="/create_inventory" method="post">
+              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+              <input type="hidden" name="bean_id" value="<%= bean.id %>">
+              <input type="hidden" name="user_id" value="<%= current_user.id %>">
+              <span title="make a favorite">
+                <button class="btn btn-link">
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                </span>
+              </button>
+            </form>
+            <% end %>
+            <% if %>
+            <% bean.caffine == true %>
+            <span title="caffeinated">
+              <i class="fa fa-rocket" aria-hidden="true"></i>
+            </span>
+            <% end %>
+            <% if %>
+            <% bean.blend == true %>
+            <span title="blend">
+              <i class="fa fa-flask" aria-hidden="true"></i>
+            </span>
+            <% end %>
+            <% if %>
+            <% bean.espresso == true %>
+            <span title="espresso">
+              <i class="fa fa-coffee" aria-hidden="true"></i>
+            </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
     <% end %>
-  <% if %>
-  <% bean.caffine == true %>
-    <span title="caffeinated">
-      <i class="fa fa-rocket" aria-hidden="true"></i>
-    </span>
-  <% end %>
-  <% if %>
-  <% bean.blend == true %>
-    <span title="blend">
-      <i class="fa fa-flask" aria-hidden="true"></i>
-    </span>
-  <% end %>
-  <% if %>
-  <% bean.espresso == true %>
-      <span title="espresso">
-      <i class="fa fa-coffee" aria-hidden="true"></i>
-    </span>
-  <% end %>
-</div>
-</div>
-</div>
-</div>
-<% end %>
-</div>
-<%= paginate @beans, theme: 'twitter-bootstrap-4' %>
+  </div>
+  <%= paginate @beans, theme: 'twitter-bootstrap-4' %>
 </div>
 
 

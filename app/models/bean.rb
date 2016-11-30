@@ -36,7 +36,7 @@ class Bean < ApplicationRecord
 
   has_many   :labs, :through => :inventories, :source => :user
 
-  # Indirect associations
+    # Indirect associations
 
   # Validations
 
