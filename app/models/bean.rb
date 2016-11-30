@@ -48,4 +48,10 @@ class Bean < ApplicationRecord
 
   validates :roaster_id, :presence => true
 
+  validates :bag_size_grams, :presence => true
+
+  validates :flavor_note_1, :presence => true
+
+  validates :price_per_bag, :presence => true
+
 end

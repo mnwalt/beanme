@@ -14,91 +14,107 @@
       <dt> Country of Origin </dt>
       <dd>
         <% if @bean.country.present? %>
-          <a href="/origin_countries/<%= @bean.origin_country_id %>">
-            <%= @bean.country.name %>
-          </a>
+        <a href="/origin_countries/<%= @bean.origin_country_id %>">
+          <%= @bean.country.name %>
+        </a>
         <% end %>
       </dd>
 
+      <% if @bean.region != nil %>
       <dt>Region</dt>
       <dd><%= @bean.region %></dd>
+      <% end %>
 
+      <% if @bean.producer != nil %>
       <dt>Producer</dt>
       <dd><%= @bean.producer %></dd>
+      <% end %>
 
-      <dt>Flavor notes</dt>
-      <dd><%= @bean.flavor_note_1 %>, <%= @bean.flavor_note_2 %>, <%= @bean.flavor_note_3 %></dd>
+      <dt>Flavor Notes</dt>
+      <dd><%= @bean.flavor_note_1 %></dd>
 
+      <% if @bean.price_per_bag != nil %>
       <dt>Price</dt>
       <dd>$<%= @bean.price_per_bag %> per bag</dd>
+      <% end %>
 
+      <% if @bean.bag_size_grams != nil %>
       <dt>Weight</dt>
       <dd><%= @bean.bag_size_grams.to_i %> grams / <%= (@bean.bag_size_grams * 0.035274).round(1) %> ounces</dd>
+      <% end %>
 
-<% if  @bean.elevation_masl_low != nil %>
+      <% if @bean.elevation_masl_low != nil %>
       <dt>Elevation</dt>
       <dd><%= @bean.elevation_masl_low %> masl</dd>
+      <% end %>
 
+      <% if @bean.elevation_masl_high != nil %>
       <dt>Elevation</dt>
       <dd><%= @bean.elevation_masl_high %> masl</dd>
-<% end %>
+      <% end %>
 
+      <% if @bean.process != nil %>
       <dt>Process</dt>
       <dd><%= @bean.process %></dd>
+      <% end %>
 
+      <% if @bean.varietal != nil %>
       <dt>Varietal</dt>
       <dd><%= @bean.varietal %></dd>
+      <% end %>
 
       <dt>Caffeine</dt>
       <dd>
-      <% if @bean.caffine == true %>
-      Yes
-    </dd>
+        <% if @bean.caffine == true %>
+        Yes
+      </dd>
       <% else %>
       No
     </dd>
-      <% end %>
+    <% end %>
 
-      <dt>Blend</dt>
-      <dd>
+    <dt>Blend</dt>
+    <dd>
       <% if @bean.blend == true %>
       Yes
     </dd>
-      <% else %>
-      No
-    </dd>
-      <% end %>
+    <% else %>
+    No
+  </dd>
+  <% end %>
 
-      <dt>Espresso</dt>
-      <dd>
-      <% if @bean.espresso == true %>
-      Yes
-    </dd>
-      <% else %>
-      No
-    </dd>
-      <% end %>
+  <dt>Espresso</dt>
+  <dd>
+    <% if @bean.espresso == true %>
+    Yes
+  </dd>
+  <% else %>
+  No
+</dd>
+<% end %>
 
-      <dd>
-        <div>
-          <div id="location_map" style="height: 480px;"></div>
-        </div>
-      </dd>
-
-    </dl>
-
-    <!-- <div class="btn-group btn-group-justified">
-      <a href="/beans" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/beans/<%= @bean.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_bean/<%= @bean.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
-    </div> -->
+<% if @bean.region != nil %>
+<dd>
+  <div>
+    <div id="location_map" style="height: 480px;"></div>
   </div>
+</dd>
+<% end %>
+
+</dl>
+
+<!-- <div class="btn-group btn-group-justified">
+<a href="/beans" class="btn btn-primary">
+Back
+</a>
+<a href="/beans/<%= @bean.id %>/edit" class="btn btn-warning">
+Edit
+</a>
+<a href="/delete_bean/<%= @bean.id %>" class="btn btn-danger" rel="nofollow">
+Delete
+</a>
+</div> -->
+</div>
 </div>
 
 <!-- A Bean has many inventories -->
@@ -111,62 +127,62 @@
       </li>
 
       <% @bean.inventories.each do |inventory| %>
-        <li class="list-group-item">
-          <a href="/inventories/<%= inventory.id %>">
-            <%= inventory.created_at %>
+      <li class="list-group-item">
+        <a href="/inventories/<%= inventory.id %>">
+          <%= inventory.created_at %>
+        </a>
+        <div class="btn-group btn-group-xs pull-right">
+          <a href="/inventories/<%= inventory.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
           </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/inventories/<%= inventory.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/inventories/<%= inventory.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_inventory/<%= inventory.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
+          <a href="/inventories/<%= inventory.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a href="/delete_inventory/<%= inventory.id %>" class="btn btn-danger" rel="nofollow">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </div>
+      </li>
       <% end %>
 
       <li class="list-group-item">
         <form action="/create_inventory" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for user_id -->
-      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+          <!-- Label and input for user_id -->
+          <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
-      <!-- Label and input for bean_id -->
-      <input type="hidden" name="bean_id" value="<%= @bean.id %>">
+          <!-- Label and input for bean_id -->
+          <input type="hidden" name="bean_id" value="<%= @bean.id %>">
 
-      <!-- Label and input for quantity_ounces -->
-      <div class="form-group">
-        <label for="quantity_ounces" class="control-label">
-          Quantity ounces
-        </label>
+          <!-- Label and input for quantity_ounces -->
+          <div class="form-group">
+            <label for="quantity_ounces" class="control-label">
+              Quantity ounces
+            </label>
 
-        <input type="text" id="quantity_ounces" name="quantity_ounces" placeholder="Quantity ounces" class="form-control" value="">
-      </div>
+            <input type="text" id="quantity_ounces" name="quantity_ounces" placeholder="Quantity ounces" class="form-control" value="">
+          </div>
 
-      <!-- Label and input for roast_date -->
-      <div class="form-group">
-        <label for="roast_date" class="control-label">
-          Roast date
-        </label>
+          <!-- Label and input for roast_date -->
+          <div class="form-group">
+            <label for="roast_date" class="control-label">
+              Roast date
+            </label>
 
-        <input type="text" id="roast_date" name="roast_date" placeholder="Roast date" class="form-control" value="">
-      </div>
+            <input type="text" id="roast_date" name="roast_date" placeholder="Roast date" class="form-control" value="">
+          </div>
 
-      <button class="btn btn-block btn-success">
-        Create Inventory
-      </button>
-    </form>
+          <button class="btn btn-block btn-success">
+            Create Inventory
+          </button>
+        </form>
       </li>
     </ul>
   </div>
 
-<!-- A Bean has many reviews -->
+  <!-- A Bean has many reviews -->
 
   <div class="col-md-6">
     <ul class="list-group">
@@ -175,75 +191,75 @@
       </li>
 
       <% @bean.reviews.each do |review| %>
-        <li class="list-group-item">
-          <a href="/reviews/<%= review.id %>">
-            <%= review.user.username %>
-          </a>
+      <li class="list-group-item">
+        <a href="/reviews/<%= review.id %>">
+          <%= review.user.username %>
+        </a>
 
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/reviews/<%= review.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/reviews/<%= review.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_review/<%= review.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
+        <div class="btn-group btn-group-xs pull-right">
+          <a href="/reviews/<%= review.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
+          </a>
+          <a href="/reviews/<%= review.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a href="/delete_review/<%= review.id %>" class="btn btn-danger" rel="nofollow">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </div>
+      </li>
       <% end %>
 
       <li class="list-group-item">
         <form action="/create_review" method="post" enctype="multipart/form-data">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for user_id -->
-      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+          <!-- Label and input for user_id -->
+          <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
-      <!-- Label and input for bean_id -->
-      <input type="hidden" name="bean_id" value="<%= @bean.id %>">
+          <!-- Label and input for bean_id -->
+          <input type="hidden" name="bean_id" value="<%= @bean.id %>">
 
-      <!-- Label and input for overall_rating -->
-      <div class="form-group">
-        <label for="overall_rating" class="control-label">
-          Overall rating
-        </label>
+          <!-- Label and input for overall_rating -->
+          <div class="form-group">
+            <label for="overall_rating" class="control-label">
+              Overall rating
+            </label>
 
-        <input type="text" id="overall_rating" name="overall_rating" placeholder="Overall rating" class="form-control" value="">
-      </div>
+            <input type="text" id="overall_rating" name="overall_rating" placeholder="Overall rating" class="form-control" value="">
+          </div>
 
-      <!-- Label and input for comments -->
-      <div class="form-group">
-        <label for="comments" class="control-label">
-          Comments
-        </label>
+          <!-- Label and input for comments -->
+          <div class="form-group">
+            <label for="comments" class="control-label">
+              Comments
+            </label>
 
-        <textarea id="comments" name="comments" placeholder="Comments" class="form-control" rows="3"></textarea>
-      </div>
+            <textarea id="comments" name="comments" placeholder="Comments" class="form-control" rows="3"></textarea>
+          </div>
 
-      <!-- Label and input for image -->
-      <div class="form-group">
-        <label for="image" class="control-label">
-          Image
-        </label>
+          <!-- Label and input for image -->
+          <div class="form-group">
+            <label for="image" class="control-label">
+              Image
+            </label>
 
-        <input type="file" id="image" name="image" class="form-control">
-      </div>
+            <input type="file" id="image" name="image" class="form-control">
+          </div>
 
-      <button class="btn btn-block btn-success">
-        Create Review
-      </button>
-    </form>
+          <button class="btn btn-block btn-success">
+            Create Review
+          </button>
+        </form>
       </li>
     </ul>
   </div>
 
 
-<script src="//maps.google.com/maps/api/js?v=3.24&key=AIzaSyCOTPWiuvyyo6sKoIBzKA4-1ol-vTOIOlM"></script>
-<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
-<script>
+  <script src="//maps.google.com/maps/api/js?v=3.24&key=AIzaSyCOTPWiuvyyo6sKoIBzKA4-1ol-vTOIOlM"></script>
+  <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+  <script>
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: 'location_map'}}, function(){
     markers = handler.addMarkers([
@@ -256,4 +272,4 @@
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
   });
-</script>
+  </script>
