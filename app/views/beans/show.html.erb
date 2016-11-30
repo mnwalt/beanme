@@ -1,259 +1,491 @@
-<div class="page-header">
-  <h2><%= @bean.name %> </h2>
-  <small><a href="/roasters/<% @bean.roaster_id %>"><%= @bean.roaster.name %> </small></a>
-</div>
+<div class="container">
+  <div class="page-header">
+    <a href="/beans/<%= @bean.id %>" class="btn btn-success" style="float: right";>Add to Cart</a>
+    <h2><%= @bean.name %> </h2>
+    <small><a href="/roasters/<% @bean.roaster_id %>"><%= @bean.roaster.name %> </small></a>
+  </div>
+  <img src="<%= @bean.image_url %>" class="img-responsive left-block" style="max-height: 400px;">
 
-<img src="<%= @bean.image_url %>" class="img-responsive left-block" style="max-height: 400px;">
+  <h3> Specs </h3>
 
-<h3> Specs </h3>
+  <div class="row">
+    <div class="col-md-12 mb-2">
+      <dl class="dl-horizontal">
 
-<div class="row">
-  <div class="col-md-12 mb-2">
-    <dl class="dl-horizontal">
+        <dt> Avg BeanMe Rating <dt>
+          <dd>
+            <% @avg = Review.where(:bean_id => @bean ).pluck(:overall_rating).inject(0){|sum,x| sum + x } / Review.where(:bean_id => @bean ).pluck(:overall_rating).count %>
+            <% @n = Review.where(:bean_id => @bean ).pluck(:overall_rating).count %>
+            <% if @avg < 0.75 %>
+            <a>
+              <span title="rate bean below">
+                <i class="fa fa-star-half" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <% if @avg < 1.25 %>
+            <a>
+              <span title="rate bean below">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <% if @avg < 1.75 %>
+            <<a>
+              <span title="rate bean below">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-half" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <% if @avg < 2.25 %>
+            <a>
+              <span title="rate bean below">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <% if @avg < 2.75 %>
+            <a>
+              <span title="rate bean below">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-half" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <% if @avg < 3.25 %>
+            <a>
+              <span title="rate bean below">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <% if @avg < 3.75 %>
+            <a>
+              <span title="rate bean below">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-half" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <% if @avg < 4.25 %>
+            <a>
+              <span title="rate bean below">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <% if @avg < 4.75 %>
+            <a>
+              <span title="rate bean below">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-half" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% else %>
+            <a>
+              <span title="rate bean below">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </span>
+              <small> (<%= @n %>) </small>
+            </a>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+          </dd>
 
-      <dt> Country of Origin </dt>
-      <dd>
-        <% if @bean.country.present? %>
-        <a href="/origin_countries/<%= @bean.origin_country_id %>">
-          <%= @bean.country.name %>
-        </a>
+          <dt> <%= current_user.username %>'s Avg Rating <dt>
+            <dd>
+              <% @avg = Review.where(:bean_id => @bean, :user_id => current_user).pluck(:overall_rating).inject(0){|sum,x| sum + x } / Review.where(:bean_id => @bean, :user_id => current_user).pluck(:overall_rating).count %>
+              <% @n = Review.where(:bean_id => @bean, :user_id => current_user).pluck(:overall_rating).count %>
+              <% if @avg < 0.75 %>
+              <a>
+                <span title="rate bean below">
+                  <i class="fa fa-star-half" aria-hidden="true"></i>
+                </span>
+                <small> (<%= @n %>) </small>
+              </a>
+              <% else %>
+              <% if @avg < 1.25 %>
+              <a>
+                <span title="rate bean below">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </span>
+                <small> (<%= @n %>) </small>
+              </a>
+              <% else %>
+              <% if @avg < 1.75 %>
+              <<a>
+                <span title="rate bean below">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star-half" aria-hidden="true"></i>
+                </span>
+                <small> (<%= @n %>) </small>
+              </a>
+              <% else %>
+              <% if @avg < 2.25 %>
+              <a>
+                <span title="rate bean below">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </span>
+                <small> (<%= @n %>) </small>
+              </a>
+              <% else %>
+              <% if @avg < 2.75 %>
+              <a>
+                <span title="rate bean below">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star-half" aria-hidden="true"></i>
+                </span>
+                <small> (<%= @n %>) </small>
+              </a>
+              <% else %>
+              <% if @avg < 3.25 %>
+              <a>
+                <span title="rate bean below">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </span>
+                <small> (<%= @n %>) </small>
+              </a>
+              <% else %>
+              <% if @avg < 3.75 %>
+              <a>
+                <span title="rate bean below">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star-half" aria-hidden="true"></i>
+                </span>
+                <small> (<%= @n %>) </small>
+              </a>
+              <% else %>
+              <% if @avg < 4.25 %>
+              <a>
+                <span title="rate bean below">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </span>
+                <small> (<%= @n %>) </small>
+              </a>
+              <% else %>
+              <% if @avg < 4.75 %>
+              <a>
+                <span title="rate bean below">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star-half" aria-hidden="true"></i>
+                </span>
+                <small> (<%= @n %>) </small>
+              </a>
+              <% else %>
+              <a>
+                <span title="rate bean below">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </span>
+                <small> (<%= @n %>) </small>
+              </a>
+              <% end %>
+              <% end %>
+              <% end %>
+              <% end %>
+              <% end %>
+              <% end %>
+              <% end %>
+              <% end %>
+              <% end %>
+            </dd>
+
+            <dt> Country of Origin </dt>
+            <dd>
+              <% if @bean.country.present? %>
+              <a href="/origin_countries/<%= @bean.origin_country_id %>">
+                <%= @bean.country.name %>
+              </a>
+              <% end %>
+            </dd>
+
+            <% if @bean.region != nil %>
+            <dt>Region</dt>
+            <dd><%= @bean.region %></dd>
+            <% end %>
+
+            <% if @bean.producer != nil %>
+            <dt>Producer</dt>
+            <dd><%= @bean.producer %></dd>
+            <% end %>
+
+            <dt>Flavor Notes</dt>
+            <dd><%= @bean.flavor_note_1 %></dd>
+
+            <% if @bean.price_per_bag != nil %>
+            <dt>Price</dt>
+            <dd>$<%= @bean.price_per_bag %> per bag</dd>
+            <% end %>
+
+            <% if @bean.bag_size_grams != nil %>
+            <dt>Weight</dt>
+            <dd><%= @bean.bag_size_grams.to_i %> grams / <%= (@bean.bag_size_grams * 0.035274).round(1) %> ounces</dd>
+            <% end %>
+
+            <% if @bean.elevation_masl_low != nil %>
+            <dt>Elevation</dt>
+            <dd><%= @bean.elevation_masl_low %> masl</dd>
+            <% end %>
+
+            <% if @bean.elevation_masl_high != nil %>
+            <dt>Elevation</dt>
+            <dd><%= @bean.elevation_masl_high %> masl</dd>
+            <% end %>
+
+            <% if @bean.process != nil %>
+            <dt>Process</dt>
+            <dd><%= @bean.process %></dd>
+            <% end %>
+
+            <% if @bean.varietal != nil %>
+            <dt>Varietal</dt>
+            <dd><%= @bean.varietal %></dd>
+            <% end %>
+
+            <dt>Caffeine</dt>
+            <dd>
+              <% if @bean.caffine == true %>
+              Yes
+            </dd>
+            <% else %>
+            No
+          </dd>
+          <% end %>
+
+          <dt>Blend</dt>
+          <dd>
+            <% if @bean.blend == true %>
+            Yes
+          </dd>
+          <% else %>
+          No
+        </dd>
         <% end %>
+
+        <dt>Espresso</dt>
+        <dd>
+          <% if @bean.espresso == true %>
+          Yes
+        </dd>
+        <% else %>
+        No
       </dd>
+      <% end %>
 
       <% if @bean.region != nil %>
-      <dt>Region</dt>
-      <dd><%= @bean.region %></dd>
-      <% end %>
-
-      <% if @bean.producer != nil %>
-      <dt>Producer</dt>
-      <dd><%= @bean.producer %></dd>
-      <% end %>
-
-      <dt>Flavor Notes</dt>
-      <dd><%= @bean.flavor_note_1 %></dd>
-
-      <% if @bean.price_per_bag != nil %>
-      <dt>Price</dt>
-      <dd>$<%= @bean.price_per_bag %> per bag</dd>
-      <% end %>
-
-      <% if @bean.bag_size_grams != nil %>
-      <dt>Weight</dt>
-      <dd><%= @bean.bag_size_grams.to_i %> grams / <%= (@bean.bag_size_grams * 0.035274).round(1) %> ounces</dd>
-      <% end %>
-
-      <% if @bean.elevation_masl_low != nil %>
-      <dt>Elevation</dt>
-      <dd><%= @bean.elevation_masl_low %> masl</dd>
-      <% end %>
-
-      <% if @bean.elevation_masl_high != nil %>
-      <dt>Elevation</dt>
-      <dd><%= @bean.elevation_masl_high %> masl</dd>
-      <% end %>
-
-      <% if @bean.process != nil %>
-      <dt>Process</dt>
-      <dd><%= @bean.process %></dd>
-      <% end %>
-
-      <% if @bean.varietal != nil %>
-      <dt>Varietal</dt>
-      <dd><%= @bean.varietal %></dd>
-      <% end %>
-
-      <dt>Caffeine</dt>
       <dd>
-        <% if @bean.caffine == true %>
-        Yes
+        <div>
+          <div id="location_map" style="height: 480px;"></div>
+        </div>
       </dd>
-      <% else %>
-      No
-    </dd>
-    <% end %>
+      <% end %>
 
-    <dt>Blend</dt>
-    <dd>
-      <% if @bean.blend == true %>
-      Yes
-    </dd>
-    <% else %>
-    No
-  </dd>
-  <% end %>
+    </dl>
 
-  <dt>Espresso</dt>
-  <dd>
-    <% if @bean.espresso == true %>
-    Yes
-  </dd>
-  <% else %>
-  No
-</dd>
-<% end %>
-
-<% if @bean.region != nil %>
-<dd>
-  <div>
-    <div id="location_map" style="height: 480px;"></div>
   </div>
-</dd>
-<% end %>
-
-</dl>
-
-<!-- <div class="btn-group btn-group-justified">
-<a href="/beans" class="btn btn-primary">
-Back
-</a>
-<a href="/beans/<%= @bean.id %>/edit" class="btn btn-warning">
-Edit
-</a>
-<a href="/delete_bean/<%= @bean.id %>" class="btn btn-danger" rel="nofollow">
-Delete
-</a>
-</div> -->
 </div>
-</div>
-
-<!-- A Bean has many inventories -->
 
 <div class="row">
   <div class="col-md-6">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Laboratory
-      </li>
-
-      <% @bean.inventories.each do |inventory| %>
-      <li class="list-group-item">
-        <a href="/inventories/<%= inventory.id %>">
-          <%= inventory.created_at %>
-        </a>
-        <div class="btn-group btn-group-xs pull-right">
-          <a href="/inventories/<%= inventory.id %>" class="btn btn-primary">
-            <i class="fa fa-search-plus"></i>
+    <h3> Reviews </h3>
+    <% if @bean.reviews.count != 0 %>
+    <ul class="media-list">
+      <% @bean.reviews.each do |review| %>
+      <li class="media">
+        <div class="media-body">
+          <h6 class="media-heading">
+            <a><%= review.user.username %></a>
+            <small>
+              <%= time_ago_in_words(review.created_at) %> ago
+            </small>
+          </h6>
+          <%= review.comments %>
+            <br> </br>
+          <% if review.overall_rating < 0.75 %>
+          <a>
+            <i class="fa fa-star-half" aria-hidden="true"></i>
           </a>
-          <a href="/inventories/<%= inventory.id %>/edit" class="btn btn-warning">
-            <i class="fa fa-edit"></i>
+          <% else %>
+          <% if review.overall_rating < 1.25 %>
+          <a>
+            <i class="fa fa-star" aria-hidden="true"></i>
           </a>
-          <a href="/delete_inventory/<%= inventory.id %>" class="btn btn-danger" rel="nofollow">
-            <i class="fa fa-trash-o"></i>
+          <% else %>
+          <% if review.overall_rating < 1.75 %>
+          <<a>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half" aria-hidden="true"></i>
           </a>
+          <% else %>
+          <% if review.overall_rating < 2.25 %>
+          <a>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </a>
+          <% else %>
+          <% if review.overall_rating < 2.75 %>
+          <a>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half" aria-hidden="true"></i>
+          </a>
+          <% else %>
+          <% if review.overall_rating < 3.25 %>
+          <a>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </a>
+          <% else %>
+          <% if review.overall_rating < 3.75 %>
+          <a>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half" aria-hidden="true"></i>
+          </a>
+          <% else %>
+          <% if review.overall_rating < 4.25 %>
+          <a>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </a>
+          <% else %>
+          <% if review.overall_rating < 4.75 %>
+          <a>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half" aria-hidden="true"></i>
+          </a>
+          <% else %>
+          <a>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </a>
+          <% end %>
+          <% end %>
+          <% end %>
+          <% end %>
+          <% end %>
+          <% end %>
+          <% end %>
+          <br> </br>
+          <% if review.image != nil %>
+            <img src="<%= review.image %>" class="img-responsive">
+          <% end %>
+          <% end %>
+          <hr>
+          <% end %>
         </div>
       </li>
       <% end %>
+      <% end %>
 
-      <li class="list-group-item">
-        <form action="/create_inventory" method="post">
-          <!-- Hidden input for authenticity token to protect from forgery -->
-          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-          <!-- Label and input for user_id -->
-          <input type="hidden" name="user_id" value="<%= current_user.id %>">
-
-          <!-- Label and input for bean_id -->
-          <input type="hidden" name="bean_id" value="<%= @bean.id %>">
-
-          <!-- Label and input for quantity_ounces -->
-          <div class="form-group">
-            <label for="quantity_ounces" class="control-label">
-              Quantity ounces
-            </label>
-
-            <input type="text" id="quantity_ounces" name="quantity_ounces" placeholder="Quantity ounces" class="form-control" value="">
-          </div>
-
-          <!-- Label and input for roast_date -->
-          <div class="form-group">
-            <label for="roast_date" class="control-label">
-              Roast date
-            </label>
-
-            <input type="text" id="roast_date" name="roast_date" placeholder="Roast date" class="form-control" value="">
-          </div>
-
-          <button class="btn btn-block btn-success">
-            Create Inventory
-          </button>
-        </form>
-      </li>
-    </ul>
+      </ul>
   </div>
 
-  <!-- A Bean has many reviews -->
-
   <div class="col-md-6">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        All Reviews
-      </li>
+    <h3> Add a Review </h3>
 
-      <% @bean.reviews.each do |review| %>
-      <li class="list-group-item">
-        <a href="/reviews/<%= review.id %>">
-          <%= review.user.username %>
-        </a>
+    <li class="list-group-item">
+      <form action="/create_review" method="post" enctype="multipart/form-data">
+        <!-- Hidden input for authenticity token to protect from forgery -->
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-        <div class="btn-group btn-group-xs pull-right">
-          <a href="/reviews/<%= review.id %>" class="btn btn-primary">
-            <i class="fa fa-search-plus"></i>
-          </a>
-          <a href="/reviews/<%= review.id %>/edit" class="btn btn-warning">
-            <i class="fa fa-edit"></i>
-          </a>
-          <a href="/delete_review/<%= review.id %>" class="btn btn-danger" rel="nofollow">
-            <i class="fa fa-trash-o"></i>
-          </a>
+        <!-- Label and input for user_id -->
+        <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+        <!-- Label and input for bean_id -->
+        <input type="hidden" name="bean_id" value="<%= @bean.id %>">
+
+        <!-- Label and input for overall_rating -->
+        <div class="form-group">
+          <label for="overall_rating" class="control-label">
+            Rating
+          </label>
+
+          <input type="text" id="overall_rating" name="overall_rating" placeholder="number between 0 and 5" class="form-control" value="">
         </div>
-      </li>
-      <% end %>
 
-      <li class="list-group-item">
-        <form action="/create_review" method="post" enctype="multipart/form-data">
-          <!-- Hidden input for authenticity token to protect from forgery -->
-          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+        <!-- Label and input for comments -->
+        <div class="form-group">
+          <label for="comments" class="control-label">
+            Comments
+          </label>
 
-          <!-- Label and input for user_id -->
-          <input type="hidden" name="user_id" value="<%= current_user.id %>">
+          <textarea id="comments" name="comments" placeholder="" class="form-control" rows="3"></textarea>
+        </div>
 
-          <!-- Label and input for bean_id -->
-          <input type="hidden" name="bean_id" value="<%= @bean.id %>">
+        <!-- Label and input for image -->
+        <div class="form-group">
+          <label for="image" class="control-label">
+            Image
+          </label>
 
-          <!-- Label and input for overall_rating -->
-          <div class="form-group">
-            <label for="overall_rating" class="control-label">
-              Overall rating
-            </label>
+          <input type="file" id="image" name="image" class="form-control">
+        </div>
 
-            <input type="text" id="overall_rating" name="overall_rating" placeholder="Overall rating" class="form-control" value="">
-          </div>
+        <button class="btn btn-block btn-success">
+          Create Review
+        </button>
+      </form>
+    </li>
 
-          <!-- Label and input for comments -->
-          <div class="form-group">
-            <label for="comments" class="control-label">
-              Comments
-            </label>
-
-            <textarea id="comments" name="comments" placeholder="Comments" class="form-control" rows="3"></textarea>
-          </div>
-
-          <!-- Label and input for image -->
-          <div class="form-group">
-            <label for="image" class="control-label">
-              Image
-            </label>
-
-            <input type="file" id="image" name="image" class="form-control">
-          </div>
-
-          <button class="btn btn-block btn-success">
-            Create Review
-          </button>
-        </form>
-      </li>
-    </ul>
   </div>
 
 
@@ -273,3 +505,5 @@ Delete
     handler.fitMapToBounds();
   });
   </script>
+</div>
+</div>
