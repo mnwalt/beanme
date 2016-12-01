@@ -3,7 +3,9 @@
     <h1>
       Roasters
     </h1>
-  </div><div class="row mb-1">
+  </div>
+
+  <div class="row mb-1">
     <div class="col-md-12">
       <%= search_form_for @q, :class => "collapse", :id => "roasters_filters" do |f| %>
       <p class="lead">Narrow results:</p>
@@ -28,6 +30,8 @@
     </div>
   </div>
 
+  <div class="row mb-1">
+    <div class="col-md-12">
   <div class="table">
     <% @roasters.each do |roaster| %>
     <div class="col-md-3">
@@ -194,4 +198,6 @@
     handler.fitMapToBounds();
   });
   </script>
+</div>
+</div>
 </div>
