@@ -9,103 +9,13 @@
       <p class="lead">Narrow results:</p>
 
       <div class="form-group">
-        <%= f.label :description_cont, "Description contains" %>
-        <%= f.text_field :description_cont, :class => "form-control", :placeholder => "Description contains" %>
+        <%= f.label :name_cont, "Name" %>
+        <%= f.text_field :name_cont, :class => "form-control", :placeholder => "" %>
       </div>
 
       <div class="form-group">
-        <%= f.label :delivery_geography_cont, "Delivery geography contains" %>
-        <%= f.text_field :delivery_geography_cont, :class => "form-control", :placeholder => "Delivery geography contains" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :delivery_notes_cont, "Delivery notes contains" %>
-        <%= f.text_field :delivery_notes_cont, :class => "form-control", :placeholder => "Delivery notes contains" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :delivery_method_cont, "Delivery method contains" %>
-        <%= f.text_field :delivery_method_cont, :class => "form-control", :placeholder => "Delivery method contains" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :delivers_eq, "Delivers" %>
-        <div>
-          <label class="radio-inline">
-            <%= f.radio_button :delivers_eq, "1", checked: ((params[:q] && params[:q][:delivers_eq]) == "1" ? "checked" : "") %> Yes
-          </label>
-          <label class="radio-inline">
-            <%= f.radio_button :delivers_eq, "0", checked: ((params[:q] && params[:q][:delivers_eq]) == "0" ? "checked" : "")%> No
-          </label>
-          <label class="radio-inline">
-            <%= f.radio_button :delivers_eq, ""%> Either
-          </label>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :city_cont, "City contains" %>
-        <%= f.text_field :city_cont, :class => "form-control", :placeholder => "City contains" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :cover_photo_url_cont, "Cover photo url contains" %>
-        <%= f.text_field :cover_photo_url_cont, :class => "form-control", :placeholder => "Cover photo url contains" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :website_url_cont, "Website url contains" %>
-        <%= f.text_field :website_url_cont, :class => "form-control", :placeholder => "Website url contains" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :name_cont, "Name contains" %>
-        <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Name contains" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :created_at, "Created at" %>
-        <div class="row">
-          <div class='col-md-6 mb-1'>
-            <div class='input-group date' id='created_atgteqPicker'>
-              <%= f.text_field :created_at_gteq, :class => "form-control", :placeholder => "Created at greater than or equal to" %>
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-              </span>
-            </div>
-          </div>
-
-          <div class='col-md-6'>
-            <div class='input-group date' id='created_atlteqPicker'>
-              <%= f.text_field :created_at_lteq, :class => "form-control", :placeholder => "Created at less than or equal to" %>
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <script type="text/javascript">
-      $(function () {
-        $('#created_atgteqPicker').datetimepicker({
-          format: 'YYYY-MM-DD hh:mm:SS'
-        });
-        $('#created_atlteqPicker').datetimepicker({
-          useCurrent: false,
-          format: 'YYYY-MM-DD hh:mm:SS'
-        });
-        $('#created_atgteqPicker').on("dp.change", function (e) {
-          $('#created_atlteqPicker').data("DateTimePicker").minDate(e.date);
-        });
-        $('#created_atlteqPicker').on("dp.change", function (e) {
-          $('#created_atgteqPicker').data("DateTimePicker").maxDate(e.date);
-        });
-      });
-      </script>
-
-      <div class="form-group">
-        <%= f.label :beans_name_cont, "Bean name contains" %>
-        <%= f.text_field :beans_name_cont, :class => "form-control", :placeholder => "Bean name contains" %>
+        <%= f.label :city_cont, "City" %>
+        <%= f.text_field :city_cont, :class => "form-control", :placeholder => "" %>
       </div>
 
       <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
