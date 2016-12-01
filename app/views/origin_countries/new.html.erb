@@ -1,11 +1,11 @@
 <!-- Validation failure messages -->
 <% if @origin_country.errors.any? %>
-  <% @origin_country.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @origin_country.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
@@ -18,13 +18,13 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for description -->
+      <!-- Label and input for name -->
       <div class="form-group">
-        <label for="description" class="control-label">
-          Description
+        <label for="name" class="control-label">
+          Name
         </label>
 
-        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @origin_country.description %></textarea>
+        <input type="text" id="name" name="name" placeholder="" class="form-control" value="<%= @origin_country.name %>">
       </div>
 
       <!-- Label and input for cover_photo_url -->
@@ -33,16 +33,16 @@
           Cover photo url
         </label>
 
-        <input type="text" id="cover_photo_url" name="cover_photo_url" placeholder="Cover photo url" class="form-control" value="<%= @origin_country.cover_photo_url %>">
+        <input type="text" id="cover_photo_url" name="cover_photo_url" placeholder="" class="form-control" value="<%= @origin_country.cover_photo_url %>">
       </div>
 
-      <!-- Label and input for name -->
+      <!-- Label and input for description -->
       <div class="form-group">
-        <label for="name" class="control-label">
-          Name
+        <label for="description" class="control-label">
+          Description
         </label>
 
-        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @origin_country.name %>">
+        <textarea id="description" name="description" placeholder="" class="form-control" rows="3"><%= @origin_country.description %></textarea>
       </div>
 
       <button class="btn btn-success">

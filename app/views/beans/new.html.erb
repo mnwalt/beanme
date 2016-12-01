@@ -1,205 +1,188 @@
 <!-- Validation failure messages -->
 <% if @bean.errors.any? %>
   <% @bean.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
-<% end %>
-
-<div class="page-header">
-  <h3>Add Bean</h3>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <form action="/create_bean" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-      <!-- Label and input for name -->
-      <div class="form-group">
-        <label for="name" class="control-label">
-          Name
-        </label>
-
-        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @bean.name %>">
-      </div>
-
-      <!-- Label and input for roaster_id -->
-      <div class="form-group">
-        <label for="roaster_id" class="control-label">
-          Roaster
-        </label>
-
-        <%= select_tag(:roaster_id, options_from_collection_for_select(Roaster.all, :id, :description, @bean.roaster_id), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for website_url -->
-      <div class="form-group">
-        <label for="website_url" class="control-label">
-          Website url
-        </label>
-
-        <input type="text" id="website_url" name="website_url" placeholder="Website url" class="form-control" value="<%= @bean.website_url %>">
-      </div>
-
-      <!-- Label and input for image_url -->
-      <div class="form-group">
-        <label for="image_url" class="control-label">
-          Image url
-        </label>
-
-        <input type="text" id="image_url" name="image_url" placeholder="Image url" class="form-control" value="<%= @bean.image_url %>">
-      </div>
-
-      <!-- Label and input for flavor_note_1 -->
-      <div class="form-group">
-        <label for="flavor_note_1" class="control-label">
-          Flavor note 1
-        </label>
-
-        <input type="text" id="flavor_note_1" name="flavor_note_1" placeholder="Flavor note 1" class="form-control" value="<%= @bean.flavor_note_1 %>">
-      </div>
-
-      <!-- Label and input for flavor_note_2 -->
-      <div class="form-group">
-        <label for="flavor_note_2" class="control-label">
-          N/A
-        </label>
-
-        <input type="text" id="flavor_note_2" name="flavor_note_2" placeholder="Flavor note 2" class="form-control" value="<%= @bean.flavor_note_2 %>">
-      </div>
-
-      <!-- Label and input for flavor_note_3 -->
-      <div class="form-group">
-        <label for="flavor_note_3" class="control-label">
-          N/A
-        </label>
-
-        <input type="text" id="flavor_note_3" name="flavor_note_3" placeholder="Flavor note 3" class="form-control" value="<%= @bean.flavor_note_3 %>">
-      </div>
-
-      <!-- Label and input for price_per_bag -->
-      <div class="form-group">
-        <label for="price_per_bag" class="control-label">
-          Price per bag
-        </label>
-
-        <input type="text" id="price_per_bag" name="price_per_bag" placeholder="Price per bag" class="form-control" value="<%= @bean.price_per_bag %>">
-      </div>
-
-      <!-- Label and input for bag_size_grams -->
-      <div class="form-group">
-        <label for="bag_size_grams" class="control-label">
-          Bag size grams
-        </label>
-
-        <input type="text" id="bag_size_grams" name="bag_size_grams" placeholder="Bag size grams" class="form-control" value="<%= @bean.bag_size_grams %>">
-      </div>
-
-      <!-- Label and input for elevation_masl_low -->
-      <div class="form-group">
-        <label for="elevation_masl_low" class="control-label">
-          Elevation masl low
-        </label>
-
-        <input type="text" id="elevation_masl_low" name="elevation_masl_low" placeholder="Elevation masl low" class="form-control" value="<%= @bean.elevation_masl_low %>">
-      </div>
-
-      <!-- Label and input for elevation_masl_high -->
-      <div class="form-group">
-        <label for="elevation_masl_high" class="control-label">
-          Elevation masl high
-        </label>
-
-        <input type="text" id="elevation_masl_high" name="elevation_masl_high" placeholder="Elevation masl high" class="form-control" value="<%= @bean.elevation_masl_high %>">
-      </div>
-
-      <!-- Label and input for process -->
-      <div class="form-group">
-        <label for="process" class="control-label">
-          Process
-        </label>
-
-        <input type="text" id="process" name="process" placeholder="Process" class="form-control" value="<%= @bean.process %>">
-      </div>
-
-      <!-- Label and input for varietal -->
-      <div class="form-group">
-        <label for="varietal" class="control-label">
-          Varietal
-        </label>
-
-        <input type="text" id="varietal" name="varietal" placeholder="Varietal" class="form-control" value="<%= @bean.varietal %>">
-      </div>
-
-      <!-- Label and input for origin_country_id -->
-      <div class="form-group">
-        <label for="origin_country_id" class="control-label">
-          Origin country
-        </label>
-
-        <%= select_tag(:origin_country_id, options_from_collection_for_select(OriginCountry.all, :id, :description, @bean.origin_country_id), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for caffine -->
-      <div class="checkbox">
-        <label for="caffine">
-          <input type="checkbox" id="caffine" name="caffine" value="1" <%= "checked" if @bean.caffine %>>
-          Caffine
-        </label>
-      </div>
-
-      <!-- Label and input for region -->
-      <div class="form-group">
-        <label for="region" class="control-label">
-          Region
-        </label>
-
-        <input type="text" id="region" name="region" placeholder="Region" class="form-control" value="<%= @bean.region %>">
-      </div>
-
-      <!-- Label and input for blend -->
-      <div class="checkbox">
-        <label for="blend">
-          <input type="checkbox" id="blend" name="blend" value="1" <%= "checked" if @bean.blend %>>
-          Blend
-        </label>
-      </div>
-
-      <!-- Label and input for espresso -->
-      <div class="checkbox">
-        <label for="espresso">
-          <input type="checkbox" id="espresso" name="espresso" value="1" <%= "checked" if @bean.espresso %>>
-          Espresso
-        </label>
-      </div>
-
-      <!-- Label and input for producer -->
-      <div class="form-group">
-        <label for="producer" class="control-label">
-          Producer
-        </label>
-
-        <input type="text" id="producer" name="producer" placeholder="Producer" class="form-control" value="<%= @bean.producer %>">
-      </div>
-
-      <!-- Label and input for description -->
-      <div class="form-group">
-        <label for="description" class="control-label">
-          Description
-        </label>
-
-        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @bean.description %></textarea>
-      </div>
-
-      <button class="btn btn-success">
-        Create Bean
-      </button>
-      or
-      <a href="/beans">Cancel</a>
-    </form>
+  <div class="alert alert-dismissable alert-danger">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <%= message %>
   </div>
-</div>
+  <% end %>
+  <% end %>
+
+  <div class="page-header">
+    <h3>Add Bean</h3>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <form action="/create_bean" method="post">
+        <!-- Hidden input for authenticity token to protect from forgery -->
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+        <!-- Label and input for name -->
+        <div class="form-group">
+          <label for="name" class="control-label">
+            Name
+          </label>
+
+          <input type="text" id="name" name="name" placeholder="" class="form-control" value="<%= @bean.name %>">
+        </div>
+
+        <!-- Label and input for roaster_id -->
+        <div class="form-group">
+          <label for="roaster_id" class="control-label">
+            Roaster
+          </label>
+
+          <%= select_tag(:roaster_id, options_from_collection_for_select(Roaster.all, :id, :name, @bean.roaster_id), :class => "form-control") %>
+        </div>
+
+        <!-- Label and input for website_url -->
+        <div class="form-group">
+          <label for="website_url" class="control-label">
+            Website url
+          </label>
+
+          <input type="text" id="website_url" name="website_url" placeholder="" class="form-control" value="<%= @bean.website_url %>">
+        </div>
+
+        <!-- Label and input for image_url -->
+        <div class="form-group">
+          <label for="image_url" class="control-label">
+            Image url
+          </label>
+
+          <input type="text" id="image_url" name="image_url" placeholder="" class="form-control" value="<%= @bean.image_url %>">
+        </div>
+
+
+        <!-- Label and input for origin_country_id -->
+        <div class="form-group">
+          <label for="origin_country_id" class="control-label">
+            Origin country
+          </label>
+
+          <%= select_tag(:origin_country_id, options_from_collection_for_select(OriginCountry.all, :id, :name, @bean.origin_country_id), :class => "form-control") %>
+        </div>
+
+        <!-- Label and input for region -->
+        <div class="form-group">
+          <label for="region" class="control-label">
+            Region
+          </label>
+
+          <input type="text" id="region" name="region" placeholder="" class="form-control" value="<%= @bean.region %>">
+        </div>
+
+        <!-- Label and input for producer -->
+        <div class="form-group">
+          <label for="producer" class="control-label">
+            Producer
+          </label>
+
+          <input type="text" id="producer" name="producer" placeholder="" class="form-control" value="<%= @bean.producer %>">
+        </div>
+
+        <!-- Label and input for flavor_note_1 -->
+        <div class="form-group">
+          <label for="flavor_note_1" class="control-label">
+            Flavor notes
+          </label>
+
+          <input type="text" id="flavor_note_1" name="flavor_note_1" placeholder="" class="form-control" value="<%= @bean.flavor_note_1 %>">
+        </div>
+
+        <!-- Label and input for price_per_bag -->
+        <div class="form-group">
+          <label for="price_per_bag" class="control-label">
+            Price per bag
+          </label>
+
+          <input type="text" id="price_per_bag" name="price_per_bag" placeholder="" class="form-control" value="<%= @bean.price_per_bag %>">
+        </div>
+
+        <!-- Label and input for bag_size_grams -->
+        <div class="form-group">
+          <label for="bag_size_grams" class="control-label">
+            Bag size grams
+          </label>
+
+          <input type="text" id="bag_size_grams" name="bag_size_grams" placeholder="" class="form-control" value="<%= @bean.bag_size_grams %>">
+        </div>
+
+        <!-- Label and input for elevation_masl_low -->
+        <div class="form-group">
+          <label for="elevation_masl_low" class="control-label">
+            Elevation masl low
+          </label>
+
+          <input type="text" id="elevation_masl_low" name="elevation_masl_low" placeholder="" class="form-control" value="<%= @bean.elevation_masl_low %>">
+        </div>
+
+        <!-- Label and input for elevation_masl_high -->
+        <div class="form-group">
+          <label for="elevation_masl_high" class="control-label">
+            Elevation masl high
+          </label>
+
+          <input type="text" id="elevation_masl_high" name="elevation_masl_high" placeholder="" class="form-control" value="<%= @bean.elevation_masl_high %>">
+        </div>
+
+        <!-- Label and input for process -->
+        <div class="form-group">
+          <label for="process" class="control-label">
+            Process
+          </label>
+
+          <input type="text" id="process" name="process" placeholder="" class="form-control" value="<%= @bean.process %>">
+        </div>
+
+        <!-- Label and input for varietal -->
+        <div class="form-group">
+          <label for="varietal" class="control-label">
+            Varietal
+          </label>
+
+          <input type="text" id="varietal" name="varietal" placeholder="" class="form-control" value="<%= @bean.varietal %>">
+        </div>
+
+        <!-- Label and input for caffine -->
+        <div class="checkbox">
+          <label for="caffine">
+            <input type="checkbox" id="caffine" name="caffine" value="1" <%= "checked" if @bean.caffine %>>
+            Caffine
+          </label>
+        </div>
+
+        <!-- Label and input for blend -->
+        <div class="checkbox">
+          <label for="blend">
+            <input type="checkbox" id="blend" name="blend" value="1" <%= "checked" if @bean.blend %>>
+            Blend
+          </label>
+        </div>
+
+        <!-- Label and input for espresso -->
+        <div class="checkbox">
+          <label for="espresso">
+            <input type="checkbox" id="espresso" name="espresso" value="1" <%= "checked" if @bean.espresso %>>
+            Espresso
+          </label>
+        </div>
+
+        <!-- Label and input for description -->
+        <div class="form-group">
+          <label for="description" class="control-label">
+            Description
+          </label>
+
+          <textarea id="description" name="description" placeholder="" class="form-control" rows="3"><%= @bean.description %></textarea>
+        </div>
+
+        <button class="btn btn-success">
+          Create Bean
+        </button>
+        or
+        <a href="/beans">Cancel</a>
+      </form>
+    </div>
+  </div>

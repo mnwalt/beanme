@@ -1,11 +1,11 @@
 <!-- Validation failure messages -->
 <% if @bean.errors.any? %>
-  <% @bean.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @bean.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
@@ -33,7 +33,7 @@
           Roaster
         </label>
 
-        <%= select_tag(:roaster_id, options_from_collection_for_select(Roaster.all, :id, :description, @bean.roaster_id), :class => "form-control") %>
+        <%= select_tag(:roaster_id, options_from_collection_for_select(Roaster.all, :id, :name, @bean.roaster_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for website_url -->
@@ -54,6 +54,34 @@
         <input type="text" id="image_url" name="image_url" placeholder="Image url" class="form-control" value="<%= @bean.image_url %>">
       </div>
 
+      <!-- Label and input for origin_country_id -->
+      <div class="form-group">
+        <label for="origin_country_id" class="control-label">
+          Origin country
+        </label>
+
+        <%= select_tag(:origin_country_id, options_from_collection_for_select(OriginCountry.all, :id, :name, @bean.origin_country_id), :class => "form-control") %>
+      </div>
+
+
+      <!-- Label and input for region -->
+      <div class="form-group">
+        <label for="region" class="control-label">
+          Region
+        </label>
+
+        <input type="text" id="region" name="region" placeholder="Region" class="form-control" value="<%= @bean.region %>">
+      </div>
+
+      <!-- Label and input for producer -->
+      <div class="form-group">
+        <label for="producer" class="control-label">
+          Producer
+        </label>
+
+        <input type="text" id="producer" name="producer" placeholder="Producer" class="form-control" value="<%= @bean.producer %>">
+      </div>
+
       <!-- Label and input for flavor_note_1 -->
       <div class="form-group">
         <label for="flavor_note_1" class="control-label">
@@ -61,24 +89,6 @@
         </label>
 
         <input type="text" id="flavor_note_1" name="flavor_note_1" placeholder="Flavor note 1" class="form-control" value="<%= @bean.flavor_note_1 %>">
-      </div>
-
-      <!-- Label and input for flavor_note_2 -->
-      <div class="form-group">
-        <label for="flavor_note_2" class="control-label">
-          N/A
-        </label>
-
-        <input type="text" id="flavor_note_2" name="flavor_note_2" placeholder="Flavor note 2" class="form-control" value="<%= @bean.flavor_note_2 %>">
-      </div>
-
-      <!-- Label and input for flavor_note_3 -->
-      <div class="form-group">
-        <label for="flavor_note_3" class="control-label">
-          N/A
-        </label>
-
-        <input type="text" id="flavor_note_3" name="flavor_note_3" placeholder="Flavor note 3" class="form-control" value="<%= @bean.flavor_note_3 %>">
       </div>
 
       <!-- Label and input for price_per_bag -->
@@ -135,30 +145,12 @@
         <input type="text" id="varietal" name="varietal" placeholder="Varietal" class="form-control" value="<%= @bean.varietal %>">
       </div>
 
-      <!-- Label and input for origin_country_id -->
-      <div class="form-group">
-        <label for="origin_country_id" class="control-label">
-          Origin country
-        </label>
-
-        <%= select_tag(:origin_country_id, options_from_collection_for_select(OriginCountry.all, :id, :description, @bean.origin_country_id), :class => "form-control") %>
-      </div>
-
       <!-- Label and input for caffine -->
       <div class="checkbox">
         <label for="caffine">
           <input type="checkbox" id="caffine" name="caffine" value="1" <%= "checked" if @bean.caffine %>>
           Caffine
         </label>
-      </div>
-
-      <!-- Label and input for region -->
-      <div class="form-group">
-        <label for="region" class="control-label">
-          Region
-        </label>
-
-        <input type="text" id="region" name="region" placeholder="Region" class="form-control" value="<%= @bean.region %>">
       </div>
 
       <!-- Label and input for blend -->
@@ -177,14 +169,6 @@
         </label>
       </div>
 
-      <!-- Label and input for producer -->
-      <div class="form-group">
-        <label for="producer" class="control-label">
-          Producer
-        </label>
-
-        <input type="text" id="producer" name="producer" placeholder="Producer" class="form-control" value="<%= @bean.producer %>">
-      </div>
 
       <!-- Label and input for description -->
       <div class="form-group">

@@ -18,7 +18,7 @@
             </div>
             <div class="panel-body">
               <a href="/origin_countries/<%= country.id %>">
-              <img src="<%= country.cover_photo_url %>" class="img-responsive center-block" style="max-height:250px;">
+                <img src="<%= country.cover_photo_url %>" class="img-responsive center-block" style="max-height:250px;">
               </a>
             </div>
           </div>
@@ -26,6 +26,11 @@
         <% end %>
         <%= paginate @origin_countries, theme: 'twitter-bootstrap-4' %>
       </div>
+    </div>
+  </div>
+  <div class="row mb-1">
+    <div class="col-md-12">
+      <div id="location_map" style="height: 480px;"></div>
     </div>
   </div>
 </div>

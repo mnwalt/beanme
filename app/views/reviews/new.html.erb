@@ -36,7 +36,7 @@
           Overall rating
         </label>
 
-        <input type="text" id="overall_rating" name="overall_rating" placeholder="Overall rating" class="form-control" value="<%= @review.overall_rating %>">
+        <input type="text" id="overall_rating" name="overall_rating" placeholder="number between 0 and 5" class="form-control" value="<%= @review.overall_rating %>">
       </div>
 
       <!-- Label and input for comments -->
@@ -45,7 +45,7 @@
           Comments
         </label>
 
-        <textarea id="comments" name="comments" placeholder="Comments" class="form-control" rows="3"><%= @review.comments %></textarea>
+        <textarea id="comments" name="comments" placeholder="" class="form-control" rows="3"><%= @review.comments %></textarea>
       </div>
 
       <!-- Label and input for image -->

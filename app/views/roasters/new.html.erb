@@ -18,40 +18,13 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for description -->
-      <div class="form-group">
-        <label for="description" class="control-label">
-          Description
-        </label>
-
-        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @roaster.description %></textarea>
-      </div>
-
       <!-- Label and input for name -->
       <div class="form-group">
         <label for="name" class="control-label">
           Name
         </label>
 
-        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @roaster.name %>">
-      </div>
-
-      <!-- Label and input for website_url -->
-      <div class="form-group">
-        <label for="website_url" class="control-label">
-          Website url
-        </label>
-
-        <input type="text" id="website_url" name="website_url" placeholder="Website url" class="form-control" value="<%= @roaster.website_url %>">
-      </div>
-
-      <!-- Label and input for location -->
-      <div class="form-group">
-        <label for="location" class="control-label">
-          Location
-        </label>
-
-        <input type="text" id="location" name="location" placeholder="Location" class="form-control" value="<%= @roaster.location %>">
+        <input type="text" id="name" name="name" placeholder="" class="form-control" value="<%= @roaster.name %>">
       </div>
 
       <!-- Label and input for cover_photo_url -->
@@ -60,16 +33,44 @@
           Cover photo url
         </label>
 
-        <input type="text" id="cover_photo_url" name="cover_photo_url" placeholder="Cover photo url" class="form-control" value="<%= @roaster.cover_photo_url %>">
+        <input type="text" id="cover_photo_url" name="cover_photo_url" placeholder="" class="form-control" value="<%= @roaster.cover_photo_url %>">
+      </div>
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <textarea id="description" name="description" placeholder="" class="form-control" rows="3"><%= @roaster.description %></textarea>
+      </div>
+
+
+      <!-- Label and input for website_url -->
+      <div class="form-group">
+        <label for="website_url" class="control-label">
+          Website url
+        </label>
+
+        <input type="text" id="website_url" name="website_url" placeholder="" class="form-control" value="<%= @roaster.website_url %>">
       </div>
 
       <!-- Label and input for city -->
+<div class="form-group">
+  <label for="city" class="control-label">
+    City
+  </label>
+
+  <input type="text" id="city" name="city" placeholder="" class="form-control" value="<%= @roaster.city %>">
+</div>
+
+      <!-- Label and input for location -->
       <div class="form-group">
-        <label for="city" class="control-label">
-          City
+        <label for="location" class="control-label">
+          Location
         </label>
 
-        <input type="text" id="city" name="city" placeholder="City" class="form-control" value="<%= @roaster.city %>">
+        <input type="text" id="location" name="location" placeholder="" class="form-control" value="<%= @roaster.location %>">
       </div>
 
       <!-- Label and input for delivers -->
@@ -86,7 +87,7 @@
           Delivery method
         </label>
 
-        <input type="text" id="delivery_method" name="delivery_method" placeholder="Delivery method" class="form-control" value="<%= @roaster.delivery_method %>">
+        <input type="text" id="delivery_method" name="delivery_method" placeholder="" class="form-control" value="<%= @roaster.delivery_method %>">
       </div>
 
       <!-- Label and input for delivery_notes -->
@@ -95,7 +96,7 @@
           Delivery notes
         </label>
 
-        <textarea id="delivery_notes" name="delivery_notes" placeholder="Delivery notes" class="form-control" rows="3"><%= @roaster.delivery_notes %></textarea>
+        <textarea id="delivery_notes" name="delivery_notes" placeholder="" class="form-control" rows="3"><%= @roaster.delivery_notes %></textarea>
       </div>
 
       <!-- Label and input for delivery_geography -->
@@ -104,7 +105,7 @@
           Delivery geography
         </label>
 
-        <input type="text" id="delivery_geography" name="delivery_geography" placeholder="Delivery geography" class="form-control" value="<%= @roaster.delivery_geography %>">
+        <input type="text" id="delivery_geography" name="delivery_geography" placeholder="" class="form-control" value="<%= @roaster.delivery_geography %>">
       </div>
 
       <button class="btn btn-success">

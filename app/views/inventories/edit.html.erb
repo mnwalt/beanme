@@ -18,8 +18,8 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      
-      
+
+
 
       <!-- Label and input for bean_id -->
       <div class="form-group">
@@ -36,7 +36,7 @@
           Quantity ounces
         </label>
 
-        <input type="text" id="quantity_ounces" name="quantity_ounces" placeholder="Quantity ounces" class="form-control" value="<%= @inventory.quantity_ounces %>">
+        <input type="text" id="quantity_ounces" name="quantity_ounces" placeholder="" class="form-control" value="<%= @inventory.quantity_ounces %>">
       </div>
 
       <!-- Label and input for roast_date -->
@@ -45,7 +45,7 @@
           Roast date
         </label>
 
-        <input type="text" id="roast_date" name="roast_date" placeholder="Roast date" class="form-control" value="<%= @inventory.roast_date %>">
+        <input type="text" id="roast_date" name="roast_date" placeholder="" class="form-control" value="<%= @inventory.roast_date %>">
       </div>
 
       <button class="btn btn-warning">
