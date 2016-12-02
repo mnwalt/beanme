@@ -96,5 +96,16 @@ Rails.application.routes.draw do
 
   get "/favorites/", :controller => "beans", :action => "favs"
 
+  get "/brew_guide/", :controller => "brew_guides", :action => "chemex_form"
+
+  get "/brew_guide/chemex_new", :controller => "brew_guides", :action => "chemex_form"
+  get "/brew_guide/chemex_results", :controller => "brew_guides", :action => "chemex"
+
+  get "/brew_guide/v60_new", :controller => "brew_guides", :action => "v60_form"
+  get "/brew_guide/v60_results", :controller => "brew_guides", :action => "v60"
+
+  get "/brew_guide/french_press_new", :controller => "brew_guides", :action => "french_press_form"
+  get "/brew_guide/french_press_results", :controller => "brew_guides", :action => "french_press"
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
