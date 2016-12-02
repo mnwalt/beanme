@@ -274,12 +274,12 @@
               <% end %>
             </dd>
 
-            <% if @bean.region != nil %>
+            <% if @bean.region != "" %>
             <dt>Region</dt>
             <dd><%= @bean.region %></dd>
             <% end %>
 
-            <% if @bean.producer != nil %>
+            <% if @bean.producer != "" %>
             <dt>Producer</dt>
             <dd><%= @bean.producer %></dd>
             <% end %>
@@ -307,12 +307,12 @@
             <dd><%= @bean.elevation_masl_high %> masl</dd>
             <% end %>
 
-            <% if @bean.process != nil %>
+            <% if @bean.process != "" %>
             <dt>Process</dt>
             <dd><%= @bean.process %></dd>
             <% end %>
 
-            <% if @bean.varietal != nil %>
+            <% if @bean.varietal != "" %>
             <dt>Varietal</dt>
             <dd><%= @bean.varietal %></dd>
             <% end %>
@@ -347,7 +347,7 @@
       </dd>
       <% end %>
 
-      <% if @bean.region != nil %>
+      <% if @bean.region != "" %>
       <dd>
         <div>
           <div id="location_map" style="height: 480px;"></div>
@@ -452,7 +452,7 @@
           <% end %>
           <% end %>
           <br> </br>
-          <% if review.image != nil %>
+          <% if review.image != "" %>
           <img src="<%= review.image %>" class="img-responsive" style="max-height: 150px;">
           <% end %>
           <% end %>

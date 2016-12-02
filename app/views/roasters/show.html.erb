@@ -20,7 +20,7 @@
     <div class="col-md-12 mb-2">
       <dl class="dl-horizontal">
 
-        <% if @roaster.description != nil %>
+        <% if @roaster.description != "" %>
         <dt>Story</dt>
         <dd><%= @roaster.description %></dd>
         <% end %>
@@ -282,7 +282,7 @@
               </dd>
               <% end %>
 
-              <% if @roaster.delivery_method != nil %>
+              <% if @roaster.delivery_method != "" %>
               <dt>Delivery Method</dt>
               <dd><%= @roaster.delivery_method %></dd>
               <% end %>
@@ -292,7 +292,7 @@
               <dd><%= @roaster.delivery_notes %></dd>
               <% end %>
 
-              <% if @roaster.delivery_geography != nil %>
+              <% if @roaster.delivery_geography != "" %>
               <dt>Delivery Geography</dt>
               <dd><%= @roaster.delivery_geography %></dd>
               <% end %>
