@@ -149,8 +149,8 @@
                   </span>
                 </a>
                 <% else %>
-                <% @avg = bean.reviews.pluck(:overall_rating).inject(0){|sum,x| sum + x } / bean.reviews.pluck(:overall_rating).count %>
                 <% @n = bean.reviews.pluck(:overall_rating).count %>
+                <% @avg = bean.reviews.pluck(:overall_rating).inject(0){|sum,x| sum + x } / @n %>
                 <% if @avg < 0.75 %>
                 <a href="/beans/<%= bean.id %>" class="btn btn-link">
                   <span title="rate bean">
