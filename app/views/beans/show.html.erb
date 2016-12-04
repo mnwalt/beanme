@@ -22,7 +22,7 @@
       <dl class="dl-horizontal">
 
         <dt> Avg BeanMe Rating <dt>
-        <% if Review.where(:bean_id => @bean).count != 0 %>
+        <% if @bean.reviews.count != 0 %>
         <dd>
           <% @avg = @bean.reviews.pluck(:overall_rating).inject(0){|sum,x| sum + x } / @bean.reviews.pluck(:overall_rating).count %>
           <% @n = @bean.reviews.pluck(:overall_rating).count %>

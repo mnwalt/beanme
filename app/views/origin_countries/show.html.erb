@@ -148,7 +148,7 @@
             <% end %>
 
             <dt> <%= current_user.username %>'s Avg Rating <dt>
-              <% if @origin_country.reviews.count != 0 %>
+              <% if @origin_country.reviews.where(:user_id => current_user).count != 0 %>
               <dd>
                 <% @avg = @origin_country.reviews.where(:user_id => current_user).pluck(:overall_rating).inject(0){|sum,x| sum + x } / @origin_country.reviews.where(:user_id => current_user).pluck(:overall_rating).count %>
                 <% @n = @origin_country.reviews.where(:user_id => current_user).pluck(:overall_rating).count %>
