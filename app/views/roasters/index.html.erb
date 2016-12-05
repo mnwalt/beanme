@@ -64,8 +64,9 @@
                 </span>
               </a>
               <% else %>
-              <% @avg = roaster.reviews.pluck(:overall_rating).inject(0){|sum,x| sum + x } / roaster.reviews.pluck(:overall_rating).count %>
-              <% @n = roaster.reviews.pluck(:overall_rating).count %>
+                <% @n = roaster.reviews.pluck(:overall_rating).count %>
+              <% @avg = roaster.reviews.pluck(:overall_rating).inject(0){|sum,x| sum + x } / @n %>
+
               <% if @avg < 0.75 %>
               <a>
                 <span title="based on individual bean ratings">
