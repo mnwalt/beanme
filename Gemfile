@@ -4,6 +4,8 @@ gem "wdm" if Gem.win_platform?
 
 gem "coffee-script-source", "1.8.0"
 
+gem 'jquery-ui-rails', '~> 4.2.1'
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
