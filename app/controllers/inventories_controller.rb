@@ -10,16 +10,24 @@ class InventoriesController < ApplicationController
   end
 
   def index
+    if current_user.id == 1
     @q = current_user.inventories.ransack(params[:q])
       @inventories = @q.result(:distinct => true).includes(:bean, :user).page(params[:page]).per(10)
 
     render("inventories/index.html.erb")
+  else
+    redirect_to("/")
+  end
   end
 
   def show
+    if current_user.id == 1
     @inventory = Inventory.find(params[:id])
 
     render("inventories/show.html.erb")
+  else
+    redirect_to("/")
+  end
   end
 
   def new

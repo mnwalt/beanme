@@ -8,7 +8,7 @@ class BeansController < ApplicationController
       marker.infowindow "<h5><a href='/beans/#{bean.id}'>#{bean.created_at}</a></h5><small>#{bean.region_formatted_address}</small>"
 
       @reviews = Review.all
-      end
+    end
 
     render("beans/index.html.erb")
   end
@@ -22,7 +22,7 @@ class BeansController < ApplicationController
       marker.infowindow "<h5><a href='/beans/#{bean.id}'>#{bean.created_at}</a></h5><small>#{bean.region_formatted_address}</small>"
 
       @reviews = Review.all
-      end
+    end
 
     render("beans/favs.html.erb")
   end
@@ -36,9 +36,13 @@ class BeansController < ApplicationController
   end
 
   def new
-    @bean = Bean.new
+    if current_user.id == 1
+      @bean = Bean.new
 
-    render("beans/new.html.erb")
+      render("beans/new.html.erb")
+    else
+      redirect_to("/")
+    end
   end
 
   def create
@@ -82,9 +86,13 @@ class BeansController < ApplicationController
   end
 
   def edit
-    @bean = Bean.find(params[:id])
+    if current_user.id == 1
+      @bean = Bean.find(params[:id])
 
-    render("beans/edit.html.erb")
+      render("beans/edit.html.erb")
+    else
+      redirect_to("/")
+    end
   end
 
   def update
@@ -128,14 +136,18 @@ class BeansController < ApplicationController
   end
 
   def destroy
-    @bean = Bean.find(params[:id])
+    if current_user.id == 1
+      @bean = Bean.find(params[:id])
 
-    @bean.destroy
+      @bean.destroy
 
-    if URI(request.referer).path == "/beans/#{@bean.id}"
-      redirect_to("/", :notice => "Bean deleted.")
+      if URI(request.referer).path == "/beans/#{@bean.id}"
+        redirect_to("/", :notice => "Bean deleted.")
+      else
+        redirect_back(:fallback_location => "/", :notice => "Bean deleted.")
+      end
     else
-      redirect_back(:fallback_location => "/", :notice => "Bean deleted.")
+      redirect_to("/")
     end
   end
 end

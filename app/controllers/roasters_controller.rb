@@ -19,9 +19,13 @@ class RoastersController < ApplicationController
   end
 
   def new
-    @roaster = Roaster.new
+    if current_user.id == 1
+      @roaster = Roaster.new
 
-    render("roasters/new.html.erb")
+      render("roasters/new.html.erb")
+    else
+      redirect_to("/")
+    end
   end
 
   def create
@@ -55,9 +59,13 @@ class RoastersController < ApplicationController
   end
 
   def edit
-    @roaster = Roaster.find(params[:id])
+    if current_user.id == 1
+      @roaster = Roaster.find(params[:id])
 
-    render("roasters/edit.html.erb")
+      render("roasters/edit.html.erb")
+    else
+      redirect_to("/")
+    end
   end
 
   def update
@@ -91,14 +99,18 @@ class RoastersController < ApplicationController
   end
 
   def destroy
-    @roaster = Roaster.find(params[:id])
+    if current_user.id == 1
+      @roaster = Roaster.find(params[:id])
 
-    @roaster.destroy
+      @roaster.destroy
 
-    if URI(request.referer).path == "/roasters/#{@roaster.id}"
-      redirect_to("/", :notice => "Roaster deleted.")
+      if URI(request.referer).path == "/roasters/#{@roaster.id}"
+        redirect_to("/", :notice => "Roaster deleted.")
+      else
+        redirect_back(:fallback_location => "/", :notice => "Roaster deleted.")
+      end
     else
-      redirect_back(:fallback_location => "/", :notice => "Roaster deleted.")
+      redirect_to("/")
     end
   end
 end

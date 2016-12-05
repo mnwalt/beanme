@@ -1,9 +1,17 @@
 class UsersController < ApplicationController
   def index
-    @users = User.page(params[:page]).per(10)
+    if current_user.id == 1
+      @users = User.page(params[:page]).per(10)
+    else
+      redirect_to("/")
+    end
   end
 
   def show
-    @user = User.find(params[:id])
+    if current_user.id == 1
+      @user = User.find(params[:id])
+    end
+  else
+    redirect_to("/")
   end
 end

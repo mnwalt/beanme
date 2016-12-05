@@ -17,16 +17,24 @@ class ReviewsController < ApplicationController
   end
 
   def index
+    if current_user.id == 1
     @q = Review.ransack(params[:q])
     @reviews = @q.result(:distinct => true).includes(:bean, :user, :country, :roaster).page(params[:page]).per(10)
 
     render("reviews/index.html.erb")
+  else
+    redirect_to("/")
+  end
   end
 
   def show
+    if current_user.id == 1
     @review = Review.find(params[:id])
 
     render("reviews/show.html.erb")
+  else
+    redirect_to("/")
+  end
   end
 
   def new

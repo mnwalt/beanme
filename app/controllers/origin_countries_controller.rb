@@ -14,9 +14,13 @@ class OriginCountriesController < ApplicationController
   end
 
   def new
-    @origin_country = OriginCountry.new
+    if current_user.id == 1
+      @origin_country = OriginCountry.new
 
-    render("origin_countries/new.html.erb")
+      render("origin_countries/new.html.erb")
+    else
+      redirect_to("/")
+    end
   end
 
   def create
@@ -43,9 +47,13 @@ class OriginCountriesController < ApplicationController
   end
 
   def edit
-    @origin_country = OriginCountry.find(params[:id])
+    if current_user.id == 1
+      @origin_country = OriginCountry.find(params[:id])
 
-    render("origin_countries/edit.html.erb")
+      render("origin_countries/edit.html.erb")
+    else
+      redirect_to("/")
+    end
   end
 
   def update
@@ -72,14 +80,18 @@ class OriginCountriesController < ApplicationController
   end
 
   def destroy
-    @origin_country = OriginCountry.find(params[:id])
+    if current_user.id == 1
+      @origin_country = OriginCountry.find(params[:id])
 
-    @origin_country.destroy
+      @origin_country.destroy
 
-    if URI(request.referer).path == "/origin_countries/#{@origin_country.id}"
-      redirect_to("/", :notice => "Origin country deleted.")
+      if URI(request.referer).path == "/origin_countries/#{@origin_country.id}"
+        redirect_to("/", :notice => "Origin country deleted.")
+      else
+        redirect_back(:fallback_location => "/", :notice => "Origin country deleted.")
+      end
     else
-      redirect_back(:fallback_location => "/", :notice => "Origin country deleted.")
+      redirect_to("/")
     end
   end
 end
