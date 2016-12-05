@@ -1,0 +1,129 @@
+<div class="container">
+  <div class="page-header">
+    <h1>
+      <%= @review_username %>'s Reviews
+    </h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+        <ul class="media-list">
+          <% @user_reviews.each do |review| %>
+          <li class="media">
+            <div class="media-body">
+              <h6 class="media-heading">
+                <a> <%= @review_username %></a>
+                <small>
+                  <%= time_ago_in_words(review.created_at) %> ago
+                </small>
+              </h6>
+              <br>
+              <% @review_bean_name = Bean.where(id: review.bean_id).pluck(:name).to_sentence %>
+              <a href="/beans/<%= review.bean_id %>">
+                <%= @review_bean_name %></a>
+                <br> </br>
+                <% @review_bean_roaster_id = Bean.where(id: review.bean_id).pluck(:roaster_id) %>
+                <% @review_roaster = Roaster.where({:id => @review_bean_roaster_id}).pluck(:name).to_sentence %>
+                <a href="/roasters/<%= @review_bean_roaster_id.to_sentence %>">
+
+                  <small>  <%= @review_roaster %></small></a>
+
+                  <br> </br>
+
+                  <% @review_bean_photo_url = Bean.where(id: review.bean_id).pluck(:image_url).to_sentence %>
+                  <a href="/beans/<%= review.bean_id %>">
+                    <img src="<%= @review_bean_photo_url %>" class="img-responsive left-block" style="max-height: 100px;">
+                  </a>
+
+                  <br> </br>
+                  <%= review.comments %>
+                  <br> </br>
+                  <% if review.overall_rating < 0.75 %>
+                  <a>
+                    <i class="fa fa-star-half" aria-hidden="true"></i>
+                  </a>
+                  <% else %>
+                  <% if review.overall_rating < 1.25 %>
+                  <a>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </a>
+                  <% else %>
+                  <% if review.overall_rating < 1.75 %>
+                  <<a>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half" aria-hidden="true"></i>
+                  </a>
+                  <% else %>
+                  <% if review.overall_rating < 2.25 %>
+                  <a>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </a>
+                  <% else %>
+                  <% if review.overall_rating < 2.75 %>
+                  <a>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half" aria-hidden="true"></i>
+                  </a>
+                  <% else %>
+                  <% if review.overall_rating < 3.25 %>
+                  <a>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </a>
+                  <% else %>
+                  <% if review.overall_rating < 3.75 %>
+                  <a>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half" aria-hidden="true"></i>
+                  </a>
+                  <% else %>
+                  <% if review.overall_rating < 4.25 %>
+                  <a>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </a>
+                  <% else %>
+                  <% if review.overall_rating < 4.75 %>
+                  <a>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half" aria-hidden="true"></i>
+                  </a>
+                  <% else %>
+                  <a>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </a>
+                  <% end %>
+                  <% end %>
+                  <% end %>
+                  <% end %>
+                  <% end %>
+                  <% end %>
+                  <% end %>
+                  <br> </br>
+                  <% if review.image != "" %>
+                  <img src="<%= review.image %>" class="img-responsive" style="max-height: 150px;">
+                  <% end %>
+                  <% end %>
+                  <hr>
+                  <% end %>
+                </div>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>

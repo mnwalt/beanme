@@ -9,6 +9,13 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def user
+    @user_reviews = Review.where({:user_id => params[:review_user_id]})
+    @review_username = User.where({:id => params[:review_user_id]}).pluck(:username).to_sentence
+
+    render("reviews/user.html.erb")
+  end
+
   def index
     @q = Review.ransack(params[:q])
     @reviews = @q.result(:distinct => true).includes(:bean, :user, :country, :roaster).page(params[:page]).per(10)

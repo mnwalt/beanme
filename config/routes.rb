@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # READ
   get "/reviews", :controller => "reviews", :action => "index"
   get "/reviews/:id", :controller => "reviews", :action => "show"
+  get "/reviews/user/:review_user_id", :controller => "reviews", :action => "user"
 
   # UPDATE
   get "/reviews/:id/edit", :controller => "reviews", :action => "edit"
@@ -85,6 +86,8 @@ Rails.application.routes.draw do
   # READ
   get "/beans", :controller => "beans", :action => "index"
   get "/beans/:id", :controller => "beans", :action => "show"
+  # Route for Favorites page resource:
+  get "/favorites/", :controller => "beans", :action => "favs"
 
   # UPDATE
   get "/beans/:id/edit", :controller => "beans", :action => "edit"
@@ -94,8 +97,7 @@ Rails.application.routes.draw do
   get "/delete_bean/:id", :controller => "beans", :action => "destroy"
   #------------------------------
 
-  get "/favorites/", :controller => "beans", :action => "favs"
-
+  # Routes forBrew Guide:
   get "/brew_guide/", :controller => "brew_guides", :action => "chemex_form"
 
   get "/brew_guide/chemex_new", :controller => "brew_guides", :action => "chemex_form"
