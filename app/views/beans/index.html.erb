@@ -26,13 +26,18 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :country_description_cont, "Country of Origin" %>
-        <%= f.text_field :country_description_cont, :class => "form-control", :placeholder => "" %>
+        <%= f.label :country_name_cont, "Country of Origin" %>
+        <%= f.text_field :country_name_cont, :class => "form-control", :placeholder => "" %>
       </div>
 
       <div class="form-group">
-        <%= f.label :roaster_description_cont, "Roaster" %>
-        <%= f.text_field :roaster_description_cont, :class => "form-control", :placeholder => "" %>
+        <%= f.label :roaster_name_cont, "Roaster" %>
+        <%= f.text_field :roaster_name_cont, :class => "form-control", :placeholder => "" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :roaster_city_cont, "Roaster City" %>
+        <%= f.text_field :roaster_city_cont, :class => "form-control", :placeholder => "" %>
       </div>
 
       <div class="form-group">
@@ -106,6 +111,27 @@
       </a>
     </div>
   </div>
+
+  <div class="row mb-2">
+    <div class="col-md-3" style="text-align: center;">
+      <strong> Sort by: </strong>
+    </div>
+    <div class="col-md-3" style="text-align: center;">
+      <%= sort_link(@q, :name) do %>
+      <strong>Name</strong>
+      <% end %>
+    </div>
+    <div class="col-md-3" style="text-align: center;">
+      <%= sort_link(@q, :price_per_bag) do %>
+      <strong>Price</strong>
+      <% end %>
+    </div>
+        <div class="col-md-3" style="text-align: center;">
+      <%= sort_link(@q, :updated_at) do %>
+      <strong>Date Added</strong>
+      <% end %>
+    </div>
+      </div>
 
   <div class="row mb-1">
     <div class="col-md-12">

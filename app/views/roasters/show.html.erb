@@ -320,7 +320,7 @@
         {
           "lat": <%= @roaster.location_latitude %>,
           "lng": <%= @roaster.location_longitude %>,
-          "infowindow": "<h5><%= @roaster.created_at %></h5><small><%= @roaster.location_formatted_address %></small>"
+          "infowindow": "<h5><%= @roaster.name %></h5><small><%= @roaster.location_formatted_address %></small>"
         }
       ]);
       handler.bounds.extendWith(markers);

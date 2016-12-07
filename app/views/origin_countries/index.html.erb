@@ -13,6 +13,28 @@
     </div>
   </div>
 
+  <div class="row mb-2">
+    <div class="col-md-3" style="text-align: center;">
+      <strong> Sort by: </strong>
+    </div>
+    <div class="col-md-3" style="text-align: center;">
+      <%= sort_link(@q, :name) do %>
+      <strong>Name</strong>
+      <% end %>
+    </div>
+    <div class="col-md-3" style="text-align: center;">
+      <%= sort_link(@q, :beans_count) do %>
+      <strong>Beans on BeanMe</strong>
+      <% end %>
+    </div>
+        <div class="col-md-3" style="text-align: center;">
+      <%= sort_link(@q, :updated_at) do %>
+      <strong>Date Added</strong>
+      <% end %>
+    </div>
+      </div>
+
+
   <div class="row mb-1">
     <div class="col-md-12">
       <div class="table">
@@ -34,11 +56,6 @@
         <% end %>
         <!-- <%= paginate @origin_countries, theme: 'twitter-bootstrap-4' %> -->
       </div>
-    </div>
-  </div>
-  <div class="row mb-1">
-    <div class="col-md-12">
-      <div id="location_map" style="height: 480px;"></div>
     </div>
   </div>
 </div>

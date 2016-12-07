@@ -2,13 +2,6 @@ class BeansController < ApplicationController
   def index
     @q = Bean.ransack(params[:q])
     @beans = @q.result(:distinct => true).includes(:inventories, :reviews, :country, :roaster).page(params[:page]).per(10)
-    @location_hash = Gmaps4rails.build_markers(@beans.where.not(:region_latitude => nil)) do |bean, marker|
-      marker.lat bean.region_latitude
-      marker.lng bean.region_longitude
-      marker.infowindow "<h5><a href='/beans/#{bean.id}'>#{bean.created_at}</a></h5><small>#{bean.region_formatted_address}</small>"
-
-      @reviews = Review.all
-    end
 
     render("beans/index.html.erb")
   end
@@ -16,13 +9,6 @@ class BeansController < ApplicationController
   def favs
     @q = Bean.ransack(params[:q])
     @beans = @q.result(:distinct => true).includes(:inventories, :reviews, :country, :roaster).page(params[:page]).per(10)
-    @location_hash = Gmaps4rails.build_markers(@beans.where.not(:region_latitude => nil)) do |bean, marker|
-      marker.lat bean.region_latitude
-      marker.lng bean.region_longitude
-      marker.infowindow "<h5><a href='/beans/#{bean.id}'>#{bean.created_at}</a></h5><small>#{bean.region_formatted_address}</small>"
-
-      @reviews = Review.all
-    end
 
     render("beans/favs.html.erb")
   end

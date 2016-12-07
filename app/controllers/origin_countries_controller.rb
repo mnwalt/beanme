@@ -2,7 +2,7 @@ class OriginCountriesController < ApplicationController
   def index
     @q = OriginCountry.ransack(params[:q])
     @origin_countries = @q.result(:distinct => true).includes(:beans, :reviews).page(params[:page]).per(10)
-
+    
     render("origin_countries/index.html.erb")
   end
 
