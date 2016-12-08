@@ -532,6 +532,7 @@ handler.buildMap({ provider: {}, internal: {id: 'location_map'}}, function(){
   ]);
   handler.bounds.extendWith(markers);
   handler.fitMapToBounds();
+  handler.getMap().setZoom(6);
 });
 </script>
 </div>
