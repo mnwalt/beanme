@@ -2,7 +2,12 @@ class OriginCountriesController < ApplicationController
   def index
     @q = OriginCountry.ransack(params[:q])
     @origin_countries = @q.result(:distinct => true).includes(:beans, :reviews).page(params[:page]).per(10)
-    
+    @location_hash = Gmaps4rails.build_markers(@origin_countries.where.not(:location_latitude => nil)) do |origin_country, marker|
+      marker.lat origin_country.location_latitude
+      marker.lng origin_country.location_longitude
+      marker.infowindow "<h5><a href='/origin_countries/#{origin_country.id}'>#{origin_country.name}</a></h5><small>#{origin_country.location_formatted_address}</small>"
+    end
+
     render("origin_countries/index.html.erb")
   end
 
