@@ -1,14 +1,14 @@
 class BeansController < ApplicationController
   def index
     @q = Bean.ransack(params[:q])
-    @beans = @q.result(:distinct => true).includes(:inventories, :reviews, :country, :roaster).page(params[:page]).per(10)
+    @beans = @q.result(:distinct => true).includes(:inventories, :reviews, :country, :roaster).page(params[:page]).per(12)
 
     render("beans/index.html.erb")
   end
 
   def favs
     @q = Bean.ransack(params[:q])
-    @beans = @q.result(:distinct => true).includes(:inventories, :reviews, :country, :roaster).page(params[:page]).per(10)
+    @beans = @q.result(:distinct => true).includes(:inventories, :reviews, :country, :roaster).page(params[:page]).per(12)
 
     render("beans/favs.html.erb")
   end
