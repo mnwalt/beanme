@@ -9,7 +9,7 @@
   <div class="row mb-1">
     <div class="col-md-12">
       <div class="jumbotron">
-        <h1>find your cup</h1>
+        <h1>find your cup.</h1>
       </div>
     </div>
   </div>
@@ -177,7 +177,8 @@
                 </a>
                 <% else %>
                 <% @n = bean.reviews.count %>
-                <% if bean.rating < 0.75 %>
+                <% @avg = bean.reviews.pluck(:overall_rating).inject(0){|sum,x| sum + x } / @n %>
+                <% if @avg < 0.75 %>
                 <a href="/beans/<%= bean.id %>" class="btn btn-link">
                   <span title="rate bean">
                     <i class="fa fa-star-half" aria-hidden="true"></i>
@@ -185,7 +186,7 @@
                   <small> (<%= @n %>) </small>
                 </a>
                 <% else %>
-                <% if bean.rating < 1.25 %>
+                <% if @avg < 1.25 %>
                 <a href="/beans/<%= bean.id %>" class="btn btn-link">
                   <span title="rate bean">
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -193,7 +194,7 @@
                   <small> (<%= @n %>) </small>
                 </a>
                 <% else %>
-                <% if bean.rating < 1.75 %>
+                <% if @avg < 1.75 %>
                 <a href="/beans/<%= bean.id %>" class="btn btn-link">
                   <span title="rate bean">
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -202,7 +203,7 @@
                   <small> (<%= @n %>) </small>
                 </a>
                 <% else %>
-                <% if bean.rating < 2.25 %>
+                <% if @avg < 2.25 %>
                 <a href="/beans/<%= bean.id %>" class="btn btn-link">
                   <span title="rate bean">
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -211,7 +212,7 @@
                   <small> (<%= @n %>) </small>
                 </a>
                 <% else %>
-                <% if bean.rating < 2.75 %>
+                <% if @avg < 2.75 %>
                 <a href="/beans/<%= bean.id %>" class="btn btn-link">
                   <span title="rate bean">
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -221,7 +222,7 @@
                   <small> (<%= @n %>) </small>
                 </a>
                 <% else %>
-                <% if bean.rating < 3.25 %>
+                <% if @avg < 3.25 %>
                 <a href="/beans/<%= bean.id %>" class="btn btn-link">
                   <span title="rate bean">
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -231,7 +232,7 @@
                   <small> (<%= @n %>) </small>
                 </a>
                 <% else %>
-                <% if bean.rating < 3.75 %>
+                <% if @avg < 3.75 %>
                 <a href="/beans/<%= bean.id %>" class="btn btn-link">
                   <span title="rate bean">
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -242,7 +243,7 @@
                   <small> (<%= @n %>) </small>
                 </a>
                 <% else %>
-                <% if bean.rating < 4.25 %>
+                <% if @avg < 4.25 %>
                 <a href="/beans/<%= bean.id %>" class="btn btn-link">
                   <span title="rate bean">
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -253,7 +254,7 @@
                   <small> (<%= @n %>) </small>
                 </a>
                 <% else %>
-                <% if bean.rating < 4.75 %>
+                <% if @avg < 4.75 %>
                 <a href="/beans/<%= bean.id %>" class="btn btn-link">
                   <span title="rate bean">
                     <i class="fa fa-star" aria-hidden="true"></i>
