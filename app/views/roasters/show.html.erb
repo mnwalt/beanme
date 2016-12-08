@@ -31,7 +31,7 @@
         <dt> Avg BeanMe Rating <dt>
           <% if @roaster.reviews.count != 0 %>
           <dd>
-          <% @n = @roaster.reviews.pluck(:overall_rating).count %>
+          <% @n = @roaster.reviews.count %>
           <% @avg = @roaster.reviews.pluck(:overall_rating).inject(0){|sum,x| sum + x } / @n %>
 
           <% if @avg < 0.75 %>
@@ -154,7 +154,7 @@
           <dt> <%= current_user.username %>'s Avg Rating <dt>
             <% if @roaster.reviews.where(:user_id => current_user).count != 0 %>
             <dd>
-            <% @n = @roaster.reviews.where(:user_id => current_user).pluck(:overall_rating).count %>
+            <% @n = @roaster.reviews.where(:user_id => current_user).count %>
             <% @avg = @roaster.reviews.where(:user_id => current_user).pluck(:overall_rating).inject(0){|sum,x| sum + x } / @n %>
 
             <% if @avg < 0.75 %>
@@ -368,7 +368,7 @@
                   </a>
                   <% else %>
                   <% @avg = bean.reviews.pluck(:overall_rating).inject(0){|sum,x| sum + x } /bean.reviews.pluck(:overall_rating).count %>
-                  <% @n = bean.reviews  .pluck(:overall_rating).count %>
+                  <% @n = bean.reviews.count %>
                   <% if @avg < 0.75 %>
                   <a href="/beans/<%= bean.id %>" class="btn btn-link">
                     <span title="rate bean">

@@ -1,32 +1,48 @@
 class Review < ApplicationRecord
-  mount_uploader :image, ImageUploader
+  before_save :update_rating
 
-  # Direct associations
+  def update_rating
+    bean = self.bean
+    reviews = Review.where(:bean_id => bean.id)
+    ratings = reviews.pluck(:overall_rating)
+    avg_rating = ratings.sum.to_f / ratings.count
+    if ratings.count >0
+      bean.rating = avg_rating
+      bean.save
+    else
+      bean.rating = 0
+      bean.save
+    end
+  end
 
-  belongs_to :user,
-             :counter_cache => true
+    mount_uploader :image, ImageUploader
 
-  belongs_to :bean,
-             :counter_cache => true
+    # Direct associations
 
-  # Indirect associations
+    belongs_to :user,
+    :counter_cache => true
 
-  has_one    :roaster,
-             :through => :bean,
-             :source => :roaster
+    belongs_to :bean,
+    :counter_cache => true
 
-  has_one    :country,
-             :through => :bean,
-             :source => :country
+    # Indirect associations
 
-  # Validations
+    has_one    :roaster,
+    :through => :bean,
+    :source => :roaster
 
-  validates :bean_id, :presence => true
+    has_one    :country,
+    :through => :bean,
+    :source => :country
 
-  validates :overall_rating, :presence => true
+    # Validations
 
-  validates :overall_rating, :numericality => { :less_than_or_equal_to => 5, :greater_than_or_equal_to => 0 }
+    validates :bean_id, :presence => true
 
-  validates :user_id, :presence => true
+    validates :overall_rating, :presence => true
 
-end
+    validates :overall_rating, :numericality => { :less_than_or_equal_to => 5, :greater_than_or_equal_to => 0 }
+
+    validates :user_id, :presence => true
+
+  end

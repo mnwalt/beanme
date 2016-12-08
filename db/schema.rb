@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208205918) do
+ActiveRecord::Schema.define(version: 20161208222222) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20161208205918) do
     t.float    "region_latitude"
     t.float    "region_longitude"
     t.string   "region_formatted_address"
+    t.float    "rating"
   end
 
   create_table "inventories", force: :cascade do |t|

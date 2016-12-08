@@ -1,6 +1,7 @@
 class OriginCountriesController < ApplicationController
   def index
     @q = OriginCountry.ransack(params[:q])
+    @q.sorts = 'created_at' if @q.sorts.blank?
     @origin_countries = @q.result(:distinct => true).includes(:beans, :reviews).page(params[:page]).per(10)
     @location_hash = Gmaps4rails.build_markers(@origin_countries.where.not(:location_latitude => nil)) do |origin_country, marker|
       marker.lat origin_country.location_latitude

@@ -1,6 +1,7 @@
 class BeansController < ApplicationController
   def index
     @q = Bean.ransack(params[:q])
+    @q.sorts = 'created_at' if @q.sorts.blank?
     @beans = @q.result(:distinct => true).includes(:inventories, :reviews, :country, :roaster).page(params[:page]).per(12)
 
     render("beans/index.html.erb")
@@ -8,6 +9,7 @@ class BeansController < ApplicationController
 
   def favs
     @q = Bean.ransack(params[:q])
+    @q.sorts = 'created_at' if @q.sorts.blank?
     @beans = @q.result(:distinct => true).includes(:inventories, :reviews, :country, :roaster).page(params[:page]).per(12)
 
     render("beans/favs.html.erb")

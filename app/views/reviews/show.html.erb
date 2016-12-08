@@ -59,7 +59,7 @@
         Country
       </li>
 
-      <% @review.country.each do |origin_country| %>
+      <% @review.origin_country.each do |origin_country| %>
         <li class="list-group-item">
           <a href="/origin_countries/<%= origin_country.id %>">
             <%= origin_country.description %>
