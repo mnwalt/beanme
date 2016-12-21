@@ -8,10 +8,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user.id == 1
-      @user = User.find(params[:id])
-    end
-  else
-    redirect_to("/")
+    @user = User.find(params[:id])
+    @reviews = @user.reviews.order("created_at DESC").page(params[:page]).per(10)
+    @favorites = @user.inventories.order("created_at DESC").page(params[:page]).per(10)
   end
+
 end

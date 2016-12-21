@@ -1,97 +1,298 @@
-<div class="page-header">
-  <h3>User #<%= @user.id %></h3>
-</div>
-
-<div class="row">
-  <div class="col-md-12 mb-2">
-    <dl class="dl-horizontal">
-      <dt>Email</dt>
-      <dd><%= @user.email %></dd>
-
-      <dt>Password</dt>
-      <dd><%= @user.password %></dd>
-
-      <dt>First name</dt>
-      <dd><%= @user.first_name %></dd>
-
-      <dt>Last name</dt>
-      <dd><%= @user.last_name %></dd>
-
-      <dt>Username</dt>
-      <dd><%= @user.username %></dd>
-
-    </dl>
-
-    <div class="btn-group btn-group-justified">
-      <a href="/users" class="btn btn-primary">
-        Back
-      </a>
-    </div>
+<div class="container">
+  <div class="page-header">
+    <% if current_user.id != @user.id %>
+    <% if FriendRequest.where({ :sender_id => current_user.id, :receiver_id => @user.id, :status => "Y"}).count == 0 %>
+    <a href="/beans" class="btn btn-default" style="float: right";>follow</a>
+    <% else %>
+    <a href="/beans" class="btn btn-default" style="float: right";>un-follow</a>
+    <% end %>
+    <% end %>
+    <h1>
+      <%= @user.username %> <small> (<%= @user.first_name %> <%= @user.last_name %>) </small>
+    </h1>
   </div>
-</div>
 
-<!-- A User has many inventories -->
+  <div class="row">
 
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Inventories
-      </li>
+    <div class="col-md-4">
+      <div class="panel panel-success">
+        <div class="panel-heading" style=>
+          <h2>
+            Reviews <small style="color: #FFFFFF;"> (<%= @user.reviews.count %>) </small>
+          </h2>
+        </div>
+      </div>
 
-      <% @user.inventories.each do |inventory| %>
-        <li class="list-group-item">
-          <a href="/inventories/<%= inventory.id %>">
-            <%= inventory.user_id %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/inventories/<%= inventory.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <%if current_user == inventory.user %>
-              <a href="/inventories/<%= inventory.id %>/edit" class="btn btn-warning">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a href="/delete_inventory/<%= inventory.id %>" class="btn btn-danger" rel="nofollow">
-                <i class="fa fa-trash-o"></i>
-              </a>
-            <% end %>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</div>
-
-<!-- A User has many reviews -->
-
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Reviews
-      </li>
-
+      <% if @user.reviews.count == 0 %>
+      <small> no reviews to date </small>
+      <% else %>
       <% @user.reviews.each do |review| %>
-        <li class="list-group-item">
-          <a href="/reviews/<%= review.id %>">
-            <%= review.user_id %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/reviews/<%= review.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <small>
+              <%= time_ago_in_words(review.created_at) %> ago
+            </small>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <p>
+            <a href="/beans/<%= review.bean_id %>">
+              <%= review.bean.name %></a>
+              <a href="/beans/<%= review.bean_id %>">
+                <img src="<%= review.bean.image_url %>" class="img-responsive left-block" style="float: right; max-height: 60px;">
+              </a>
+            </br>
+            <a href="/roasters/<%= review.bean.roaster_id %>">
+              <small> <%= review.bean.roaster.name %></small></a>
+            </p>
+            <% if review.overall_rating < 0.75 %>
+            <a>
+              <i class="fa fa-star-half" aria-hidden="true"></i>
             </a>
-            <%if current_user == review.user %>
-              <a href="/reviews/<%= review.id %>/edit" class="btn btn-warning">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a href="/delete_review/<%= review.id %>" class="btn btn-danger" rel="nofollow">
-                <i class="fa fa-trash-o"></i>
-              </a>
+            <% else %>
+            <% if review.overall_rating < 1.25 %>
+            <a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <% if review.overall_rating < 1.75 %>
+            <<a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <% if review.overall_rating < 2.25 %>
+            <a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <% if review.overall_rating < 2.75 %>
+            <a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <% if review.overall_rating < 3.25 %>
+            <a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <% if review.overall_rating < 3.75 %>
+            <a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <% if review.overall_rating < 4.25 %>
+            <a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <% if review.overall_rating < 4.75 %>
+            <a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </a>
             <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <br> </br>
+            <% if review.image != "" %>
+            <img src="<%= review.image %>" class="img-responsive" style="max-height: 150px;">
+          </br>
+          <% end %>
+          <%= review.comments %>
+          <hr style="height:1px; border:none; color:#A9A9A9; background-color:#A9A9A9;">
+          <% if review.likes.count == 0 %>
+          <form action="/create_like" method="post">
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="review_id" value="<%= review.id %>">
+            <input type="hidden" name="user_id" value="<%= current_user.id %>">
+            <button class="btn btn-link">
+              <i class="fa fa-thumbs-o-up"></i>
+            </button>
+            <small class="text-muted">be the first to like this</small>
+          </form>
+          <% else %>
+          <% if review.fans.include?(current_user) == true %>
+          <a href="/delete_like/<%= review.likes.where(user_id: current_user.id).pluck(:id).to_sentence %>" class="btn btn-link">
+            <i class="fa fa-thumbs-up"></i>
+          </a>
+          <% if review.fans.count == 1 %>
+          <%= review.fans.pluck(:username).to_sentence %> likes this
+          <% else %>
+          <%= review.fans.pluck(:username).to_sentence %> like this
+          <% end %>
+          <% else %>
+          <form action="/create_like" method="post">
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="review_id" value="<%= review.id %>">
+            <input type="hidden" name="user_id" value="<%= current_user.id %>">
+            <button class="btn btn-link">
+              <i class="fa fa-heart-o"></i>
+            </button>
+            <% if review.fans.count == 1 %>
+            <%= review.fans.pluck(:username).to_sentence %> likes this
+            <% else %>
+            <%= review.fans.pluck(:username).to_sentence %> like this
+            <% end %>
+            <% end %>
+            <% end %>
+          </form>
+          <p>
+          </p>
+          <ul class="media-list">
+            <% review.responses.each do |response| %>
+            <li class="media">
+              <div class="media-body">
+                <h6 class="media-heading">
+                  <a href="/users/<%= response.user_id %>"><%= response.user.username %></a>
+                  <small>
+                    <%= time_ago_in_words(response.created_at) %>
+                  </small>
+                </h6>
+                <%= response.body %>
+              </div>
+            </li>
+            <% end %>
+            <li class="media">
+              <div class="media-body">
+                <form action="/create_response" method="post">
+                  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+                  <input type="hidden" name="review_id" value="<%= review.id %>">
+                  <input type="hidden" name="user_id" value="<%= current_user.id %>">
+                  <div class="form-group">
+                    <label for="body" class="sr-only"> Body </label>
+                    <input type="text" id="body" name="body" placeholder="Add a comment..." class="form-control">
+                  </div>
+                </form>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <% end %>
+      <%= paginate @reviews, theme: 'twitter-bootstrap-4' %>
+      <% end %>
+    </div>
+
+    <div class="col-md-4">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h2>
+            Favorites <small style="color: #FFFFFF;"> (<%= @user.inventories.count %>) </small>
+          </h2>
+        </div>
+      </div>
+
+      <% if @user.inventories.count == 0 %>
+      <small> no favorites selected </small>
+      <% else %>
+      <% @user.inventories.order("created_at DESC").each do |favorite| %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <small>
+              <%= time_ago_in_words(favorite.created_at) %> ago
+            </small>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <p>
+            <a href="/beans/<%= favorite.bean_id %>">
+              <%= favorite.bean.name %></a>
+              <a href="/beans/<%= favorite.bean_id %>">
+                <img src="<%= favorite.bean.image_url %>" class="img-responsive left-block" style="float: right; max-height: 60px;">
+              </a>
+            </br>
+            <a href="/roasters/<%= favorite.bean.roaster_id %>">
+              <small>  <%= favorite.bean.roaster.name %></small></a>
+            </p>
           </div>
+        </div>
+        <% end %>
+        <% end %>
+        <%= paginate @favorites, theme: 'twitter-bootstrap-4' %>
+      </div>
+
+
+      <div class="col-md-4">
+        <div class="panel panel-success">
+          <div class="panel-heading" style=>
+            <h2>
+              Friends
+            </h2>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <small>
+              Following (<%= current_user.friends_where_sender.count %>)
+            </small>
+            </h3>
+          </div>
+
+      <div class="panel-body">
+        <ul class="list-group">
+          <% current_user.friends_where_sender.each do |user| %>
+          <li class="list-group-item">
+          <a href="/users/<%= user.id %>"> <%= user.username %> <small> (<%= user.first_name %> <%= user.last_name %>) </small>
+          </a>
         </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <small>
+        Followed By (<%= current_user.friends_where_receiver.count %>)
+      </small>
+        </h3>
+      </div>
+
+  <div class="panel-body">
+    <ul class="list-group">
+      <% current_user.friends_where_receiver.each do |user| %>
+      <li class="list-group-item">
+      <a href="/users/<%= user.id %>"> <%= user.username %> <small> (<%= user.first_name %> <%= user.last_name %>) </small>
+      </a>
+    </li>
       <% end %>
     </ul>
   </div>
 </div>
+
+  </div>
+  </div>

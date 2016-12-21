@@ -20,6 +20,8 @@ class BeansController < ApplicationController
     @inventory = Inventory.new
     @bean = Bean.find(params[:id])
 
+    @reviews = @bean.reviews.order("created_at DESC").page(params[:page]).per(10)
+
     render("beans/show.html.erb")
   end
 

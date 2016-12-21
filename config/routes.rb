@@ -11,8 +11,7 @@ Rails.application.routes.draw do
   # READ
   get "/reviews", :controller => "reviews", :action => "index"
   get "/reviews/:id", :controller => "reviews", :action => "show"
-  get "/reviews/user/:review_user_id", :controller => "reviews", :action => "user"
-
+  
   # UPDATE
   get "/reviews/:id/edit", :controller => "reviews", :action => "edit"
   post "/update_review/:id", :controller => "reviews", :action => "update"

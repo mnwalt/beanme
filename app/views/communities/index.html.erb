@@ -57,7 +57,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">
-            <a href="reviews/user/<% review.user %>"><%= review.user.username %></a>
+            <a href="/users/<%= review.user.id %>"><%= review.user.username %></a>
             <small>
               <%= time_ago_in_words(review.created_at) %> ago
             </small>
@@ -74,161 +74,161 @@
             <a href="/roasters/<%= review.bean.roaster_id %>">
               <small>  <%= review.bean.roaster.name %></small></a>
             </p>
-                    <% if review.overall_rating < 0.75 %>
-          <a>
-            <i class="fa fa-star-half" aria-hidden="true"></i>
-          </a>
-          <% else %>
-          <% if review.overall_rating < 1.25 %>
-          <a>
-            <i class="fa fa-star" aria-hidden="true"></i>
-          </a>
-          <% else %>
-          <% if review.overall_rating < 1.75 %>
-          <<a>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star-half" aria-hidden="true"></i>
-          </a>
-          <% else %>
-          <% if review.overall_rating < 2.25 %>
-          <a>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-          </a>
-          <% else %>
-          <% if review.overall_rating < 2.75 %>
-          <a>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star-half" aria-hidden="true"></i>
-          </a>
-          <% else %>
-          <% if review.overall_rating < 3.25 %>
-          <a>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-          </a>
-          <% else %>
-          <% if review.overall_rating < 3.75 %>
-          <a>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star-half" aria-hidden="true"></i>
-          </a>
-          <% else %>
-          <% if review.overall_rating < 4.25 %>
-          <a>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-          </a>
-          <% else %>
-          <% if review.overall_rating < 4.75 %>
-          <a>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star-half" aria-hidden="true"></i>
-          </a>
-          <% else %>
-          <a>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-          </a>
+            <% if review.overall_rating < 0.75 %>
+            <a>
+              <i class="fa fa-star-half" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <% if review.overall_rating < 1.25 %>
+            <a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <% if review.overall_rating < 1.75 %>
+            <<a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <% if review.overall_rating < 2.25 %>
+            <a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <% if review.overall_rating < 2.75 %>
+            <a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <% if review.overall_rating < 3.25 %>
+            <a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <% if review.overall_rating < 3.75 %>
+            <a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <% if review.overall_rating < 4.25 %>
+            <a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <% if review.overall_rating < 4.75 %>
+            <a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half" aria-hidden="true"></i>
+            </a>
+            <% else %>
+            <a>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </a>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <% end %>
+            <br> </br>
+            <% if review.image != "" %>
+            <img src="<%= review.image %>" class="img-responsive" style="max-height: 150px;">
+          </br>
           <% end %>
-          <% end %>
-          <% end %>
-          <% end %>
-          <% end %>
-          <% end %>
-          <% end %>
-          <br> </br>
-          <% if review.image != "" %>
-          <img src="<%= review.image %>" class="img-responsive" style="max-height: 150px;">
-        </br>
-        <% end %>
-        <%= review.comments %>
-        <% end %>
-        <hr style="height:1px; border:none; color:#A9A9A9; background-color:#A9A9A9;">
-        <% if review.likes.count == 0 %>
-        <form action="/create_like" method="post">
-          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-          <input type="hidden" name="review_id" value="<%= review.id %>">
-          <input type="hidden" name="user_id" value="<%= current_user.id %>">
-          <button class="btn btn-link">
-            <i class="fa fa-thumbs-o-up"></i>
-          </button>
-          <small class="text-muted">be the first to like this</small>
-        </form>
-        <% else %>
-        <% if review.fans.include?(current_user) == true %>
-        <a href="/delete_like/<%= review.likes.where(user_id: current_user.id).pluck(:id).to_sentence %>" class="btn btn-link">
-          <i class="fa fa-thumbs-up"></i>
-        </a>
-        <% if review.fans.count == 1 %>
-        <%= review.fans.pluck(:username).to_sentence %> likes this
-        <% else %>
-        <%= review.fans.pluck(:username).to_sentence %> like this
-        <% end %>
-        <% else %>
-        <form action="/create_like" method="post">
-          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-          <input type="hidden" name="review_id" value="<%= review.id %>">
-          <input type="hidden" name="user_id" value="<%= current_user.id %>">
-          <button class="btn btn-link">
-            <i class="fa fa-heart-o"></i>
-          </button>
+          <%= review.comments %>
+          <hr style="height:1px; border:none; color:#A9A9A9; background-color:#A9A9A9;">
+          <% if review.likes.count == 0 %>
+          <form action="/create_like" method="post">
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="review_id" value="<%= review.id %>">
+            <input type="hidden" name="user_id" value="<%= current_user.id %>">
+            <button class="btn btn-link">
+              <i class="fa fa-thumbs-o-up"></i>
+            </button>
+            <small class="text-muted">be the first to like this</small>
+          </form>
+          <% else %>
+          <% if review.fans.include?(current_user) == true %>
+          <a href="/delete_like/<%= review.likes.where(user_id: current_user.id).pluck(:id).to_sentence %>" class="btn btn-link">
+            <i class="fa fa-thumbs-up"></i>
+          </a>
           <% if review.fans.count == 1 %>
           <%= review.fans.pluck(:username).to_sentence %> likes this
           <% else %>
           <%= review.fans.pluck(:username).to_sentence %> like this
           <% end %>
-          <% end %>
-          <% end %>
-        </form>
-        <p>
-        </p>
-        <ul class="media-list">
-          <% review.responses.each do |response| %>
-          <li class="media">
-            <div class="media-body">
-              <h6 class="media-heading">
-                <a href="/users/<%= response.user_id %>"><%= response.user.username %></a>
-                <small>
-                  <%= time_ago_in_words(response.created_at) %>
-                </small>
-              </h6>
-              <%= response.body %>
-            </div>
-          </li>
-          <% end %>
-          <li class="media">
-            <div class="media-body">
-              <form action="/create_response" method="post">
-                <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-                <input type="hidden" name="review_id" value="<%= review.id %>">
-                <input type="hidden" name="user_id" value="<%= current_user.id %>">
-                <div class="form-group">
-                  <label for="body" class="sr-only"> Body </label>
-                  <input type="text" id="body" name="body" placeholder="Add a comment..." class="form-control">
-                </div>
-              </form>
-            </div>
-          </li>
-        </ ul>
-        <% end %>
+          <% else %>
+          <form action="/create_like" method="post">
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="review_id" value="<%= review.id %>">
+            <input type="hidden" name="user_id" value="<%= current_user.id %>">
+            <button class="btn btn-link">
+              <i class="fa fa-heart-o"></i>
+            </button>
+            <% if review.fans.count == 1 %>
+            <%= review.fans.pluck(:username).to_sentence %> likes this
+            <% else %>
+            <%= review.fans.pluck(:username).to_sentence %> like this
+            <% end %>
+            <% end %>
+            <% end %>
+          </form>
+          <p>
+          </p>
+          <ul class="media-list">
+            <% review.responses.order("created_at DESC").each do |response| %>
+            <li class="media">
+              <div class="media-body">
+                <h6 class="media-heading">
+                  <a href="/users/<%= response.user_id %>"><%= response.user.username %></a>
+                  <small>
+                    <%= time_ago_in_words(response.created_at) %>
+                  </small>
+                </h6>
+                <%= response.body %>
+              </div>
+            </li>
+            <% end %>
+            <li class="media">
+              <div class="media-body">
+                <form action="/create_response" method="post">
+                  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+                  <input type="hidden" name="review_id" value="<%= review.id %>">
+                  <input type="hidden" name="user_id" value="<%= current_user.id %>">
+                  <div class="form-group">
+                    <label for="body" class="sr-only"> Body </label>
+                    <input type="text" id="body" name="body" placeholder="Add a comment..." class="form-control">
+                  </div>
+                </form>
+              </div>
+            </li>
+          </ul>
+          </div>
       </div>
-    </div>
-    <% end %>
-    <% end %>
-    <%= paginate @reviews, theme: 'twitter-bootstrap-4' %>
+      <% end %>
+      <%= paginate @reviews, theme: 'twitter-bootstrap-4' %>
+      <% end %>
   </div>
 
   <div class="col-md-4">
@@ -247,7 +247,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">
-          <a href="reviews/user/<% favorite.user %>"><%= favorite.user.username %></a>
+        <a href="/users/<%= favorite.user.id %>"><%= favorite.user.username %></a>
           <small>
             <%= time_ago_in_words(favorite.created_at) %> ago
           </small>
