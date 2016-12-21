@@ -13,6 +13,30 @@ class Review < ApplicationRecord
       bean.rating = 0
       bean.save
     end
+
+    roaster = bean.roaster
+    reviews = roaster.reviews
+    ratings = reviews.pluck(:overall_rating)
+    avg_rating = ratings.sum.to_f / ratings.count
+    if ratings.count >0
+      roaster.rating = avg_rating
+      roaster.save
+    else
+      roaster.rating = 0
+      roaster.save
+    end
+
+    origin_country = bean.country
+    reviews = origin_country.reviews
+    ratings = reviews.pluck(:overall_rating)
+    avg_rating = ratings.sum.to_f / ratings.count
+    if ratings.count >0
+      origin_country.rating = avg_rating
+      origin_country.save
+    else
+      origin_country.rating = 0
+      origin_country.save
+    end
   end
 
     mount_uploader :image, ImageUploader
@@ -34,6 +58,11 @@ class Review < ApplicationRecord
     has_one    :country,
     :through => :bean,
     :source => :country
+
+    has_many :responses
+
+    has_many :likes
+    has_many :fans, :through => :likes, :source => :user
 
     # Validations
 

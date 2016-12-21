@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root :to => "beans#index"
+
   # Routes for the Review resource:
   # CREATE
   get "/reviews/new", :controller => "reviews", :action => "new"
@@ -97,7 +98,7 @@ Rails.application.routes.draw do
   get "/delete_bean/:id", :controller => "beans", :action => "destroy"
   #------------------------------
 
-  # Routes forBrew Guide:
+  # Routes for Brew Guide:
   get "/brew_guide/", :controller => "brew_guides", :action => "chemex_form"
 
   get "/brew_guide/chemex_new", :controller => "brew_guides", :action => "chemex_form"
@@ -108,6 +109,44 @@ Rails.application.routes.draw do
 
   get "/brew_guide/french_press_new", :controller => "brew_guides", :action => "french_press_form"
   get "/brew_guide/french_press_results", :controller => "brew_guides", :action => "french_press"
+
+  # Routes for Community:
+  get "/community/", :controller => "communities", :action => "index"
+  #------------------------------
+
+  # Routes for the Like resource:
+  # CREATE
+  get "/likes/new", :controller => "likes", :action => "new"
+  post "/create_like", :controller => "likes", :action => "create"
+
+  # READ
+  get "/likes", :controller => "likes", :action => "index"
+  get "/likes/:id", :controller => "likes", :action => "show"
+
+  # UPDATE
+  get "/likes/:id/edit", :controller => "likes", :action => "edit"
+  post "/update_like/:id", :controller => "likes", :action => "update"
+
+  # DELETE
+  get "/delete_like/:id", :controller => "likes", :action => "destroy"
+  #------------------------------
+
+  # Routes for the Response resource:
+  # CREATE
+  get "/responses/new", :controller => "responses", :action => "new"
+  post "/create_response", :controller => "responses", :action => "create"
+
+  # READ
+  get "/responses", :controller => "responses", :action => "index"
+  get "/responses/:id", :controller => "responses", :action => "show"
+
+  # UPDATE
+  get "/responses/:id/edit", :controller => "responses", :action => "edit"
+  post "/update_response/:id", :controller => "responses", :action => "update"
+
+  # DELETE
+  get "/delete_response/:id", :controller => "responses", :action => "destroy"
+  #------------------------------
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208222222) do
+ActiveRecord::Schema.define(version: 20161216214349) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20161208222222) do
     t.string   "website_url"
     t.string   "image_url"
     t.string   "flavor_note_1"
-    t.string   "flavor_note_2"
     t.string   "flavor_note_3"
     t.float    "price_per_bag"
     t.float    "bag_size_grams"
@@ -73,13 +72,26 @@ ActiveRecord::Schema.define(version: 20161208222222) do
     t.float    "rating"
   end
 
+  create_table "friend_requests", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.string   "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "inventories", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "bean_id"
-    t.float    "quantity_ounces"
-    t.date     "roast_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "origin_countries", force: :cascade do |t|
@@ -92,6 +104,15 @@ ActiveRecord::Schema.define(version: 20161208222222) do
     t.float    "location_latitude"
     t.float    "location_longitude"
     t.string   "location_formatted_address"
+    t.float    "rating"
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "review_id"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -121,6 +142,17 @@ ActiveRecord::Schema.define(version: 20161208222222) do
     t.float    "location_latitude"
     t.float    "location_longitude"
     t.string   "location_formatted_address"
+    t.float    "rating"
+  end
+
+  create_table "stories", force: :cascade do |t|
+    t.string   "heading"
+    t.string   "image_url"
+    t.text     "content"
+    t.string   "link"
+    t.string   "misc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

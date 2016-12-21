@@ -41,9 +41,7 @@ class InventoriesController < ApplicationController
 
     @inventory.user_id = params[:user_id]
     @inventory.bean_id = params[:bean_id]
-    @inventory.quantity_ounces = params[:quantity_ounces]
-    @inventory.roast_date = params[:roast_date]
-
+  
     save_status = @inventory.save
 
     if save_status == true
