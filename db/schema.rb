@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216214349) do
+ActiveRecord::Schema.define(version: 20161221172108) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20161216214349) do
     t.string   "website_url"
     t.string   "image_url"
     t.string   "flavor_note_1"
-    t.string   "flavor_note_3"
     t.float    "price_per_bag"
     t.float    "bag_size_grams"
     t.integer  "elevation_masl_low"
@@ -70,6 +69,7 @@ ActiveRecord::Schema.define(version: 20161216214349) do
     t.float    "region_longitude"
     t.string   "region_formatted_address"
     t.float    "rating"
+    t.string   "roast_level"
   end
 
   create_table "friend_requests", force: :cascade do |t|
