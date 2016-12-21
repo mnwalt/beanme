@@ -1,6 +1,6 @@
 ActiveAdmin.register Bean do
 
- permit_params :name, :roaster_id, :website_url, :image_url, :flavor_note_1, :flavor_note_2, :flavor_note_3, :price_per_bag, :bag_size_grams, :elevation_masl_low, :elevation_masl_high, :process, :varietal, :origin_country_id, :caffine, :region, :blend, :espresso, :producer, :description, :rating
+ permit_params :name, :roaster_id, :website_url, :image_url, :flavor_note_1, :price_per_bag, :bag_size_grams, :elevation_masl_low, :elevation_masl_high, :process, :varietal, :origin_country_id, :caffine, :region, :blend, :espresso, :producer, :description, :rating
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
