@@ -14,7 +14,7 @@
     <a href="/delete_friend_request/<%= FriendRequest.where(sender_id: current_user.id, receiver_id: @user.id).pluck(:id).to_sentence %>" class="btn btn-default" style="float: right";>un-follow</a>
     <% end %>
     <% else %>
-    <a href="/users/edit" class="btn btn-default" style="float: right";>Edit Profile</a>
+    <a href="/users/edit" class="btn btn-default" style="float: right";>edit profile</a>
     <% end %>
     <h1>
       <% if %>
