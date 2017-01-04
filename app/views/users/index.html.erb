@@ -48,6 +48,7 @@
         </tr>
 
         <% @users.each do |user| %>
+        <% if user.id != current_user.id %>
         <tr>
           <td><a href="/users/<%= user.id %>"> <%= user.username %></td>
             <td><%= user.first_name %></td>
@@ -76,6 +77,7 @@
           </td>
           <% end %>
           </tr>
+          <% end %>
         </table>
         <%= paginate @users, theme: 'twitter-bootstrap-4' %>
       </div>
