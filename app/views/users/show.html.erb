@@ -274,7 +274,7 @@
           <div class="panel-heading">
             <h3 class="panel-title">
               <small>
-              Following (<%= @user.friends_where_sender.count %>)
+              Following (<%= @user.friends_where_sender.count - 1 %>)
             </small>
             </h3>
           </div>
@@ -282,10 +282,12 @@
       <div class="panel-body">
         <ul class="list-group">
           <% @user.friends_where_sender.each do |user| %>
+          <% if user.id != current_user.id %>
           <li class="list-group-item">
           <a href="/users/<%= user.id %>"> <%= user.username %> <small> (<%= user.first_name %> <%= user.last_name %>) </small>
           </a>
         </li>
+        <% end %>
           <% end %>
         </ul>
       </div>
@@ -295,7 +297,7 @@
       <div class="panel-heading">
         <h3 class="panel-title">
           <small>
-        Followed By (<%= @user.friends_where_receiver.count %>)
+        Followed By (<%= @user.friends_where_receiver.count - 1 %>)
       </small>
         </h3>
       </div>
@@ -303,10 +305,12 @@
   <div class="panel-body">
     <ul class="list-group">
       <% @user.friends_where_receiver.each do |user| %>
+      <% if user.id != current_user.id %>
       <li class="list-group-item">
       <a href="/users/<%= user.id %>"> <%= user.username %> <small> (<%= user.first_name %> <%= user.last_name %>) </small>
       </a>
     </li>
+    <% end %>
       <% end %>
     </ul>
   </div>
