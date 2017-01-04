@@ -39,9 +39,9 @@
     <div class="col-md-12">
       <table class="table table-striped table-hover">
         <tr>
-          <th>Username</th>
-          <th>First Name</th>
-          <th>Last Name</th>
+          <th><%= sort_link(@q, :user_name) do %> Username <% end %></th>
+          <th><%= sort_link(@q, :first_name) do %> First Name <% end %></th>
+          <th><%= sort_link(@q, :last_name) do %> Last Name <% end %></th>
             <th>Reviews</th>
             <th>Following You</th>
           <th>Action</th>
