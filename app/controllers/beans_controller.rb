@@ -1,4 +1,5 @@
 class BeansController < ApplicationController
+
   def index
     @q = Bean.ransack(params[:q])
     @q.sorts = 'created_at' if @q.sorts.blank?

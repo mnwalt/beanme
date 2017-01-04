@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   def index
-    if current_user.id == 1
-      @users = User.page(params[:page]).per(10)
-    else
-      redirect_to("/")
-    end
+    @q = User.ransack(params[:q])
+    @q.sorts = 'created_at' if @q.sorts.blank?
+    @users = @q.result.order("created_at DESC").page(params[:page]).per(25)
+
+    render("users/index.html.erb")
   end
 
   def show

@@ -43,9 +43,7 @@
         <ul class="nav navbar-nav">
           <li><a href="/community">Community</a></li>
           <li><a href="/beans">Marketplace</a></li>
-          <% if current_user != nil %>
           <li><a href="/favorites">Favorites</a></li>
-          <% end %>
           <li><a href="/roasters">Roasters</a></li>
           <li><a href="/origin_countries">Countries</a></li>
           <li><a href="/brew_guide">Brew Guide</a></li>
@@ -59,7 +57,7 @@
             </a>
           </li>
           <li>
-            <a href="/users/edit">
+            <a href="/users/<%= current_user.id %>">
               <%= current_user.username %>
             </a>
           </li>

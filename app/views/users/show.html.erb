@@ -2,14 +2,32 @@
   <div class="page-header">
     <% if current_user.id != @user.id %>
     <% if FriendRequest.where({ :sender_id => current_user.id, :receiver_id => @user.id, :status => "Y"}).count == 0 %>
-    <a href="/beans" class="btn btn-default" style="float: right";>follow</a>
+    <form action="/create_friend_request" method="post">
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="sender_id" value="<%= current_user.id %>">
+      <input type="hidden" name="receiver_id" value="<%= @user.id %>">
+      <button class="btn btn-default" style="float: right">
+      follow
+    </button>
+  </form>
     <% else %>
-    <a href="/beans" class="btn btn-default" style="float: right";>un-follow</a>
+    <a href="/delete_friend_request/<%= FriendRequest.where(sender_id: current_user.id, receiver_id: @user.id).pluck(:id).to_sentence %>" class="btn btn-default" style="float: right";>un-follow</a>
     <% end %>
+    <% else %>
+    <a href="/users/edit" class="btn btn-default" style="float: right";>Edit Profile</a>
     <% end %>
     <h1>
-      <%= @user.username %> <small> (<%= @user.first_name %> <%= @user.last_name %>) </small>
+      <% if %>
+      <% @user.photo_url == nil%>
+      <img src="http://s3.amazonaws.com/nvest/Blank_Club_Website_Avatar_Gray.jpg" class="img-responsive" style="max-height: 75px;">
+      <% else %>
+      <img src="<%= @user.photo_url %>" class="img-responsive" style="max-height: 75px;">
+      <% end %>
+        <%= @user.username %> <small> (<%= @user.first_name %> <%= @user.last_name %>) </small>
     </h1>
+  <p>
+      <%= @user.about %>
+    </p>
   </div>
 
   <div class="row">
@@ -256,14 +274,14 @@
           <div class="panel-heading">
             <h3 class="panel-title">
               <small>
-              Following (<%= current_user.friends_where_sender.count %>)
+              Following (<%= @user.friends_where_sender.count %>)
             </small>
             </h3>
           </div>
 
       <div class="panel-body">
         <ul class="list-group">
-          <% current_user.friends_where_sender.each do |user| %>
+          <% @user.friends_where_sender.each do |user| %>
           <li class="list-group-item">
           <a href="/users/<%= user.id %>"> <%= user.username %> <small> (<%= user.first_name %> <%= user.last_name %>) </small>
           </a>
@@ -277,14 +295,14 @@
       <div class="panel-heading">
         <h3 class="panel-title">
           <small>
-        Followed By (<%= current_user.friends_where_receiver.count %>)
+        Followed By (<%= @user.friends_where_receiver.count %>)
       </small>
         </h3>
       </div>
 
   <div class="panel-body">
     <ul class="list-group">
-      <% current_user.friends_where_receiver.each do |user| %>
+      <% @user.friends_where_receiver.each do |user| %>
       <li class="list-group-item">
       <a href="/users/<%= user.id %>"> <%= user.username %> <small> (<%= user.first_name %> <%= user.last_name %>) </small>
       </a>
@@ -296,3 +314,4 @@
 
   </div>
   </div>
+</div>

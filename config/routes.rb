@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  root :to => "beans#index"
+  root :to => "communities#index"
 
   # Routes for the Review resource:
   # CREATE
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # READ
   get "/reviews", :controller => "reviews", :action => "index"
   get "/reviews/:id", :controller => "reviews", :action => "show"
-  
+
   # UPDATE
   get "/reviews/:id/edit", :controller => "reviews", :action => "edit"
   post "/update_review/:id", :controller => "reviews", :action => "update"
@@ -146,6 +146,24 @@ Rails.application.routes.draw do
   # DELETE
   get "/delete_response/:id", :controller => "responses", :action => "destroy"
   #------------------------------
+
+  # Routes for the Friend_Request resource:
+  # CREATE
+  get "/friend_requests/new", :controller => "friend_requests", :action => "new"
+  post "/create_friend_request", :controller => "friend_requests", :action => "create"
+
+  # READ
+  get "/friend_requests", :controller => "friend_requests", :action => "index"
+  get "/friend_requests/:id", :controller => "friend_requests", :action => "show"
+
+  # UPDATE
+  get "/friend_requests/:id/edit", :controller => "friend_requests", :action => "edit"
+  post "/update_friend_request/:id", :controller => "friend_requests", :action => "update"
+
+  # DELETE
+  get "/delete_friend_request/:id", :controller => "friend_requests", :action => "destroy"
+  #------------------------------
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
