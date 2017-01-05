@@ -26,14 +26,12 @@ class User < ApplicationRecord
   has_many :friends_where_sender, :through => :friend_requests_where_sender, :source => :receiver
 
   has_many :friend_requests_where_receiver, :class_name => "FriendRequest", :foreign_key => "receiver_id"
-  
+
   has_many :friends_where_receiver, :through => :friend_requests_where_receiver, :source => :sender
 
   has_many :timeline_reviews, :through => :friends_where_sender, :source => :reviews
 
   has_many :timeline_favorites, :through => :friends_where_sender, :source => :inventories
-
-  has_many :liked_reviews, :through => :likes, :source => :review
 
   # Indirect associations
 

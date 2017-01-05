@@ -282,7 +282,7 @@
       <div class="panel-body">
         <ul class="list-group">
           <% @user.friends_where_sender.each do |user| %>
-          <% if user.id != current_user.id %>
+          <% if user.id != @user.id %>
           <li class="list-group-item">
           <a href="/users/<%= user.id %>"> <%= user.username %> <small> (<%= user.first_name %> <%= user.last_name %>) </small>
           </a>
@@ -305,7 +305,7 @@
   <div class="panel-body">
     <ul class="list-group">
       <% @user.friends_where_receiver.each do |user| %>
-      <% if user.id != current_user.id %>
+      <% if user.id != @user.id %>
       <li class="list-group-item">
       <a href="/users/<%= user.id %>"> <%= user.username %> <small> (<%= user.first_name %> <%= user.last_name %>) </small>
       </a>

@@ -3,6 +3,9 @@
 class ImageUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
+  def cache_dir
+    "#{Rails.root}/tmp/uploads"
+  end
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
