@@ -39,43 +39,53 @@
     <div class="col-md-12">
       <table class="table table-striped table-hover">
         <tr>
-          <th><%= sort_link(@q, :user_name) do %> Username <% end %></th>
+          <th><%= sort_link(@q, :user_name) do %> User <% end %></th>
+          <th></th>
           <th><%= sort_link(@q, :first_name) do %> First Name <% end %></th>
           <th><%= sort_link(@q, :last_name) do %> Last Name <% end %></th>
-            <th>Reviews</th>
-            <th>Following You</th>
+          <th>Reviews</th>
+          <th>Following You</th>
           <th>Action</th>
         </tr>
 
         <% @users.each do |user| %>
         <% if user.id != current_user.id %>
         <tr>
-          <td><a href="/users/<%= user.id %>"> <%= user.username %></td>
+          <td>
+            <a href="/users/<%= user.id %>"> <%= user.username %>
+            </td>
+            <td>
+              <% if user.photo_url == nil %>
+              <img src="http://s3.amazonaws.com/nvest/Blank_Club_Website_Avatar_Gray.jpg" style="max-height: 50px;">
+              <% else %>
+              <img src="<%= user.photo_url %>" style="max-height: 50px;">
+              <% end %>
+            </td>
             <td><%= user.first_name %></td>
             <td><%= user.last_name %></td>
-              <td><%= user.reviews.count %></td>
+            <td><%= user.reviews.count %></td>
             <td>
               <% if FriendRequest.where({ :sender_id => user.id, :receiver_id => current_user.id, :status => "Y"}).count != 0 %>
               <i class="fa fa-check" aria-hidden="true"></i>
               <% end %>
             </td>
             <td>
-            <% if current_user.id != user.id %>
-            <% if FriendRequest.where({ :sender_id => current_user.id, :receiver_id => user.id, :status => "Y"}).count == 0 %>
-            <form action="/create_friend_request" method="post">
-              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-              <input type="hidden" name="sender_id" value="<%= current_user.id %>">
-              <input type="hidden" name="receiver_id" value="<%= user.id %>">
-              <button class="btn btn-success">
-              follow
-            </button>
-          </form>
-            <% else %>
-            <a href="/delete_friend_request/<%= FriendRequest.where(sender_id: current_user.id, receiver_id: user.id).pluck(:id).to_sentence %>" class="btn btn-default">un-follow</a>
+              <% if current_user.id != user.id %>
+              <% if FriendRequest.where({ :sender_id => current_user.id, :receiver_id => user.id, :status => "Y"}).count == 0 %>
+              <form action="/create_friend_request" method="post">
+                <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+                <input type="hidden" name="sender_id" value="<%= current_user.id %>">
+                <input type="hidden" name="receiver_id" value="<%= user.id %>">
+                <button class="btn btn-success">
+                  follow
+                </button>
+              </form>
+              <% else %>
+              <a href="/delete_friend_request/<%= FriendRequest.where(sender_id: current_user.id, receiver_id: user.id).pluck(:id).to_sentence %>" class="btn btn-default">un-follow</a>
+              <% end %>
+              <% end %>
+            </td>
             <% end %>
-            <% end %>
-          </td>
-          <% end %>
           </tr>
           <% end %>
         </table>

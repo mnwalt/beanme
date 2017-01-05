@@ -18,7 +18,7 @@
     <% end %>
     <h1>
       <% if %>
-      <% @user.photo_url == nil%>
+      <% @user.photo_url == nil %>
       <img src="http://s3.amazonaws.com/nvest/Blank_Club_Website_Avatar_Gray.jpg" class="img-responsive" style="max-height: 75px;">
       <% else %>
       <img src="<%= @user.photo_url %>" class="img-responsive" style="max-height: 75px;">
